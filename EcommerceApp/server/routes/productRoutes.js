@@ -5,13 +5,13 @@ const router = express.Router();
 import {
   getProducts,
   getProductById,
-} from "../controllers/productController.js";
+  createProduct,
+} from "../controllers/productController.js"; // <-- IMPORT createProduct
 
-// Route for ALL products
-// The .route() method allows chaining GET, POST, PUT, etc., on the same path
-router.route("/").get(getProducts);
+// Route for ALL products (handles both GET and POST)
+router.route("/").get(getProducts).post(createProduct); // <-- ADD THE POST ROUTE HERE
 
-// Route for a SINGLE product (using the dynamic :id parameter)
+// Route for a SINGLE product
 router.route("/:id").get(getProductById);
 
 export default router;

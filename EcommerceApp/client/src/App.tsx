@@ -1,4 +1,5 @@
-import ProductList from "../componets/ProductList";
+import ProductList from "./components/ProductList";
+import ProductForm from "./components/ProductForm";
 import "./App.css";
 
 function App() {
@@ -10,7 +11,14 @@ function App() {
         </div>
       </header>
       <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        <ProductList />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-1">
+            <ProductForm />
+          </div>
+          <div className="lg:col-span-2">
+            <ProductList />
+          </div>
+        </div>
       </main>
     </div>
   );

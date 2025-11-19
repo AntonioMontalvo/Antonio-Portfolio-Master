@@ -27,4 +27,33 @@ const getProductById = asyncHandler(async (req, res) => {
   }
 });
 
-export { getProducts, getProductById };
+// @desc    Create a new product
+// @route   POST /api/products
+// @access  Public (Will be Private/Admin later)
+const createProduct = asyncHandler(async (req, res) => {
+  // req.body contains the JSON data sent from the front-end form
+  const { name, description, price, countInStock, image, category } = req.body;
+
+  // Simple validation check
+  if (!name || !price || !description) {
+    res.status(400); // Bad Request
+    throw new Error("Please include name, price, and description fields");
+  }
+
+  // Create a new product instance based on the Mongoose model
+  const product = await Product.create({
+    name,
+    description,
+    price,
+    countInStock, // Defaults to 0 if not provided
+    image,
+    category,
+    rating: 0,
+    numReviews: 0,
+  });
+
+  // Send back a 201 Created status and the new product data
+  res.status(201).json(product);
+});
+
+export { getProducts, getProductById, createProduct }; // <-- EXPORT NEW FUNCTION
