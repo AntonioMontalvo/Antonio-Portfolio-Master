@@ -37,6 +37,23 @@ const ProductList: React.FC = () => {
     fetchProducts();
   }, []); // Empty dependency array means this runs only once on mount
 
+  // src/components/ProductList.tsx (Inside ProductList component, after useEffect)
+
+  const handleDelete = async (id: string) => {
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      try {
+        // DELETE request to the server API
+        await axios.delete(`http://localhost:54321/api/products/${id}`);
+
+        // Remove the product from the local state
+        setProducts(products.filter((product) => product._id !== id));
+      } catch (error) {
+        alert("Error deleting product. Check console.");
+        console.error(error);
+      }
+    }
+  };
+
   // 4. Conditional Rendering (Loading/Error States)
   if (loading) {
     return <div className="text-center py-8">Loading products...</div>;
@@ -74,9 +91,23 @@ const ProductList: React.FC = () => {
               <p className="text-sm text-gray-500">
                 In Stock: {product.countInStock}
               </p>
-              <button className="w-full mt-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
-                View Details
-              </button>
+              <p className="text-sm text-gray-500">
+                In Stock: {product.countInStock}
+              </p>
+              <div className="flex gap-2 mt-4">
+                {" "}
+                {/* Use a flex container for buttons */}
+                <button className="flex-1 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                  View Details
+                </button>
+                {/* The Delete Button */}
+                <button
+                  onClick={() => handleDelete(product._id)}
+                  className="flex-1 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         ))}

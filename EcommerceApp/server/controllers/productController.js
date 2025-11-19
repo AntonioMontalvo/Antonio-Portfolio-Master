@@ -56,4 +56,48 @@ const createProduct = asyncHandler(async (req, res) => {
   res.status(201).json(product);
 });
 
-export { getProducts, getProductById, createProduct }; // <-- EXPORT NEW FUNCTION
+// @desc    Update a product
+// @route   PUT /api/products/:id
+// @access  Public (Will be Private/Admin later)
+const updateProduct = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id);
+
+  if (product) {
+    // Update fields only if they are present in the request body
+    product.name = req.body.name || product.name;
+    product.price = req.body.price || product.price;
+    product.description = req.body.description || product.description;
+    product.countInStock = req.body.countInStock || product.countInStock;
+
+    const updatedProduct = await product.save();
+    res.json(updatedProduct);
+  } else {
+    res.status(404);
+    throw new Error("Product not found");
+  }
+});
+
+// @desc    Delete a product
+// @route   DELETE /api/products/:id
+// @access  Public (Will be Private/Admin later)
+const deleteProduct = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id);
+
+  if (product) {
+    // Use the deleteOne method on the retrieved document
+    await Product.deleteOne({ _id: product._id });
+    res.json({ message: "Product removed" });
+  } else {
+    res.status(404);
+    throw new Error("Product not found");
+  }
+});
+
+// Make sure to export the new functions!
+export {
+  getProducts,
+  getProductById,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+};
