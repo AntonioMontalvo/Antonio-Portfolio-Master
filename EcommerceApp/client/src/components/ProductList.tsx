@@ -1,9 +1,10 @@
 // src/components/ProductList.tsx
+import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 // 1. Define the TypeScript Interface for Product (Crucial for strong typing)
-interface Product {
+export interface Product {
   _id: string;
   name: string;
   description: string;
@@ -14,6 +15,7 @@ interface Product {
 
 const ProductList: React.FC = () => {
   // 2. State Hooks for Data and Loading Status
+  const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -97,7 +99,10 @@ const ProductList: React.FC = () => {
               <div className="flex gap-2 mt-4">
                 {" "}
                 {/* Use a flex container for buttons */}
-                <button className="flex-1 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                <button
+                  onClick={() => navigate(`/product/${product._id}`)}
+                  className="flex-1 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                >
                   View Details
                 </button>
                 {/* The Delete Button */}
