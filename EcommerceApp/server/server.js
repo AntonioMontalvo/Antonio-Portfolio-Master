@@ -1,5 +1,7 @@
 // server/server.js
 import productRoutes from "./routes/productRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import cookieParser from "cookie-parser";
 //snippet to test that the schema connects and saves data correctly to your Atlas database.
 import Product from "./models/ProductModel.js";
 
@@ -9,6 +11,7 @@ import path from "path";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+// import csurf from "csurf"; // Temporarily disabled for development
 
 // Load environment variables from .env file
 dotenv.config();
@@ -17,9 +20,21 @@ const app = express();
 // Use provided PORT, otherwise let the OS pick an ephemeral port (0) to avoid local port conflicts
 const PORT = Number(process.env.PORT) || 0;
 
+// // Initialize the csurf middleware - Temporarily disabled for development
+// const csrfProtection = csurf({ cookie: true });
+// app.use(csrfProtection);
 // Middleware
 app.use(express.json()); // Allows parsing of JSON request bodies
-app.use(cors()); // Enables cross-origin requests
+app.use(express.urlencoded({ extended: true })); // Allows form data parsing
+
+app.use(cookieParser()); // MUST be before cors to handle credentials correctly
+app.use(
+  cors({
+    // Allow the front-end origin from env (useful when Vite picks a different port)
+    origin: process.env.CLIENT_URL || true,
+    credentials: true, // MUST be set to true to allow cookies/JWTs
+  })
+); // Enables cross-origin requests
 
 // Database Connection
 const connectDB = async () => {
@@ -68,13 +83,36 @@ app.get("/api/test-product", async (req, res) => {
 
 // Mount the product routes to the /api/products path
 app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes); //MOUNT USER ROUTES
 
+// Custom Error Handler (must be defined before it is used, and registered after all routes)
+const errorHandler = (err, req, res, next) => {
+  // Mongoose 404/CastError handler
+  let statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+  let message = err.message;
+
+  if (err.name === "CastError" && err.kind === "ObjectId") {
+    statusCode = 404;
+    message = "Resource not found";
+  }
+
+  res.status(statusCode).json({
+    message: message,
+    // Only show the stack trace in development
+    stack: process.env.NODE_ENV === "production" ? null : err.stack,
+  });
+};
+
+// Use the custom error handler middleware (must be registered AFTER all other routes and middleware)
+app.use(errorHandler);
 // Start Server with error handling and graceful shutdown
 const pidFile = path.resolve(process.cwd(), "server.pid");
+
+// Start the server
 const server = app.listen(PORT, () => {
   const addr = server.address();
   const boundPort = typeof addr === "object" && addr ? addr.port : PORT;
-  console.log(`Server running on port ${boundPort}`);
+  console.log(`Server running on port ${PORT}`);
   try {
     fs.writeFileSync(pidFile, String(process.pid), { flag: "w" });
   } catch (err) {

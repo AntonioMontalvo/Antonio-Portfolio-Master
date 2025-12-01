@@ -1,35 +1,54 @@
 // src/components/ProductForm.tsx
 import React, { useState } from "react";
 import axios from "axios";
+import { useAuthStore } from "../stores/authStore";
 
 const ProductForm: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
-    price: 0,
+    price: "",
     description: "",
   });
   const [message, setMessage] = useState("");
+  const userInfo = useAuthStore((state) => state.userInfo);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const value =
-      e.target.name === "price" ? parseFloat(e.target.value) : e.target.value;
-    setFormData({ ...formData, [e.target.name]: value });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessage("Creating product...");
     try {
-      const { data } = await axios.post("http://localhost:54321/api/products", {
-        ...formData,
-        countInStock: 5, // Default for testing
-      });
+      if (!userInfo || !userInfo.token) {
+        setMessage("Error: You must be logged in to create a product.");
+        return;
+      }
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+
+      // Use a relative path to leverage the Vite proxy and send the auth token
+      const { data } = await axios.post(
+        "/api/products",
+        { ...formData, price: parseFloat(formData.price), countInStock: 5 },
+        config
+      );
+
       setMessage(`Product "${data.name}" created successfully!`);
-      setFormData({ name: "", price: 0, description: "" }); // Clear form
+      setFormData({ name: "", price: "", description: "" }); // Clear form with empty strings
     } catch (error) {
-      setMessage("Error creating product. Check server console.");
+      const errorMessage =
+        axios.isAxiosError(error) && error.response?.data?.message
+          ? error.response.data.message
+          : "Error creating product. You may not be authorized.";
+      setMessage(errorMessage);
       console.error(error);
     }
   };

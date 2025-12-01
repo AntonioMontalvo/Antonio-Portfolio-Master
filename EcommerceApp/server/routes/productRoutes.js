@@ -3,6 +3,7 @@
 
 import express from "express";
 const router = express.Router();
+import { protect } from "../middleware/authMiddleware.js";
 import {
   getProducts,
   getProductById,
@@ -12,13 +13,13 @@ import {
 } from "../controllers/productController.js";
 
 // Route for ALL products (GET, POST)
-router.route("/").get(getProducts).post(createProduct);
+router.route("/").get(getProducts).post(protect, createProduct); // middleware to protect the route injected
 
 // Route for a SINGLE product (GET, PUT, DELETE)
 router
   .route("/:id")
   .get(getProductById)
-  .put(updateProduct) // <-- ADDED PUT ROUTE
-  .delete(deleteProduct); // <-- ADDED DELETE ROUTE
+  .put(protect, updateProduct) // <-- ADDED PUT ROUTE
+  .delete(protect, deleteProduct); // <-- ADDED DELETE ROUTE
 
 export default router;
