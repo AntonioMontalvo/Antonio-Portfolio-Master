@@ -3,7 +3,7 @@
 
 import express from "express";
 const router = express.Router();
-import { protect } from "../middleware/authMiddleware.js";
+import { protect, admin } from "../middleware/authMiddleware.js";
 import {
   getProducts,
   getProductById,
@@ -20,6 +20,7 @@ router
   .route("/:id")
   .get(getProductById)
   .put(protect, updateProduct) // <-- ADDED PUT ROUTE
-  .delete(protect, deleteProduct); // <-- ADDED DELETE ROUTE
+  // 🛑 Admin Restriction: Must be logged in (protect) AND an admin (admin)
+  .delete(protect, admin, deleteProduct); // <-- ADDED DELETE ROUTE
 
 export default router;
