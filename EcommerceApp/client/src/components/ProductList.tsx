@@ -2,6 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useAuthStore } from "../stores/authStore";
 
 // 1. Define the TypeScript Interface for Product (Crucial for strong typing)
 export interface Product {
@@ -19,7 +20,7 @@ const ProductList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
+  const { userInfo } = useAuthStore(); // <-- Get user info here
   // 3. Effect Hook to Fetch Data on Component Mount
   useEffect(() => {
     const fetchProducts = async () => {
@@ -104,12 +105,15 @@ const ProductList: React.FC = () => {
                   View Details
                 </button>
                 {/* The Delete Button */}
-                <button
-                  onClick={() => handleDelete(product._id)}
-                  className="flex-1 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
-                >
-                  Delete
-                </button>
+                {/* 🛑 CONDITIONAL RENDERING FOR ADMIN */}
+                {userInfo && userInfo.isAdmin && (
+                  <button
+                    onClick={() => handleDelete(product._id)}
+                    className="flex-1 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+                  >
+                    Delete
+                  </button>
+                )}
               </div>
             </div>
           </div>
