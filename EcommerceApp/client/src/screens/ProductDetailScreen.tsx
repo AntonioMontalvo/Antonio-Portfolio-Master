@@ -1,78 +1,63 @@
-// src/screens/ProductDetailScreen.tsx
-
-import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom"; // useParams hooks the ID from the URL
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import type { Product } from "../components/ProductList"; // Re-use the Product interface (type-only import)
+import type { Product } from "../components/ProductList";
 
 const ProductDetailScreen: React.FC = () => {
-  // Get the 'id' parameter from the current URL path
   const { id } = useParams<{ id: string }>();
-
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!id) return;
+
     const fetchProduct = async () => {
+      setLoading(true);
+      setError(null);
       try {
-        // Use the dynamic ID to call the back-end
-        const { data } = await axios.get<Product>(
-          `http://localhost:54321/api/products/${id}`
-        );
+        const { data } = await axios.get<Product>(`/api/products/${id}`);
         setProduct(data);
       } catch (err) {
-        setError("Product not found or API error.");
         console.error(err);
+        setError("Failed to load product details.");
       } finally {
         setLoading(false);
       }
     };
 
-    if (id) {
-      fetchProduct();
-    }
-  }, [id]); // Re-fetch if the URL ID changes
+    fetchProduct();
+  }, [id]);
 
-  if (loading)
-    return <div className="text-center py-16">Loading product details...</div>;
-  if (error)
-    return (
-      <div className="text-center py-16 text-red-600 font-bold">{error}</div>
-    );
+  if (loading) return <div className="p-6 text-center">Loading product...</div>;
+  if (error) return <div className="p-6 text-center text-red-600">{error}</div>;
   if (!product)
-    return <div className="text-center py-16">No product data available.</div>;
+    return <div className="p-6 text-center">Product not found.</div>;
 
   return (
-    <div className="container mx-auto p-8 max-w-4xl bg-white shadow-lg rounded-xl my-12">
-      <Link
-        to="/"
-        className="text-blue-600 hover:text-blue-800 mb-6 inline-block font-medium"
-      >
-        ← Back to Products
-      </Link>
-      <h1 className="text-4xl font-extrabold mb-4 text-gray-900">
-        {product.name}
-      </h1>
-      <p className="text-3xl font-semibold text-green-700 mb-6">
-        ${product.price.toFixed(2)}
-      </p>
+    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="md:col-span-1 bg-gray-100 h-64 flex items-center justify-center">
+          {/* placeholder image area */}
+          <span className="text-gray-400">Image</span>
+        </div>
 
-      <div className="border-t pt-6">
-        <h2 className="text-xl font-bold mb-2">Description</h2>
-        <p className="text-gray-700 mb-4">{product.description}</p>
+        <div className="md:col-span-2">
+          <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+          <p className="text-gray-700 mb-4">{product.description}</p>
+          <p className="text-2xl font-extrabold text-green-700 mb-2">
+            ${product.price.toFixed(2)}
+          </p>
+          <p className="text-sm text-gray-500 mb-4">
+            In stock: {product.countInStock}
+          </p>
 
-        <h2 className="text-xl font-bold mb-2">Inventory Status</h2>
-        <p
-          className={`text-lg font-semibold ${
-            product.countInStock > 0 ? "text-green-500" : "text-red-500"
-          }`}
-        >
-          {product.countInStock > 0
-            ? `In Stock: ${product.countInStock}`
-            : "Out of Stock"}
-        </p>
-        {/* Add more details here */}
+          <div className="flex gap-3">
+            <button className="py-2 px-4 bg-indigo-600 text-white rounded">
+              Add to Cart
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

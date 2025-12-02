@@ -46,7 +46,7 @@ const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-sm mx-auto my-6 p-6 bg-white shadow-lg rounded-lg border-t-4 border-blue-500">
+    <div className="max-w-md mx-auto my-10 p-8 bg-white shadow-lg rounded-lg border-t-4 border-blue-500">
       <h2 className="text-2xl font-bold mb-4">Sign In (JWT Test)</h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       <form onSubmit={submitHandler} className="space-y-4">

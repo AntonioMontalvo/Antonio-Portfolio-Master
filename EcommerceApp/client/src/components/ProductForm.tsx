@@ -23,22 +23,21 @@ const ProductForm: React.FC = () => {
     e.preventDefault();
     setMessage("Creating product...");
     try {
-      if (!userInfo || !userInfo.token) {
-        setMessage("Error: You must be logged in to create a product.");
-        return;
-      }
-
-      const config = {
-        headers: {
-          Authorization: `Bearer ${userInfo.token}`,
-        },
+      // Prepare product payload
+      const productData = {
+        ...formData,
+        price: parseFloat(formData.price),
+        countInStock: 5,
       };
 
-      // Use a relative path to leverage the Vite proxy and send the auth token
+      // CRITICAL: send cookie-based JWT (server expects cookie, not Authorization header)
+      // Use absolute backend URL and withCredentials so the browser attaches the HttpOnly cookie.
       const { data } = await axios.post(
-        "/api/products",
-        { ...formData, price: parseFloat(formData.price), countInStock: 5 },
-        config
+        "/api/products", // Use the relative path to leverage the Vite proxy
+        productData,
+        {
+          withCredentials: true,
+        }
       );
 
       setMessage(`Product "${data.name}" created successfully!`);
@@ -54,11 +53,12 @@ const ProductForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto my-12 p-6 bg-white shadow-xl rounded-lg">
-      <h2 className="text-2xl font-bold mb-6 border-b pb-2 text-gray-800">
-        Create New Product (CRUD: Create)
+    <div className="my-12 p-8 bg-white shadow-2xl rounded-xl border border-gray-100">
+      <h2 className="text-3xl font-bold mb-6 text-gray-900 border-b pb-3">
+        Create New Product
       </h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+
+      <form onSubmit={handleSubmit} className="space-y-6">
         <div>
           <label
             htmlFor="name"
@@ -73,9 +73,10 @@ const ProductForm: React.FC = () => {
             required
             value={formData.name}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+            className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500 transition"
           />
         </div>
+
         <div>
           <label
             htmlFor="price"
@@ -90,9 +91,10 @@ const ProductForm: React.FC = () => {
             required
             value={formData.price}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
+            className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-3 focus:ring-indigo-500 focus:border-indigo-500 transition"
           />
         </div>
+
         <div>
           <label
             htmlFor="description"
@@ -106,16 +108,18 @@ const ProductForm: React.FC = () => {
             required
             value={formData.description}
             onChange={handleChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 h-20"
+            className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-3 h-28 focus:ring-indigo-500 focus:border-indigo-500 transition"
           />
         </div>
+
         <button
           type="submit"
-          className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 transition duration-150"
+          className="w-full py-3 px-4 rounded-lg shadow-md text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition duration-200 ease-in-out transform hover:scale-[1.005]"
         >
           Create Product
         </button>
       </form>
+
       {message && (
         <p
           className={`mt-4 p-3 text-sm rounded ${

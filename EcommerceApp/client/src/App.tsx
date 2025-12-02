@@ -1,38 +1,41 @@
-// src/App.tsx (Updated for Routing)
+// EcommerceApp/client/src/App.tsx
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ProductList from "./components/ProductList";
-import { useAuthStore } from "./stores/authStore";
-import ProductForm from "./components/ProductForm";
-import LoginForm from "./components/LoginForm";
 import Header from "./components/Header";
-// import ProductDetailScreen from "./screens/ProductDetailScreen"; // Will create this next
+import ProductForm from "./components/ProductForm";
+import ProductList from "./components/ProductList";
+import LoginForm from "./components/LoginForm";
+import ProductDetailScreen from "./screens/ProductDetailScreen"; // Ensure this file exists
+import { useAuthStore } from "./stores/authStore";
 
 function App() {
-  const { userInfo } = useAuthStore(); // <-- Get user info
+  const { userInfo } = useAuthStore();
+
   return (
     <Router>
       <div className="min-h-screen bg-gray-50">
         <Header />
-        {/* 🛑 CONDITIONAL RENDERING FOR ADMIN */}
-        {userInfo && userInfo.isAdmin && <ProductForm />}
-        <Routes>
-          {/* Route for the Product List (Homepage) */}
-          <Route
-            path="/"
-            element={
-              <>
-                <ProductList />
-              </>
-            }
-          />
 
-          {/* Route for a Single Product Detail (Note the dynamic :id parameter) */}
-          {/* <Route path="/product/:id" element={<ProductDetailScreen />} /> */}
+        {/* This <main> tag helps center the content based on our styling phase */}
+        <main className="max-w-7xl mx-auto p-4 sm:px-6 lg:px-8">
+          {/* 🛑 CONDITIONAL RENDERING FOR ADMIN: Show form only to admins (centered) */}
+          {userInfo && userInfo.isAdmin && (
+            <div className="w-full flex justify-center">
+              <ProductForm />
+            </div>
+          )}
 
-          {/* Route for the Login Form */}
-          <Route path="/login" element={<LoginForm />} />
-        </Routes>
+          <Routes>
+            {/* Route for the Product List (Homepage) */}
+            <Route path="/" element={<ProductList />} />
+
+            {/* Route for a Single Product Detail (UNCOMMENTED!) */}
+            <Route path="/product/:id" element={<ProductDetailScreen />} />
+
+            {/* Route for the Login Form */}
+            <Route path="/login" element={<LoginForm />} />
+          </Routes>
+        </main>
       </div>
     </Router>
   );

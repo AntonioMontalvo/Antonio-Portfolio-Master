@@ -38,8 +38,7 @@ const ProductList: React.FC = () => {
     fetchProducts();
   }, []); // Empty dependency array means this runs only once on mount
 
-  // src/components/ProductList.tsx (Inside ProductList component, after useEffect)
-
+  // Delete Handler for Admins
   const handleDelete = async (id: string) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
@@ -68,39 +67,46 @@ const ProductList: React.FC = () => {
 
   // 5. Success Rendering (Display the list)
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold mb-8 text-gray-800">
-        E-Commerce Products
+    <div>
+      <h1 className="text-4xl font-extrabold mb-10 text-green-600 text-center">
+        Explore Our Catalog
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {products.map((product) => (
           // Simple Card Layout using Tailwind
           <div
             key={product._id}
-            className="bg-white border rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300"
+            className="bg-white border border-gray-100 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
           >
-            <div className="p-4">
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">
+            {/* Placeholder for future image */}
+            <div className="h-48 w-full bg-gray-100 flex items-center justify-center text-gray-400 font-semibold"></div>
+
+            <div className="p-5">
+              <h2 className="text-xl font-bold text-gray-900 mb-2 truncate">
                 {product.name}
               </h2>
-              <p className="text-gray-600 mb-4 h-12 overflow-hidden">
+              <p className="text-gray-600 mb-3 text-sm h-12 overflow-hidden">
                 {product.description}
               </p>
-              <p className="text-2xl font-bold text-green-600 mb-3">
-                ${product.price.toFixed(2)}
-              </p>
-              <p className="text-sm text-gray-500">
-                In Stock: {product.countInStock}
-              </p>
-              <p className="text-sm text-gray-500">
-                In Stock: {product.countInStock}
-              </p>
-              <div className="flex gap-2 mt-4">
-                {" "}
+              {/* Price and Stock */}
+              <div className="flex justify-between items-center mb-4 pt-2 border-t border-gray-100">
+                <p className="text-2xl font-extrabold text-green-700">
+                  ${product.price.toFixed(2)}
+                </p>
+                <p
+                  className={`text-sm font-medium ${
+                    product.countInStock > 0 ? "text-green-500" : "text-red-500"
+                  }`}
+                >
+                  {product.countInStock > 0 ? "In Stock" : "Sold Out"}
+                </p>
+              </div>
+              {/* Button Group */}
+              <div className="flex gap-3 mt-4">
                 {/* Use a flex container for buttons */}
                 <button
                   onClick={() => navigate(`/product/${product._id}`)}
-                  className="flex-1 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                  className="flex-1 py-3 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition"
                 >
                   View Details
                 </button>
