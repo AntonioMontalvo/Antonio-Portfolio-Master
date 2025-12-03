@@ -1,7 +1,10 @@
 // src/components/ProductForm.tsx
 import React, { useState } from "react";
 import axios from "axios";
-import { useAuthStore } from "../stores/authStore";
+// Note: we do not read the token from the store here because the server
+// expects the JWT in an HttpOnly cookie. The browser will attach it
+// automatically when `withCredentials: true` is used and the request
+// targets the backend URL below.
 
 const ProductForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -9,8 +12,11 @@ const ProductForm: React.FC = () => {
     price: "",
     description: "",
   });
+  const [imageFile, setImageFile] = useState<File | null>(null); // <-- NEW: For file input
+  const [imageUrl, setImageUrl] = useState(""); // <-- NEW: To store Cloudinary URL
+  const [uploading, setUploading] = useState(false); // <-- NEW: For loading state
+
   const [message, setMessage] = useState("");
-  const userInfo = useAuthStore((state) => state.userInfo);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -22,24 +28,33 @@ const ProductForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setMessage("Creating product...");
+
     try {
+      // Check if an image was uploaded
+      if (!imageUrl) {
+        setMessage("Error: Please upload an image first.");
+        return;
+      }
+
       // Prepare product payload
       const productData = {
         ...formData,
         price: parseFloat(formData.price),
         countInStock: 5,
+        image: imageUrl, // 🚨 INCLUDE THE CLOUDINARY URL
       };
 
       // CRITICAL: send cookie-based JWT (server expects cookie, not Authorization header)
-      // Use absolute backend URL and withCredentials so the browser attaches the HttpOnly cookie.
+      // Use the absolute backend URL and `withCredentials: true` so the
+      // browser attaches the HttpOnly cookie to the request.
       const { data } = await axios.post(
-        "/api/products", // Use the relative path to leverage the Vite proxy
+        "http://localhost:54321/api/products",
         productData,
-        {
-          withCredentials: true,
-        }
+        { withCredentials: true }
       );
 
+      // Clear form on success
+      setImageUrl(""); // Clear image URL state on successful creation
       setMessage(`Product "${data.name}" created successfully!`);
       setFormData({ name: "", price: "", description: "" }); // Clear form with empty strings
     } catch (error) {
@@ -49,6 +64,35 @@ const ProductForm: React.FC = () => {
           : "Error creating product. You may not be authorized.";
       setMessage(errorMessage);
       console.error(error);
+    }
+  };
+
+  // src/components/ProductForm.tsx (New Function)
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files ? e.target.files[0] : null;
+    if (!file) return;
+
+    setImageFile(file);
+    setUploading(true);
+    const form = new FormData();
+    form.append("image", file); // 'image' must match the name used in uploadController.js
+
+    try {
+      // Must use withCredentials for protected upload route
+      const { data } = await axios.post(
+        "http://localhost:54321/api/upload",
+        form,
+        { withCredentials: true }
+      );
+
+      setImageUrl(data.imageUrl); // Store the returned URL
+      setMessage("Image uploaded successfully.");
+    } catch (error) {
+      setMessage("Image upload failed.");
+      console.error(error);
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -110,6 +154,35 @@ const ProductForm: React.FC = () => {
             onChange={handleChange}
             className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-3 h-28 focus:ring-indigo-500 focus:border-indigo-500 transition"
           />
+        </div>
+        <div>
+          <label
+            htmlFor="image"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Product Image
+          </label>
+          <input
+            type="file"
+            name="image"
+            id="image"
+            accept="image/*"
+            onChange={handleFileUpload}
+            className="mt-1 block w-full p-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+          />
+          {uploading && (
+            <p className="text-sm text-gray-500 mt-2">Uploading...</p>
+          )}
+          {imageUrl && (
+            <div className="mt-2 flex items-center space-x-3">
+              <p className="text-xs text-green-600 font-medium">Image Ready</p>
+              <img
+                src={imageUrl}
+                alt="Preview"
+                className="w-12 h-12 object-cover rounded"
+              />
+            </div>
+          )}
         </div>
 
         <button

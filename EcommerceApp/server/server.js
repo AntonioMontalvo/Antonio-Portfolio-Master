@@ -13,6 +13,10 @@ import dotenv from "dotenv";
 import cors from "cors";
 // import csurf from "csurf"; // Temporarily disabled for development
 
+import expressFileUpload from "express-fileupload";
+import { v2 as cloudinary } from "cloudinary";
+import uploadRoutes from "./routes/uploadRoutes.js";
+
 // Load environment variables from .env file
 dotenv.config();
 
@@ -36,6 +40,14 @@ app.use(
   })
 ); // Enables cross-origin requests
 
+// File Upload Middleware (MUST be before routes that use it)
+app.use(
+  expressFileUpload({
+    useTempFiles: true, // Use temporary files on the server
+    tempFileDir: "/tmp/", // Directory to store temp files
+  })
+);
+
 // Database Connection
 const connectDB = async () => {
   try {
@@ -49,6 +61,14 @@ const connectDB = async () => {
 
 connectDB();
 
+// Cloudinary Configuration
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+// File Upload Middleware
 // Basic Test Route
 app.get("/", (req, res) => {
   res.send("E-Commerce API is running!");
@@ -84,6 +104,7 @@ app.get("/api/test-product", async (req, res) => {
 // Mount the product routes to the /api/products path
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes); //MOUNT USER ROUTES
+app.use("/api/upload", uploadRoutes); // MOUNT UPLOAD ROUTES
 
 // Custom Error Handler (must be defined before it is used, and registered after all routes)
 const errorHandler = (err, req, res, next) => {

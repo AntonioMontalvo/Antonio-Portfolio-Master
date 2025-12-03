@@ -22,8 +22,9 @@ const productSchema = mongoose.Schema(
 
     // 2. Inventory and Classification
     image: {
-      type: String,
-      required: false, // Image URL can be optional for now
+      type: String, // Will store the URL from Cloudinary
+      required: true,
+      default: "/images/sample.jpg", // A fallback default image
     },
     category: {
       type: String,

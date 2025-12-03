@@ -78,8 +78,18 @@ const ProductList: React.FC = () => {
             key={product._id}
             className="bg-white border border-gray-100 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden"
           >
-            {/* Placeholder for future image */}
-            <div className="h-48 w-full bg-gray-100 flex items-center justify-center text-gray-400 font-semibold"></div>
+            {/* Product Image */}
+            {product.image ? (
+              <img
+                src={product.image}
+                alt={product.name}
+                className="h-48 w-full object-cover"
+              />
+            ) : (
+              <div className="h-48 w-full bg-gray-100 flex items-center justify-center text-gray-400 font-semibold">
+                No Image
+              </div>
+            )}
 
             <div className="p-5">
               <h2 className="text-xl font-bold text-gray-900 mb-2 truncate">
