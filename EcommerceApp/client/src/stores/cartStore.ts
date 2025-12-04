@@ -85,4 +85,12 @@ export const useCartStore = create<CartState>((set) => ({
   saveShippingAddress: (address) => set({ shippingAddress: address }),
 
   savePaymentMethod: (method) => set({ paymentMethod: method }),
+  clearCart: () =>
+    set({
+      cartItems: [],
+      itemsPrice: 0,
+      shippingPrice: 0,
+      taxPrice: 0,
+      totalPrice: 0,
+    }),
 }));

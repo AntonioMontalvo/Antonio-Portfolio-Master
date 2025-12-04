@@ -10,6 +10,8 @@ import { useAuthStore } from "./stores/authStore";
 import CartScreen from "./screens/CartScreen";
 import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import OrderDetailScreen from "./screens/OrderDetailScreen";
 
 function App() {
   const { userInfo } = useAuthStore();
@@ -42,6 +44,9 @@ function App() {
             {/* Routes for Payment Screens */}
             <Route path="/payment" element={<PaymentScreen />} />
             {/* The final step will be /placeorder */}
+            <Route path="/placeorder" element={<PlaceOrderScreen />} />
+            {/* Route for order details */}
+            <Route path="/order/:id" element={<OrderDetailScreen />} />
           </Routes>
         </main>
       </div>

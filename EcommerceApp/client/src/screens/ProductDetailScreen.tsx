@@ -121,10 +121,10 @@ const ProductDetailScreen: React.FC = () => {
               )}
             </p>
 
-            <p className="text-gray-700">
+            <div className="text-gray-700">
               <span className="font-semibold">Description:</span>
               <p className="mt-1 text-gray-600">{product.description}</p>
-            </p>
+            </div>
           </div>
           {/* Quantity Selector */}
           <div className="flex items-center space-x-4 mb-6">

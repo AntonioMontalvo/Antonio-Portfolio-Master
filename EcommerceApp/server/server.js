@@ -11,6 +11,7 @@ import path from "path";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+import orderRoutes from "./routes/orderRoutes.js";
 // import csurf from "csurf"; // Temporarily disabled for development
 
 import expressFileUpload from "express-fileupload";
@@ -105,6 +106,7 @@ app.get("/api/test-product", async (req, res) => {
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes); //MOUNT USER ROUTES
 app.use("/api/upload", uploadRoutes); // MOUNT UPLOAD ROUTES
+app.use("/api/orders", orderRoutes); // MOUNT ORDER ROUTES
 
 // Custom Error Handler (must be defined before it is used, and registered after all routes)
 const errorHandler = (err, req, res, next) => {
