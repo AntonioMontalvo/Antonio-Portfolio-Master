@@ -7,7 +7,7 @@ import ProductList from "./components/ProductList";
 import LoginForm from "./components/LoginForm";
 import ProductDetailScreen from "./screens/ProductDetailScreen"; // Ensure this file exists
 import { useAuthStore } from "./stores/authStore";
-
+import CartScreen from "./screens/CartScreen";
 function App() {
   const { userInfo } = useAuthStore();
 
@@ -28,12 +28,12 @@ function App() {
           <Routes>
             {/* Route for the Product List (Homepage) */}
             <Route path="/" element={<ProductList />} />
-
             {/* Route for a Single Product Detail (UNCOMMENTED!) */}
             <Route path="/product/:id" element={<ProductDetailScreen />} />
-
             {/* Route for the Login Form */}
             <Route path="/login" element={<LoginForm />} />
+            {/* Route for the Cart Screen */}
+            <Route path="/cart" element={<CartScreen />} />
           </Routes>
         </main>
       </div>

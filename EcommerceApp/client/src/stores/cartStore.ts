@@ -1,7 +1,7 @@
 // client/src/stores/cartStore.ts
 
 import { create } from "zustand";
-import { ICartItem } from "../types";
+import type { ICartItem } from "../types.ts";
 
 interface CartState {
   cartItems: ICartItem[];
