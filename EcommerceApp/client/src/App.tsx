@@ -8,6 +8,9 @@ import LoginForm from "./components/LoginForm";
 import ProductDetailScreen from "./screens/ProductDetailScreen"; // Ensure this file exists
 import { useAuthStore } from "./stores/authStore";
 import CartScreen from "./screens/CartScreen";
+import ShippingScreen from "./screens/ShippingScreen";
+import PaymentScreen from "./screens/PaymentScreen";
+
 function App() {
   const { userInfo } = useAuthStore();
 
@@ -34,6 +37,11 @@ function App() {
             <Route path="/login" element={<LoginForm />} />
             {/* Route for the Cart Screen */}
             <Route path="/cart" element={<CartScreen />} />
+            {/* Routes for Shipping  */}
+            <Route path="/shipping" element={<ShippingScreen />} />
+            {/* Routes for Payment Screens */}
+            <Route path="/payment" element={<PaymentScreen />} />
+            {/* The final step will be /placeorder */}
           </Routes>
         </main>
       </div>

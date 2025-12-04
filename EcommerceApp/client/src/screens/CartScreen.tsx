@@ -22,8 +22,7 @@ const CartScreen: React.FC = () => {
   };
 
   const handleCheckout = () => {
-    // Placeholder for future checkout route (e.g., shipping, payment)
-    navigate("/login?redirect=/shipping");
+    navigate("/shipping");
   };
 
   return (

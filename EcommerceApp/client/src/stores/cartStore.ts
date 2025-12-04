@@ -1,7 +1,7 @@
 // client/src/stores/cartStore.ts
 
 import { create } from "zustand";
-import type { ICartItem } from "../types.ts";
+import type { ICartItem, IShippingAddress, IPaymentMethod } from "../types.ts";
 
 interface CartState {
   cartItems: ICartItem[];
@@ -9,10 +9,14 @@ interface CartState {
   shippingPrice: number;
   taxPrice: number;
   totalPrice: number;
+  shippingAddress: IShippingAddress | null;
+  paymentMethod: IPaymentMethod | null;
 
-  // Actions
+  // Actions to modify the cart state
   addToCart: (item: ICartItem, qty: number) => void;
   removeFromCart: (id: string) => void;
+  saveShippingAddress: (address: IShippingAddress) => void;
+  savePaymentMethod: (method: IPaymentMethod) => void;
 }
 
 // Helper function to calculate prices (standard e-commerce practice)
@@ -40,6 +44,8 @@ export const useCartStore = create<CartState>((set) => ({
   shippingPrice: 0,
   taxPrice: 0,
   totalPrice: 0,
+  shippingAddress: null,
+  paymentMethod: null,
 
   addToCart: (item, qty) =>
     set((state) => {
@@ -75,4 +81,8 @@ export const useCartStore = create<CartState>((set) => ({
         ...prices,
       };
     }),
+
+  saveShippingAddress: (address) => set({ shippingAddress: address }),
+
+  savePaymentMethod: (method) => set({ paymentMethod: method }),
 }));
