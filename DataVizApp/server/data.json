@@ -1,0 +1,32 @@
+[
+  {
+    "timestamp": "2024-05-01T10:00:00Z",
+    "sensor_id": "A001",
+    "temp_c": 55,
+    "pressure_psi": 120
+  },
+  {
+    "timestamp": "2024-05-01T10:05:00Z",
+    "sensor_id": "A001",
+    "temp_c": 57,
+    "pressure_psi": 122
+  },
+  {
+    "timestamp": "2024-05-01T10:00:00Z",
+    "sensor_id": "B002",
+    "temp_c": 45,
+    "pressure_psi": 95
+  },
+  {
+    "timestamp": "2024-05-01T10:10:00Z",
+    "sensor_id": "A001",
+    "temp_c": 58,
+    "pressure_psi": 125
+  },
+  {
+    "timestamp": "2024-05-01T10:05:00Z",
+    "sensor_id": "B002",
+    "temp_c": 46,
+    "pressure_psi": 97
+  }
+]
