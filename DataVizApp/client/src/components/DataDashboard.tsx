@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { IProcessedData } from "../types";
+import SensorBarChart from "./SensorBarChart";
 
 const DataDashboard: React.FC = () => {
   const [data, setData] = useState<IProcessedData[]>([]);
@@ -62,6 +63,11 @@ const DataDashboard: React.FC = () => {
         Data served and processed by the **Python/Flask API** using Pandas.
       </p>
 
+      {/*  HIGH-LEVEL CHART */}
+      <div className="bg-white p-8 rounded-xl shadow-2xl mb-10 border border-gray-200">
+        <SensorBarChart data={data} />
+      </div>
+      {/* DETAILED DATA CARDS */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {data.map((item) => (
           <div
@@ -86,9 +92,9 @@ const DataDashboard: React.FC = () => {
               <span className="font-semibold">{item.max_pressure} psi</span>
             </p>
 
-            {/* 🚨 Chart Placeholder: This is where we will integrate the actual charts later */}
-            <div className="mt-4 h-32 bg-gray-100 flex items-center justify-center rounded-lg text-gray-500 text-sm">
-              [Chart Placeholder for {item.sensor_id}]
+            {/* You can remove the placeholder or add individual charts here later */}
+            <div className="mt-4 h-12 flex items-center justify-center rounded-lg text-gray-500 text-sm">
+              Details displayed above.
             </div>
           </div>
         ))}
