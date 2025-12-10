@@ -1,83 +1,69 @@
-// src/components/ProjectCard.tsx
-import React from "react";
+// portfoliosite/src/components/ProjectCard.tsx
 
-// Define the expected properties (props) for the component
+import React from "react";
+import { IProject } from "../types";
+
 interface ProjectCardProps {
-  title: string;
-  description: string;
-  techStack: string[];
-  liveUrl: string; // Placeholder for the live demo link
-  githubUrl: string; // Placeholder for the GitHub repository link
-  isPlaceholder?: boolean; // Optional flag for placeholder status
+  project: IProject;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({
-  title,
-  description,
-  techStack,
-  liveUrl,
-  githubUrl,
-  isPlaceholder = false,
-}) => {
+const StatusBadge: React.FC<{ status: IProject["status"] }> = ({ status }) => {
+  let colorClasses = "bg-gray-200 text-gray-800";
+  if (status === "Complete") {
+    colorClasses = "bg-green-100 text-green-700";
+  } else if (status === "In Progress" || status === "95% Complete") {
+    colorClasses = "bg-yellow-100 text-yellow-700";
+  }
+
   return (
-    <div
-      className={`p-6 border rounded-xl shadow-lg transition-transform duration-300 hover:shadow-xl ${
-        isPlaceholder
-          ? "bg-gray-100 border-dashed border-gray-400"
-          : "bg-white border-green-500"
-      }`}
+    <span
+      className={`px-3 py-1 text-xs font-semibold rounded-full ${colorClasses}`}
     >
-      {/* Card Header and Title */}
-      <h3
-        className={`text-2xl font-bold mb-3 ${
-          isPlaceholder ? "text-gray-600" : "text-green-700"
-        }`}
-      >
-        {title}
-        {isPlaceholder && (
-          <span className="ml-2 text-sm font-medium text-red-500">(WIP)</span>
-        )}
-      </h3>
+      {status}
+    </span>
+  );
+};
 
-      {/* Description */}
-      <p className="text-gray-700 mb-4 h-20 overflow-hidden">{description}</p>
-
-      {/* Tech Stack */}
-      <div className="mb-6 flex flex-wrap gap-2">
-        {techStack.map((tech) => (
-          <span
-            key={tech}
-            className="text-xs font-semibold px-3 py-1 bg-gray-200 text-gray-800 rounded-full"
-          >
-            {tech}
-          </span>
-        ))}
+const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  return (
+    <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100">
+      <div className="flex justify-between items-start mb-3">
+        <h3 className="text-2xl font-bold text-gray-900">{project.title}</h3>
+        <StatusBadge status={project.status} />
       </div>
 
-      {/* Action Buttons */}
-      <div className="flex gap-4">
-        <a
-          href={isPlaceholder ? "#" : liveUrl}
-          target={isPlaceholder ? undefined : "_blank"}
-          rel={isPlaceholder ? undefined : "noopener noreferrer"}
-          className={`flex-1 text-center py-2 rounded-lg font-semibold transition-colors duration-200 
-            ${
-              isPlaceholder
-                ? "bg-gray-300 text-gray-700 cursor-not-allowed pointer-events-none"
-                : "bg-green-600 text-white hover:bg-green-700"
-            }`}
-          aria-disabled={isPlaceholder}
-        >
-          {isPlaceholder ? "Building..." : "Live Demo"}
-        </a>
-        <a
-          href={githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 text-center py-2 rounded-lg font-semibold border border-gray-400 text-gray-800 hover:bg-gray-100"
-        >
-          Code (GitHub)
-        </a>
+      <p className="text-sm font-medium text-indigo-600 mb-4">
+        {project.techStack}
+      </p>
+
+      <p className="text-gray-700 mb-5 leading-relaxed">{project.narrative}</p>
+
+      <div className="flex space-x-4 pt-3 border-t border-gray-200">
+        {project.liveLink && (
+          <a
+            href={project.liveLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg transition shadow-md"
+          >
+            Live Demo
+          </a>
+        )}
+        {project.codeLink && (
+          <a
+            href={project.codeLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-800 border border-indigo-600 hover:border-indigo-800 px-4 py-2 rounded-lg transition"
+          >
+            View Code
+          </a>
+        )}
+        {!project.liveLink && !project.codeLink && (
+          <span className="text-sm text-gray-500 py-2">
+            Code Repo Coming Soon
+          </span>
+        )}
       </div>
     </div>
   );
