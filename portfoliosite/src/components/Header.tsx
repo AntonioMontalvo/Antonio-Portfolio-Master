@@ -1,6 +1,6 @@
 // src/components/Header.tsx
 
-import Link from "next/link";
+import { Link } from "react-router-dom";
 
 // Tailwind classes are used for styling:
 // bg-gray-900 (dark background), text-white (white text), p-4 (padding)
@@ -10,7 +10,7 @@ const Header: React.FC = () => {
       <nav className="container mx-auto flex justify-between items-center p-4 max-w-7xl">
         {/* Logo/Name Link */}
         <Link
-          href="/"
+          to="/"
           className="text-2xl font-bold tracking-wider hover:text-green-400 transition-colors"
         >
           Antonio Montalvo
@@ -19,13 +19,13 @@ const Header: React.FC = () => {
         {/* Navigation Links */}
         <div className="space-x-8 text-lg">
           <Link
-            href="/projects"
+            to="/projects"
             className="hover:text-green-400 transition-colors"
           >
             Projects
           </Link>
           <Link
-            href="/contact"
+            to="/contact"
             className="hover:text-green-400 transition-colors"
           >
             Contact

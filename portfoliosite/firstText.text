@@ -1,5 +1,7 @@
 // src/app/page.tsx
 
+
+
 const HomePage: React.FC = () => {
   // List of skills to display
   const primarySkills = [
