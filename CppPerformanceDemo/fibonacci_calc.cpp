@@ -1,7 +1,6 @@
 // fibonacci_calc.cpp
-// run the following command to compile:
-// g++ -std=c++17 -O2 -o fibonacci_calc fibonacci_calc.cpp
-
+// To compile, run one of the following commands in your terminal:
+// run with: make run
 #include <iostream>
 #include <chrono>
 
@@ -17,7 +16,7 @@ long long fibonacci(int n) {
 
 int main() {
     // Define the input value for the calculation (adjust as needed for performance)
-    const int N = 45; 
+    const int N = 40; 
 
     std::cout << "--- C++ Performance Demonstration ---" << std::endl;
     std::cout << "Calculating the " << N << "th Fibonacci number recursively..." << std::endl;
