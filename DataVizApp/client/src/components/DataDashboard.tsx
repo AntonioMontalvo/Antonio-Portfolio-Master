@@ -1,11 +1,11 @@
 // DataVizApp/client/src/components/DataDashboard.tsx
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { IProcessedData } from "../types";
 import SensorBarChart from "./SensorBarChart";
 
-const DataDashboard: React.FC = () => {
+const DataDashboard = () => {
   const [data, setData] = useState<IProcessedData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
