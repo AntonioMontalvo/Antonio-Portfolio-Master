@@ -73,6 +73,7 @@ export const projectsData: IProject[] = [
       "The professional front-end that ties the entire story together. **Designed for optimal readability and mobile responsiveness, demonstrating best practices in modern front-end structure.**",
     status: "Complete",
     liveLink: null,
-    codeLink: "https://github.com/AntonioMontalvo/portfoliosite",
+    codeLink:
+      "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/portfoliosite",
   },
 ];
