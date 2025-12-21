@@ -14,8 +14,8 @@ export default defineConfig({
   server: {
     proxy: {
       // When a request is made to /api, forward it to the backend server
-      // e.g., http://localhost:5174/api/products -> http://localhost:54321/api/products
-      "/api": "http://localhost:54321",
+      // e.g., http://localhost:5174/api/products -> https://ecommerce-backend-cap6.onrender.com/api/products
+      "/api": "https://ecommerce-backend-cap6.onrender.com",
     },
     watch: {
       usePolling: true,

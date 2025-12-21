@@ -40,7 +40,7 @@ const PlaceOrderScreen: React.FC = () => {
       console.log("Sending order data:", orderData); // DEBUG
 
       const { data } = await axios.post(
-        "http://localhost:54321/api/orders",
+        "https://ecommerce-backend-cap6.onrender.com/api/orders",
         orderData,
         { withCredentials: true } // Must send JWT cookie
       );

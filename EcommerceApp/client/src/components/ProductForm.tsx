@@ -48,7 +48,7 @@ const ProductForm: React.FC = () => {
       // Use the absolute backend URL and `withCredentials: true` so the
       // browser attaches the HttpOnly cookie to the request.
       const { data } = await axios.post(
-        "http://localhost:54321/api/products",
+        "https://ecommerce-backend-cap6.onrender.com/api/products",
         productData,
         { withCredentials: true }
       );
@@ -81,7 +81,7 @@ const ProductForm: React.FC = () => {
     try {
       // Must use withCredentials for protected upload route
       const { data } = await axios.post(
-        "http://localhost:54321/api/upload",
+        "https://ecommerce-backend-cap6.onrender.com/api/upload",
         form,
         { withCredentials: true }
       );
