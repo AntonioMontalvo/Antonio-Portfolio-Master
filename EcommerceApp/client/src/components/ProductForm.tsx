@@ -72,7 +72,6 @@ const ProductForm: React.FC = () => {
     const file = e.target.files ? e.target.files[0] : null;
     if (!file) return;
 
-    setImageFile(file);
     setUploading(true);
     const form = new FormData();
     form.append("image", file); // 'image' must match the name used in uploadController.js

@@ -3,6 +3,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useCartStore } from "../stores/cartStore";
+import type { ICartItem } from "../types";
 
 const CartScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const CartScreen: React.FC = () => {
     removeFromCart,
   } = useCartStore();
 
-  const handleQtyChange = (item, qty) => {
+  const handleQtyChange = (item: ICartItem, qty: number) => {
     // Re-use addToCart logic to handle quantity changes
     addToCart(item, qty);
   };

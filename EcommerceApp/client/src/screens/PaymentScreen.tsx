@@ -43,7 +43,11 @@ const PaymentScreen: React.FC = () => {
               name="paymentMethod"
               value="PayPal"
               checked={selectedMethod === "PayPal"}
-              onChange={(e) => setSelectedMethod(e.target.value)}
+              onChange={(e) =>
+                setSelectedMethod(
+                  e.target.value as "PayPal" | "Stripe" | "CreditCard"
+                )
+              }
               className="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
             />
             <label
@@ -61,7 +65,11 @@ const PaymentScreen: React.FC = () => {
               name="paymentMethod"
               value="Stripe"
               checked={selectedMethod === "Stripe"}
-              onChange={(e) => setSelectedMethod(e.target.value)}
+              onChange={(e) =>
+                setSelectedMethod(
+                  e.target.value as "PayPal" | "Stripe" | "CreditCard"
+                )
+              }
               className="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
             />
             <label
