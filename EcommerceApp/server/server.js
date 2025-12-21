@@ -1,25 +1,27 @@
 // server/server.js
-import productRoutes from "./routes/productRoutes.js";
-import userRoutes from "./routes/userRoutes.js";
-import cookieParser from "cookie-parser";
-//snippet to test that the schema connects and saves data correctly to your Atlas database.
-import Product from "./models/ProductModel.js";
+import dotenv from "dotenv";
+// Load .env file only in development (Render provides env vars directly in production)
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
 
 import express from "express";
-import fs from "fs";
-import path from "path";
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 import cors from "cors";
-import orderRoutes from "./routes/orderRoutes.js";
-// import csurf from "csurf"; // Temporarily disabled for development
-
+import cookieParser from "cookie-parser";
 import expressFileUpload from "express-fileupload";
 import { v2 as cloudinary } from "cloudinary";
-import uploadRoutes from "./routes/uploadRoutes.js";
 
-// Load environment variables from .env file
-dotenv.config();
+// Routes and Models (These usually depend on the DB connection/env vars)
+import productRoutes from "./routes/productRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
+import Product from "./models/ProductModel.js";
+
+// Other standard node modules
+import fs from "fs";
+import path from "path";
 
 const app = express();
 // Use provided PORT, otherwise let the OS pick an ephemeral port (0) to avoid local port conflicts
