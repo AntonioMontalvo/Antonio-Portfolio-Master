@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import type { IProduct } from "../types.ts"; // Import IProduct interface from types file
+import type { IProduct, ICartItem } from "../types.ts"; // Import IProduct and ICartItem interfaces from types file
 import { useCartStore } from "../stores/cartStore";
 
 const ProductDetailScreen: React.FC = () => {
@@ -19,8 +19,16 @@ const ProductDetailScreen: React.FC = () => {
 
   const handleAddToCart = () => {
     if (product) {
-      // Pass the product details (as ICartItem) and the selected quantity
-      addToCart(product as ICartItem, qty);
+      // Create a cart item from the product with the selected quantity
+      const cartItem: ICartItem = {
+        _id: product._id,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        countInStock: product.countInStock,
+        qty: qty,
+      };
+      addToCart(cartItem, qty);
       // Redirect to the cart page after adding
       navigate("/cart");
     }

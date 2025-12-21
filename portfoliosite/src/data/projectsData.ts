@@ -22,7 +22,7 @@ export const projectsData: IProject[] = [
     narrative:
       "A complex, full-stack e-commerce platform demonstrating secure authentication, admin controls (RBAC), multi-step checkout, and robust server-side order management. **Showcases OOP principles translated into clean, scalable Node.js architecture.**",
     status: "95% Complete",
-    liveLink: "http://localhost:5174", // Placeholder for deployed URL
+    liveLink: "https://ecommerce-client-psi-liard.vercel.app", // Update this with your actual Vercel deployment URL
     codeLink: "https://github.com/AntonioMontalvo/EcommerceApp",
   },
   {

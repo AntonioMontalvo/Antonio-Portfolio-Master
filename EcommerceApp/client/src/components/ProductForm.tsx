@@ -12,7 +12,6 @@ const ProductForm: React.FC = () => {
     price: "",
     description: "",
   });
-  const [imageFile, setImageFile] = useState<File | null>(null); // <-- NEW: For file input
   const [imageUrl, setImageUrl] = useState(""); // <-- NEW: To store Cloudinary URL
   const [uploading, setUploading] = useState(false); // <-- NEW: For loading state
 
