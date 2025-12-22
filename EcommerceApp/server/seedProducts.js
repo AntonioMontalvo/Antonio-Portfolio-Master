@@ -68,9 +68,9 @@ const sampleProducts = [
 
 const seedDatabase = async () => {
   try {
-    console.log('Connecting to MongoDB...');
+    console.log("Connecting to MongoDB...");
     await mongoose.connect(process.env.MONGODB_URI);
-    console.log('✅ Connected to MongoDB');
+    console.log("✅ Connected to MongoDB");
 
     // Clear existing products
     console.log("Clearing existing products...");
