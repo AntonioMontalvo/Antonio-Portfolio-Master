@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import ProductForm from "./components/ProductForm";
 import ProductList from "./components/ProductList";
 import LoginForm from "./components/LoginForm";
+import RegisterForm from "./components/RegisterForm";
 import ProductDetailScreen from "./screens/ProductDetailScreen"; // Ensure this file exists
 import { useAuthStore } from "./stores/authStore";
 import CartScreen from "./screens/CartScreen";
@@ -37,6 +38,8 @@ function App() {
             <Route path="/product/:id" element={<ProductDetailScreen />} />
             {/* Route for the Login Form */}
             <Route path="/login" element={<LoginForm />} />
+            {/* Route for the Register Form */}
+            <Route path="/register" element={<RegisterForm />} />
             {/* Route for the Cart Screen */}
             <Route path="/cart" element={<CartScreen />} />
             {/* Routes for Shipping  */}
