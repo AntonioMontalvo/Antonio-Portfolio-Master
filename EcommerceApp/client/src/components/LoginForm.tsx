@@ -20,7 +20,7 @@ const LoginForm: React.FC = () => {
     try {
       // Login request (send credentials and accept cookie from server)
       const { data } = await axios.post(
-        "/api/users/login",
+        "https://ecommerce-backend-cap6.onrender.com/api/users/login",
         { email, password },
         { withCredentials: true }
       );

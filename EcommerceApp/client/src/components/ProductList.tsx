@@ -25,7 +25,9 @@ const ProductList: React.FC = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get<Product[]>("/api/products");
+        const { data } = await axios.get<Product[]>(
+          "https://ecommerce-backend-cap6.onrender.com/api/products"
+        );
         setProducts(data);
         setLoading(false);
       } catch (err) {
@@ -43,7 +45,9 @@ const ProductList: React.FC = () => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
         // DELETE request to the server API
-        await axios.delete(`/api/products/${id}`);
+        await axios.delete(
+          `https://ecommerce-backend-cap6.onrender.com/api/products/${id}`
+        );
 
         // Remove the product from the local state
         setProducts(products.filter((product) => product._id !== id));
