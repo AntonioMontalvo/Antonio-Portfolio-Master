@@ -37,7 +37,12 @@ app.use(express.urlencoded({ extended: true })); // Allows form data parsing
 app.use(cookieParser()); // MUST be before cors to handle credentials correctly
 app.use(
   cors({
-    origin: ["https://antonio-portfolio-master.vercel.app", /\.vercel\.app$/],
+    origin: [
+      "http://localhost:5174", // Local development
+      "https://antonio-portfolio-master.vercel.app",
+      "https://antonio-ecommerce-app.vercel.app",
+      /\.vercel\.app$/, // Allow all Vercel deployments
+    ],
     credentials: true,
   })
 );
