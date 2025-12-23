@@ -14,7 +14,13 @@ load_dotenv()
 app = Flask(__name__)
 
 # Apply CORS to allow connection from the React front-end (on a different port)
-CORS(app) 
+# Allow requests from localhost (development) and Vercel deployments (production)
+CORS(app, origins=[
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://antonio-portfolio-master.vercel.app",
+    "https://*.vercel.app"
+]) 
 
 @app.route('/api/data/processed', methods=['GET'])
 def get_processed_data():
@@ -66,4 +72,6 @@ Do not start the server if this file is just being imported by another script.
 """
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5001)) # Use port 5001 to avoid conflict with Node (5000)
-    app.run(debug=True, port=port)
+    # Disable debug mode in production for security
+    debug_mode = os.environ.get('FLASK_ENV') != 'production'
+    app.run(debug=debug_mode, host='0.0.0.0', port=port)
