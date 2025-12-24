@@ -32,7 +32,7 @@ export const projectsData: IProject[] = [
     narrative:
       "A dual-stack application where the **Python/Flask back-end** processes complex sensor data (using Pandas) and serves it to a React front-end for visualization. **Highlights proficiency in Python data handling and API development.**",
     status: "Complete",
-    liveLink: "http://localhost:5173", // Placeholder for deployed URL
+    liveLink: "https://antonio-dataviz-app.vercel.app",
     codeLink: "https://github.com/AntonioMontalvo/DataVizApp",
   },
   {
