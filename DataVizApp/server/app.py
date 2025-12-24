@@ -19,6 +19,7 @@ CORS(app, origins=[
     "http://localhost:5173",
     "http://localhost:5174",
     "https://antonio-portfolio-master.vercel.app",
+    "https://antonio-dataviz-app.vercel.app",
     "https://*.vercel.app"
 ]) 
 
