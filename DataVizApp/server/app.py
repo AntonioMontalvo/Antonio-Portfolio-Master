@@ -15,13 +15,18 @@ app = Flask(__name__)
 
 # Apply CORS to allow connection from the React front-end (on a different port)
 # Allow requests from localhost (development) and Vercel deployments (production)
-CORS(app, origins=[
-    "http://localhost:5173",
-    "http://localhost:5174",
-    "https://antonio-portfolio-master.vercel.app",
-    "https://antonio-dataviz-app.vercel.app",
-    "https://*.vercel.app"
-]) 
+CORS(app, resources={
+    r"/*": {
+        "origins": [
+            "http://localhost:5173",
+            "http://localhost:5174",
+            "https://antonio-portfolio-master.vercel.app",
+            "https://antonio-dataviz-app.vercel.app"
+        ],
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type"]
+    }
+}) 
 
 @app.route('/api/data/processed', methods=['GET'])
 def get_processed_data():
