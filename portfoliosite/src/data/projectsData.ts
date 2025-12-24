@@ -12,7 +12,7 @@ export const projectsData: IProject[] = [
       "A repository dedicated to showcasing foundational C++ architecture from competitive robotics. Features a custom **PID Controller** implementation and system-level **OOP encapsulation**. This demonstrates deep technical understanding of efficiency and scalable architecture.",
     status: "Complete",
     liveLink: null,
-    codeLink: "https://github.com/AntonioMontalvo/CppRoboticsCore",
+    codeLink: "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/CppRoboticsCore",
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const projectsData: IProject[] = [
       "A complex, full-stack e-commerce platform demonstrating secure authentication, admin controls (RBAC), multi-step checkout, and robust server-side order management. **Showcases OOP principles translated into clean, scalable Node.js architecture.**",
     status: "95% Complete",
     liveLink: "https://antonio-ecommerce-app.vercel.app",
-    codeLink: "https://github.com/AntonioMontalvo/EcommerceApp",
+    codeLink: "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/EcommerceApp",
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ export const projectsData: IProject[] = [
       "A dual-stack application where the **Python/Flask back-end** processes complex sensor data (using Pandas) and serves it to a React front-end for visualization. **Highlights proficiency in Python data handling and API development.**",
     status: "Complete",
     liveLink: "https://antonio-dataviz-app.vercel.app",
-    codeLink: "https://github.com/AntonioMontalvo/DataVizApp",
+    codeLink: "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/DataVizApp",
   },
   {
     id: 4,
@@ -43,7 +43,7 @@ export const projectsData: IProject[] = [
       "A targeted utility designed to run resource-intensive calculations (Recursive Fibonacci at N=45). Used specifically to establish a clear **performance benchmark** against the identical implementation in Node.js (Project 5). This frames discussions around technical trade-offs and latency.",
     status: "Complete",
     liveLink: null,
-    codeLink: "https://github.com/AntonioMontalvo/CppPerformanceDemo",
+    codeLink: "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/CppPerformanceDemo",
   },
   {
     id: 5,
@@ -53,7 +53,7 @@ export const projectsData: IProject[] = [
       "A demonstration using Node.js to quickly manage concurrent asynchronous operations (e.g., fetching data from multiple external APIs simultaneously). **Used to discuss rapid prototyping and the non-blocking nature of JavaScript vs. C++.**",
     status: "Complete",
     liveLink: null,
-    codeLink: "https://github.com/AntonioMontalvo/NodeJsFlexibilityDemo",
+    codeLink: "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/NodeJsFlexibilityDemo",
   },
   {
     id: 6,
@@ -63,7 +63,7 @@ export const projectsData: IProject[] = [
       "A command-line tool that automates a real-world task (e.g., filtering large log files or converting data formats). **Showcases Python's power in scripting, utility, and automation for quick, practical solutions.** (Partially integrated with Project 3 data).",
     status: "Complete",
     liveLink: null,
-    codeLink: "https://github.com/AntonioMontalvo/DataVizApp", // Link to DataViz repo as it uses the same environment
+    codeLink: "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/DataVizApp",
   },
   {
     id: 1,
