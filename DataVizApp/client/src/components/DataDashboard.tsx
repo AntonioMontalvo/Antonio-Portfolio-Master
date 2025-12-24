@@ -13,9 +13,9 @@ const DataDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 🚨 NOTE: The Python API is running on port 5001
+        // Call the production backend API on Render
         const response = await axios.get(
-          "http://localhost:5001/api/data/processed"
+          "https://dataviz-backend-26p7.onrender.com/api/data/processed"
         );
 
         if (response.data.success) {
