@@ -4,7 +4,7 @@
  * Main board component with drag-and-drop functionality
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   DndContext,
   DragEndEvent,
@@ -14,18 +14,19 @@ import {
   TouchSensor,
   useSensor,
   useSensors,
-} from '@dnd-kit/core';
-import { useBoardStore } from '../stores/boardStore';
-import { Column } from './Column';
-import { TaskCard } from './TaskCard';
-import { Task, ColumnId } from '../types';
+} from "@dnd-kit/core";
+import { useBoardStore } from "../stores/boardStore";
+import { Column } from "./Column";
+import { TaskCard } from "./TaskCard";
+import { Task, ColumnId } from "../types";
 
 export const Board: React.FC = () => {
+  const tasks = useBoardStore((state) => state.tasks);
   const columns = useBoardStore((state) => state.columns);
   const getTasksByColumn = useBoardStore((state) => state.getTasksByColumn);
   const moveTask = useBoardStore((state) => state.moveTask);
   const initializeTasks = useBoardStore((state) => state.initializeTasks);
-  
+
   const [activeTask, setActiveTask] = React.useState<Task | null>(null);
 
   // Initialize tasks from localStorage on mount
@@ -52,11 +53,11 @@ export const Board: React.FC = () => {
   const handleDragStart = (event: DragStartEvent) => {
     const { active } = event;
     const taskId = active.id as string;
-    
+
     // Find the task being dragged
     const allTasks = columns.flatMap((col) => getTasksByColumn(col.id));
     const task = allTasks.find((t) => t.id === taskId);
-    
+
     if (task) {
       setActiveTask(task);
     }

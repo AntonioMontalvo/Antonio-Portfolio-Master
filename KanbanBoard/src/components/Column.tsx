@@ -126,7 +126,10 @@ export const Column: React.FC<ColumnProps> = ({ column, tasks }) => {
       {/* Task Modal */}
       <TaskModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedTask(null);
+        }}
         onSave={handleSaveTask}
         onDelete={modalMode === "edit" ? handleDeleteTask : undefined}
         task={selectedTask}
