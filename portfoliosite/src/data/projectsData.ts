@@ -62,14 +62,15 @@ export const projectsData: IProject[] = [
   },
   {
     id: 6,
-    title: "Project 6: Python File Automation Script",
-    techStack: "Python (Standard Library), Pandas",
+    title: "Project 6: Interactive Kanban Board",
+    techStack:
+      "React, TypeScript, Zustand, @dnd-kit, Tailwind CSS, LocalStorage",
     narrative:
-      "A command-line tool that automates a real-world task (e.g., filtering large log files or converting data formats). **Showcases Python's power in scripting, utility, and automation for quick, practical solutions.** (Partially integrated with Project 3 data).",
+      "A fully interactive drag-and-drop task management board demonstrating advanced React patterns and third-party library integration. **Features include real-time state management with Zustand, smooth drag-and-drop with @dnd-kit, full CRUD operations, and localStorage persistence.** Showcases component architecture, custom hooks, and type-safe development with TypeScript.",
     status: "Complete",
-    liveLink: null,
+    liveLink: null, // Will be updated after Vercel deployment
     codeLink:
-      "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/DataVizApp",
+      "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/KanbanBoard",
   },
   {
     id: 1,
