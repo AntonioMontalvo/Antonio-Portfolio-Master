@@ -21,7 +21,7 @@ interface ColumnProps {
   tasks: Task[];
 }
 
-export const Column: React.FC<ColumnProps> = ({ column, tasks }) => {
+export function Column({ column, tasks }: ColumnProps) {
   const { setNodeRef } = useDroppable({ id: column.id });
   const addTask = useBoardStore((state) => state.addTask);
   const updateTask = useBoardStore((state) => state.updateTask);
@@ -137,4 +137,4 @@ export const Column: React.FC<ColumnProps> = ({ column, tasks }) => {
       />
     </>
   );
-};
+}

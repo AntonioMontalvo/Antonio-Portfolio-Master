@@ -20,7 +20,7 @@ import { Column } from "./Column";
 import { TaskCard } from "./TaskCard";
 import { Task, ColumnId } from "../types";
 
-export const Board: React.FC = () => {
+export function Board() {
   const tasks = useBoardStore((state) => state.tasks);
   const columns = useBoardStore((state) => state.columns);
   const getTasksByColumn = useBoardStore((state) => state.getTasksByColumn);
@@ -103,4 +103,4 @@ export const Board: React.FC = () => {
       </DragOverlay>
     </DndContext>
   );
-};
+}

@@ -17,14 +17,14 @@ interface TaskModalProps {
   mode: "create" | "edit";
 }
 
-export const TaskModal: React.FC<TaskModalProps> = ({
+export function TaskModal({
   isOpen,
   onClose,
   onSave,
   onDelete,
   task,
   mode,
-}) => {
+}: TaskModalProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -161,4 +161,4 @@ export const TaskModal: React.FC<TaskModalProps> = ({
       </div>
     </div>
   );
-};
+}

@@ -4,18 +4,18 @@
  * Individual draggable task card component
  */
 
-import React from 'react';
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
-import { Task } from '../types';
-import { GripVertical } from 'lucide-react';
+import React from "react";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { Task } from "../types";
+import { GripVertical } from "lucide-react";
 
 interface TaskCardProps {
   task: Task;
   onClick: () => void;
 }
 
-export const TaskCard: React.FC<TaskCardProps> = React.memo(({ task, onClick }) => {
+export const TaskCard = React.memo(({ task, onClick }: TaskCardProps) => {
   const {
     attributes,
     listeners,
@@ -38,7 +38,7 @@ export const TaskCard: React.FC<TaskCardProps> = React.memo(({ task, onClick }) 
       className={`
         bg-white rounded-lg shadow-sm border border-gray-200 p-4
         hover:shadow-md transition-shadow cursor-pointer
-        ${isDragging ? 'z-50' : ''}
+        ${isDragging ? "z-50" : ""}
       `}
       onClick={onClick}
     >
@@ -51,7 +51,7 @@ export const TaskCard: React.FC<TaskCardProps> = React.memo(({ task, onClick }) 
         >
           <GripVertical size={16} />
         </button>
-        
+
         {/* Task content */}
         <div className="flex-1 min-w-0">
           <h3 className="text-sm font-semibold text-gray-900 truncate">
@@ -68,4 +68,4 @@ export const TaskCard: React.FC<TaskCardProps> = React.memo(({ task, onClick }) 
   );
 });
 
-TaskCard.displayName = 'TaskCard';
+TaskCard.displayName = "TaskCard";
