@@ -4,9 +4,8 @@
  * Main application component
  */
 
-import React from 'react';
-import { Board } from './components/Board';
-import { LayoutDashboard } from 'lucide-react';
+import { Board } from "./components/Board";
+import { LayoutDashboard } from "lucide-react";
 
 function App() {
   return (
@@ -17,9 +16,7 @@ function App() {
           <div className="flex items-center gap-3">
             <LayoutDashboard className="text-blue-600" size={32} />
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">
-                Kanban Board
-              </h1>
+              <h1 className="text-2xl font-bold text-gray-900">Kanban Board</h1>
               <p className="text-sm text-gray-500">
                 Drag and drop to organize your tasks
               </p>
@@ -37,7 +34,7 @@ function App() {
       <footer className="mt-12 pb-6 text-center text-sm text-gray-500">
         <p>Built with React, TypeScript, and @dnd-kit</p>
         <p className="mt-1">
-          By{' '}
+          By{" "}
           <a
             href="https://github.com/AntonioMontalvo"
             target="_blank"

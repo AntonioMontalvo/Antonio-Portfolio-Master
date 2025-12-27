@@ -4,7 +4,7 @@
  * Column component representing a task status category
  */
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDroppable } from "@dnd-kit/core";
 import {
   SortableContext,

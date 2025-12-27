@@ -21,6 +21,8 @@ import { TaskCard } from "./TaskCard";
 import { Task, ColumnId } from "../types";
 
 export function Board() {
+  // Subscribe to tasks to trigger re-renders on changes
+  // @ts-expect-error - tasks variable needed for Zustand subscription
   const tasks = useBoardStore((state) => state.tasks);
   const columns = useBoardStore((state) => state.columns);
   const getTasksByColumn = useBoardStore((state) => state.getTasksByColumn);
