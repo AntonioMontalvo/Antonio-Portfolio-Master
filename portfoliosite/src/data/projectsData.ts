@@ -68,7 +68,7 @@ export const projectsData: IProject[] = [
     narrative:
       "A fully interactive drag-and-drop task management board demonstrating advanced React patterns and third-party library integration. **Features include real-time state management with Zustand, smooth drag-and-drop with @dnd-kit, full CRUD operations, and localStorage persistence.** Showcases component architecture, custom hooks, and type-safe development with TypeScript.",
     status: "Complete",
-    liveLink: null, // Will be updated after Vercel deployment
+    liveLink: "https://antonio-kanban-board.vercel.app/",
     codeLink:
       "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/KanbanBoard",
   },
