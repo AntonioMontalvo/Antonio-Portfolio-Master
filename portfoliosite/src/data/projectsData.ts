@@ -22,7 +22,7 @@ export const projectsData: IProject[] = [
       "React, Node.js, Express, MongoDB, TypeScript, Tailwind CSS, Zustand, JWT Auth",
     narrative:
       "A complex, full-stack e-commerce platform demonstrating secure authentication, admin controls (RBAC), multi-step checkout, and robust server-side order management. **Showcases OOP principles translated into clean, scalable Node.js architecture.**",
-    status: "95% Complete",
+    status: "Complete",
     liveLink: "https://antonio-ecommerce-app.vercel.app",
     codeLink:
       "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/EcommerceApp",
