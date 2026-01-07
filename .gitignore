@@ -1,0 +1,25 @@
+# Personal learning and progress tracking files
+LEARNING_ROADMAP.md
+PROGRESS_LOG.md
+WEEK_1_GUIDE.md
+RESOURCES.md
+
+# macOS
+.DS_Store
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
