@@ -30,14 +30,16 @@ export function TaskModal({
 
   // Update form when task changes
   useEffect(() => {
-    if (task) {
-      setTitle(task.title);
-      setDescription(task.description);
-    } else {
-      setTitle("");
-      setDescription("");
+    if (isOpen) {
+      if (task) {
+        setTitle(task.title);
+        setDescription(task.description);
+      } else {
+        setTitle("");
+        setDescription("");
+      }
     }
-  }, [task]);
+  }, [task, isOpen]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
