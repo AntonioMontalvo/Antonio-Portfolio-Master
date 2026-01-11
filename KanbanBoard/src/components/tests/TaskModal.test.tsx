@@ -171,4 +171,125 @@ describe("TaskModal Component", () => {
 
     expect(screen.getByText("Delete Task")).toBeInTheDocument();
   });
+
+  it("calls window.confirm when Delete Task is clicked", () => {
+    // ARRANGE: Mock window.confirm
+    const mockConfirm = vi.spyOn(window, "confirm");
+    mockConfirm.mockReturnValue(false); // Simulate user clicking "Cancel"
+
+    const mockOnClose = vi.fn();
+    const mockOnSave = vi.fn();
+    const mockOnDelete = vi.fn();
+
+    const mockTask = {
+      id: "1",
+      title: "Test task",
+      description: "Test description",
+      column: "todo" as const,
+      createdAt: Date.now(),
+    };
+
+    render(
+      <TaskModal
+        isOpen={true}
+        onClose={mockOnClose}
+        onSave={mockOnSave}
+        mode="edit"
+        task={mockTask}
+        onDelete={mockOnDelete}
+      />
+    );
+
+    // ACT: Click Delete Task button
+    const deleteButton = screen.getByText("Delete Task");
+    fireEvent.click(deleteButton);
+
+    // ASSERT: Check window.confirm was called
+    expect(mockConfirm).toHaveBeenCalledWith(
+      "Are you sure you want to delete this task?"
+    );
+
+    // Cleanup
+    mockConfirm.mockRestore();
+  });
+
+  it("calls onDelete and onClose when user confirms deletion", () => {
+    // ARRANGE: Mock window.confirm
+    const mockConfirm = vi.spyOn(window, "confirm");
+    mockConfirm.mockReturnValue(true); // ← User clicks "OK"
+
+    const mockOnClose = vi.fn();
+    const mockOnSave = vi.fn();
+    const mockOnDelete = vi.fn();
+
+    const mockTask = {
+      id: "1",
+      title: "Test task",
+      description: "Test description",
+      column: "todo" as const,
+      createdAt: Date.now(),
+    };
+
+    render(
+      <TaskModal
+        isOpen={true}
+        onClose={mockOnClose}
+        onSave={mockOnSave}
+        mode="edit"
+        task={mockTask}
+        onDelete={mockOnDelete}
+      />
+    );
+
+    // ACT: Click Delete Task button (same as before!)
+    const deleteButton = screen.getByText("Delete Task");
+    fireEvent.click(deleteButton);
+
+    // ASSERT: Check onDelete and onClose were called
+    expect(mockOnDelete).toHaveBeenCalled();
+    expect(mockOnClose).toHaveBeenCalled();
+
+    // Cleanup
+    mockConfirm.mockRestore();
+  });
+
+  it("doesn't call onDelete and onClose when user cancels deletion", () => {
+    // ARRANGE: Mock window.confirm
+    const mockConfirm = vi.spyOn(window, "confirm");
+    mockConfirm.mockReturnValue(false); // ← User clicks "Cancel"
+
+    const mockOnClose = vi.fn();
+    const mockOnSave = vi.fn();
+    const mockOnDelete = vi.fn();
+
+    const mockTask = {
+      id: "1",
+      title: "Test task",
+      description: "Test description",
+      column: "todo" as const,
+      createdAt: Date.now(),
+    };
+
+    render(
+      <TaskModal
+        isOpen={true}
+        onClose={mockOnClose}
+        onSave={mockOnSave}
+        mode="edit"
+        task={mockTask}
+        onDelete={mockOnDelete}
+      />
+    );
+
+    // ACT: Click Delete Task button (same as before!)
+    const deleteButton = screen.getByText("Delete Task");
+    fireEvent.click(deleteButton);
+
+    // ASSERT: Check onDelete and onClose were NOT called
+    expect(mockOnDelete).not.toHaveBeenCalled();
+    expect(mockOnClose).not.toHaveBeenCalled();
+
+    // Cleanup
+    mockConfirm.mockRestore();
+  });
 });
