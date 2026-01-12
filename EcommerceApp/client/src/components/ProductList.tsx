@@ -73,16 +73,17 @@ const ProductList: React.FC = () => {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-8 text-gray-900">Product Catalog</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {/* Responsive layout: vertical cards on mobile, horizontal on tablet+ */}
+      <div className="grid grid-cols-1 gap-6">
         {products.map((product) => (
-          // Compact Card Layout matching KanbanBoard aesthetic
+          // Responsive Card: vertical mobile, horizontal desktop
           <div
             key={product._id}
-            className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden flex flex-col"
+            className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden flex flex-col md:flex-row"
           >
-            {/* Product Image - Compact 4:3 ratio */}
+            {/* Product Image - Responsive sizing */}
             {product.image ? (
-              <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-50">
+              <div className="relative w-full md:w-64 aspect-[4/3] md:aspect-square overflow-hidden bg-gray-50 flex-shrink-0">
                 <img
                   src={product.image}
                   alt={product.name}
@@ -90,48 +91,56 @@ const ProductList: React.FC = () => {
                 />
               </div>
             ) : (
-              <div className="relative w-full aspect-[4/3] bg-gray-100 flex items-center justify-center text-gray-400 text-sm font-medium">
+              <div className="relative w-full md:w-64 aspect-[4/3] md:aspect-square bg-gray-100 flex items-center justify-center text-gray-400 text-sm font-medium flex-shrink-0">
                 No Image
               </div>
             )}
 
+            {/* Content Section */}
             <div className="p-4 flex-1 flex flex-col">
-              <h2 className="text-base font-semibold text-gray-900 mb-1 truncate">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">
                 {product.name}
               </h2>
-              <p className="text-gray-600 text-sm mb-3 line-clamp-2 flex-1">
+              <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-1">
                 {product.description}
               </p>
-              {/* Price and Stock */}
-              <div className="flex justify-between items-center mb-3 pt-2 border-t border-gray-200">
-                <p className="text-xl font-bold text-gray-900">
-                  ${product.price.toFixed(2)}
-                </p>
-                <p
-                  className={`text-xs font-medium ${
-                    product.countInStock > 0 ? "text-green-600" : "text-red-600"
-                  }`}
-                >
-                  {product.countInStock > 0 ? "In Stock" : "Sold Out"}
-                </p>
-              </div>
-              {/* Button Group */}
-              <div className="flex gap-2">
-                <button
-                  onClick={() => navigate(`/product/${product._id}`)}
-                  className="flex-1 py-2 px-3 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition"
-                >
-                  View Details
-                </button>
-                {/* The Delete Button */}
-                {userInfo && userInfo.isAdmin && (
-                  <button
-                    onClick={() => handleDelete(product._id)}
-                    className="py-2 px-3 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition"
+
+              {/* Price, Stock, and Actions Row */}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-auto">
+                {/* Price and Stock */}
+                <div className="flex items-center gap-4">
+                  <p className="text-2xl font-bold text-gray-900">
+                    ${product.price.toFixed(2)}
+                  </p>
+                  <p
+                    className={`text-sm font-medium ${
+                      product.countInStock > 0
+                        ? "text-green-600"
+                        : "text-red-600"
+                    }`}
                   >
-                    Delete
+                    {product.countInStock > 0 ? "In Stock" : "Sold Out"}
+                  </p>
+                </div>
+
+                {/* Button Group */}
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => navigate(`/product/${product._id}`)}
+                    className="flex-1 sm:flex-initial px-6 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition"
+                  >
+                    View Details
                   </button>
-                )}
+                  {/* The Delete Button */}
+                  {userInfo && userInfo.isAdmin && (
+                    <button
+                      onClick={() => handleDelete(product._id)}
+                      className="px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition"
+                    >
+                      Delete
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
