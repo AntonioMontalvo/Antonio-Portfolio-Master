@@ -72,7 +72,9 @@ const ProductList: React.FC = () => {
   // 5. Success Rendering (Display the list)
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-8 text-gray-900">Product Catalog</h1>
+      <h1 className="text-5xl font-extrabold mb-8 text-red-600 text-center">
+        🔴 TEST - CHANGES WORKING 🔴
+      </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {products.map((product) => (
           // Compact Card Layout matching KanbanBoard aesthetic
