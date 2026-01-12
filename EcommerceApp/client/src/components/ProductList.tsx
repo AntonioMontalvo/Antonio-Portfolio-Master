@@ -76,14 +76,14 @@ const ProductList: React.FC = () => {
       {/* Responsive layout: vertical cards on mobile, horizontal on tablet+ */}
       <div className="grid grid-cols-1 gap-6">
         {products.map((product) => (
-          // Responsive Card: vertical mobile, horizontal desktop
+          // TEST: Always horizontal to verify layout works
           <div
             key={product._id}
-            className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden flex flex-col md:flex-row"
+            className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden flex flex-row"
           >
-            {/* Product Image - Responsive sizing */}
+            {/* Product Image - Fixed width test */}
             {product.image ? (
-              <div className="relative w-full md:w-64 aspect-[4/3] md:aspect-square overflow-hidden bg-gray-50 flex-shrink-0">
+              <div className="relative w-64 aspect-square overflow-hidden bg-gray-50 flex-shrink-0">
                 <img
                   src={product.image}
                   alt={product.name}
@@ -91,7 +91,7 @@ const ProductList: React.FC = () => {
                 />
               </div>
             ) : (
-              <div className="relative w-full md:w-64 aspect-[4/3] md:aspect-square bg-gray-100 flex items-center justify-center text-gray-400 text-sm font-medium flex-shrink-0">
+              <div className="relative w-64 aspect-square bg-gray-100 flex items-center justify-center text-gray-400 text-sm font-medium flex-shrink-0">
                 No Image
               </div>
             )}
