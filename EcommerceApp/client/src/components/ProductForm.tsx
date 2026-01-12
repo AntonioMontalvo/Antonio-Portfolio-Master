@@ -95,7 +95,7 @@ const ProductForm: React.FC = () => {
   };
 
   return (
-    <div className="my-12 p-8 bg-white shadow-2xl rounded-xl border border-gray-100">
+    <div className="max-w-2xl mx-auto my-12 p-8 bg-white shadow-2xl rounded-xl border border-gray-100">
       <h2 className="text-3xl font-bold mb-6 text-gray-900 border-b pb-3">
         Create New Product
       </h2>
@@ -172,13 +172,17 @@ const ProductForm: React.FC = () => {
             <p className="text-sm text-gray-500 mt-2">Uploading...</p>
           )}
           {imageUrl && (
-            <div className="mt-2 flex items-center space-x-3">
-              <p className="text-xs text-green-600 font-medium">Image Ready</p>
-              <img
-                src={imageUrl}
-                alt="Preview"
-                className="w-12 h-12 object-cover rounded"
-              />
+            <div className="mt-4 space-y-2">
+              <p className="text-sm text-green-600 font-medium">
+                ✓ Image Ready
+              </p>
+              <div className="relative w-full max-w-xs aspect-square overflow-hidden rounded-lg border-2 border-green-200 bg-gray-50">
+                <img
+                  src={imageUrl}
+                  alt="Preview"
+                  className="absolute inset-0 w-full h-full object-contain p-4"
+                />
+              </div>
             </div>
           )}
         </div>

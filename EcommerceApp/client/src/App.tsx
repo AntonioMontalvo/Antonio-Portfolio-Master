@@ -24,12 +24,8 @@ function App() {
 
         {/* This <main> tag helps center the content based on our styling phase */}
         <main className="max-w-7xl mx-auto p-4 sm:px-6 lg:px-8">
-          {/* 🛑 CONDITIONAL RENDERING FOR ADMIN: Show form only to admins (centered) */}
-          {userInfo && userInfo.isAdmin && (
-            <div className="w-full flex justify-center">
-              <ProductForm />
-            </div>
-          )}
+          {/* 🛑 CONDITIONAL RENDERING FOR ADMIN: Show form only to admins */}
+          {userInfo && userInfo.isAdmin && <ProductForm />}
 
           <Routes>
             {/* Route for the Product List (Homepage) */}

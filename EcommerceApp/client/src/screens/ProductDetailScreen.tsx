@@ -101,11 +101,13 @@ const ProductDetailScreen: React.FC = () => {
       <div className="md:flex md:space-x-8">
         {/* Image Section */}
         <div className="md:w-1/2">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-auto object-cover rounded-lg shadow-md"
-          />
+          <div className="relative w-full aspect-square overflow-hidden rounded-lg shadow-md bg-gray-50">
+            <img
+              src={product.image}
+              alt={product.name}
+              className="absolute inset-0 w-full h-full object-contain p-6"
+            />
+          </div>
         </div>
 
         {/* Details Section */}
