@@ -72,66 +72,62 @@ const ProductList: React.FC = () => {
   // 5. Success Rendering (Display the list)
   return (
     <div>
-      <h1 className="text-4xl font-extrabold mb-10 text-green-600 text-center">
-        Explore Our Catalog
-      </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <h1 className="text-3xl font-bold mb-8 text-gray-900">Product Catalog</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {products.map((product) => (
-          // Simple Card Layout using Tailwind
+          // Compact Card Layout matching KanbanBoard aesthetic
           <div
             key={product._id}
-            className="bg-white border border-gray-100 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col"
+            className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 overflow-hidden flex flex-col"
           >
-            {/* Product Image */}
+            {/* Product Image - Compact 4:3 ratio */}
             {product.image ? (
-              <div className="relative w-full aspect-square overflow-hidden bg-gray-50">
+              <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-50">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="absolute inset-0 w-full h-full object-contain p-4"
+                  className="absolute inset-0 w-full h-full object-contain p-3"
                 />
               </div>
             ) : (
-              <div className="relative w-full aspect-square bg-gray-100 flex items-center justify-center text-gray-400 font-semibold">
+              <div className="relative w-full aspect-[4/3] bg-gray-100 flex items-center justify-center text-gray-400 text-sm font-medium">
                 No Image
               </div>
             )}
 
-            <div className="p-5">
-              <h2 className="text-xl font-bold text-gray-900 mb-2 truncate">
+            <div className="p-4 flex-1 flex flex-col">
+              <h2 className="text-base font-semibold text-gray-900 mb-1 truncate">
                 {product.name}
               </h2>
-              <p className="text-gray-600 mb-3 text-sm h-12 overflow-hidden">
+              <p className="text-gray-600 text-sm mb-3 line-clamp-2 flex-1">
                 {product.description}
               </p>
               {/* Price and Stock */}
-              <div className="flex justify-between items-center mb-4 pt-2 border-t border-gray-100">
-                <p className="text-2xl font-extrabold text-green-700">
+              <div className="flex justify-between items-center mb-3 pt-2 border-t border-gray-200">
+                <p className="text-xl font-bold text-gray-900">
                   ${product.price.toFixed(2)}
                 </p>
                 <p
-                  className={`text-sm font-medium ${
-                    product.countInStock > 0 ? "text-green-500" : "text-red-500"
+                  className={`text-xs font-medium ${
+                    product.countInStock > 0 ? "text-green-600" : "text-red-600"
                   }`}
                 >
                   {product.countInStock > 0 ? "In Stock" : "Sold Out"}
                 </p>
               </div>
               {/* Button Group */}
-              <div className="flex gap-3 mt-4">
-                {/* Use a flex container for buttons */}
+              <div className="flex gap-2">
                 <button
                   onClick={() => navigate(`/product/${product._id}`)}
-                  className="flex-1 py-3 bg-indigo-600 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition"
+                  className="flex-1 py-2 px-3 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition"
                 >
                   View Details
                 </button>
                 {/* The Delete Button */}
-                {/* 🛑 CONDITIONAL RENDERING FOR ADMIN */}
                 {userInfo && userInfo.isAdmin && (
                   <button
                     onClick={() => handleDelete(product._id)}
-                    className="flex-1 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition"
+                    className="py-2 px-3 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition"
                   >
                     Delete
                   </button>
