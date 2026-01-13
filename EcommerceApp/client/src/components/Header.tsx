@@ -112,20 +112,6 @@ const Header = () => {
                 {/* Dropdown Menu */}
                 {isUserMenuOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
-                    <Link
-                      to="/profile"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                      onClick={() => setIsUserMenuOpen(false)}
-                    >
-                      Profile
-                    </Link>
-                    <Link
-                      to="/orders"
-                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                      onClick={() => setIsUserMenuOpen(false)}
-                    >
-                      My Orders
-                    </Link>
                     {userInfo.isAdmin && (
                       <Link
                         to="/"
@@ -135,7 +121,7 @@ const Header = () => {
                         Admin Dashboard
                       </Link>
                     )}
-                    <hr className="my-1" />
+                    {userInfo.isAdmin && <hr className="my-1" />}
                     <button
                       onClick={handleLogout}
                       className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
@@ -250,20 +236,6 @@ const Header = () => {
                       {cartCount}
                     </span>
                   )}
-                </Link>
-                <Link
-                  to="/profile"
-                  className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Profile
-                </Link>
-                <Link
-                  to="/orders"
-                  className="block px-4 py-3 text-gray-700 hover:bg-gray-100 rounded-lg"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  My Orders
                 </Link>
                 {userInfo.isAdmin && (
                   <Link
