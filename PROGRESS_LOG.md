@@ -1,0 +1,422 @@
+# Daily Progress Log
+
+**Track your daily progress here. Update every evening.**
+
+---
+
+## Week 1: Kanban Board Testing (Jan 6-12, 2026)
+
+### Monday, Jan 6, 2026
+
+**Hours worked:** 0
+**What I did:**
+
+- Created learning roadmap and tracking system
+- Reviewed plan with AI assistant
+
+**What I learned:**
+
+- Strategic path forward for next 6 months
+
+**Blockers/Questions:**
+
+- None yet
+
+**Tomorrow's focus:**
+
+- Set up Jest and React Testing Library
+- Install dependencies
+
+---
+
+### Tuesday, Jan 7, 2026
+
+**Hours worked:** ~3 hours (morning session)
+**What I did:**
+
+- ✅ Installed testing dependencies (vitest, @testing-library/react, jsdom, jest-dom)
+- ✅ Created vitest.config.ts configuration file
+- ✅ Created test setup files (src/test/setup.ts, src/test/types.d.ts)
+- ✅ Added test script to package.json
+- ✅ Wrote first test for TaskCard component (displays title)
+- ✅ Wrote second test myself with guidance (displays description)
+- ✅ Both tests PASSED! 🎉
+
+**What I learned:**
+
+- What testing is and WHY companies require it (safety net for code changes)
+- Manual vs automated testing (clicking yourself vs code that clicks)
+- The AAA pattern (Arrange, Act, Assert) - structure of every test
+- How to render React components in tests with `render()`
+- How to find elements on screen with `screen.getByText()`
+- How to make assertions with `expect()` and `toBeInTheDocument()`
+- Testing terminology: describe, it, expect, mock, assertion, render
+- Watch mode auto-runs tests when files change
+- How to fix TypeScript errors in test files
+
+**Blockers/Questions:**
+
+- None - everything worked smoothly!
+
+**Afternoon focus:**
+
+- Learn about test failures (intentionally break a test to see error messages)
+- Continue with more TaskCard tests
+
+**Tomorrow's focus:**
+
+- ***
+
+### Wednesday, Jan 8, 2026
+
+**Hours worked:** ~7 hours (morning + afternoon session)
+**What I did:**
+
+**Morning Session:**
+
+- ✅ Completed Test #4: "displays the drag handle icon" (learned screen.getByRole)
+- ✅ Completed Test #5: "applies correct opacity when dragging" (library mocking)
+- ✅ Completed Test #6: "applies full opacity when not dragging"
+- ✅ All 6 TaskCard tests PASSING! 🎉
+- ✅ Deep dive into TaskModal.tsx component architecture
+- ✅ Traced data flow through entire application (TaskModal → Column → boardStore)
+
+**Afternoon Session:**
+
+- ✅ Created TaskModal.test.tsx test file
+- ✅ Test #1: "renders form when open" - tested modal visibility
+- ✅ Test #2: "does not render when closed" - learned queryBy vs getBy
+- ✅ Test #3: "pre-fills form when editing existing task" - tested useEffect behavior
+- ✅ Test #4: "calls onSave with form data when submitted" - form submission testing
+- ✅ Test #5: "calls onClose when cancel button clicked" - callback testing
+- ✅ Test #6: "shows delete button only when editing" - conditional rendering with cleanup()
+- ✅ All 6 TaskModal tests PASSING! 🎉
+- ✅ **12 total tests passing (6 TaskCard + 6 TaskModal)**
+
+**What I learned:**
+
+**Morning (Advanced Concepts):**
+
+- **Library Mocking:** How to mock external libraries with `vi.mock()` and control their behavior
+- **beforeEach():** Setting up default mock return values for all tests
+- **vi.mocked().mockReturnValue():** Overriding mock behavior in specific tests
+- **TypeScript workarounds:** Using `as any` to bypass strict type checking in tests
+- **React concepts:**
+  - Components are functions that React calls for you (not traditional JS function calls)
+  - JSX is syntactic sugar for React.createElement()
+  - Props are like function arguments, not class properties
+  - useState returns [value, setterFunction] array (destructuring pattern)
+  - useEffect is an "observer" that watches values and reacts to changes
+  - Callback props (onSave, onClose) enable child→parent communication
+  - "Lifting state up" pattern - data flows through component hierarchy
+- **Component architecture:** TaskModal defines a contract (interface) but doesn't know WHO provides the functions
+- **Form validation:** Using .trim() to prevent empty submissions
+- **e.preventDefault():** Stopping default browser form submission behavior
+
+**Afternoon (Form & Conditional Testing):**
+
+- **Form Testing:**
+  - `fireEvent.change()` to simulate typing in inputs
+  - `getByLabelText()` to find form inputs by their labels
+  - `getByDisplayValue()` to find inputs by their current value
+  - `getByPlaceholderText()` for inputs with placeholder text
+- **Query Differences:**
+  - `getBy` throws error if not found (use when element SHOULD exist)
+  - `queryBy` returns null if not found (use when element SHOULD NOT exist)
+  - Used `queryBy` with `toBeNull()` to test conditional rendering
+- **Testing Callbacks:**
+  - `toHaveBeenCalled()` checks if mock function was called
+  - `toHaveBeenCalledWith(arg1, arg2)` checks function was called with specific arguments
+  - Read error messages to understand function signatures (object vs separate parameters)
+- **Component Cleanup:**
+  - `cleanup()` clears previous renders when testing multiple scenarios in one test
+  - Useful for testing conditional rendering (button shows/hides based on mode)
+- **Testing Pre-filled Forms:**
+  - useEffect runs when component mounts with task prop
+  - Verify form inputs contain task data using `getByDisplayValue()`
+
+**Blockers/Questions:**
+
+- Initially confused about React components vs regular functions - resolved ✅
+- TypeScript errors with mock attributes object - fixed with `as any` ✅
+- Understanding useState destructuring pattern - clarified ✅
+- Error in Test #4: passed object to onSave instead of separate parameters - fixed by reading error message ✅
+
+**Tomorrow's focus:**
+
+- Continue with more component testing or move to Column/Board components
+- Consider testing error states and edge cases
+- Maybe add integration tests for drag-drop functionality
+
+---
+
+### Thursday, Jan 9, 2026
+
+**Hours worked:**
+**What I did:**
+
+- **What I learned:**
+
+- **Blockers/Questions:**
+
+- **Tomorrow's focus:**
+
+- ***
+
+### Saturday, Jan 10, 2026
+
+**Hours worked:** ~4 hours
+**What I did:**
+
+- ✅ Created Column.test.tsx test file
+- ✅ Wrote 6 tests for Column component (all passing!)
+- ✅ Learned complex mocking: @dnd-kit/core, @dnd-kit/sortable, Zustand store
+- ✅ Fixed failing test by understanding component DOM structure
+- ✅ **18 total tests passing** (6 TaskCard + 6 TaskModal + 6 Column)
+- ✅ Day 3 of Week 1 Guide completed
+
+**What I learned:**
+
+**Mocking Patterns:**
+
+- **Transitive dependencies:** Need to mock libraries that child components use (TaskCard uses useSortable, so Column tests must mock it)
+- **Zustand selector pattern:** How `useBoardStore((state) => state.addTask)` works - selector is a function that extracts specific properties from store
+- **Mock data vs mocked libraries:** Mock data = test fixtures (mockColumn, mockTasks), mocked libraries = fake external dependencies (vi.mock)
+
+**Testing Principles:**
+
+- **Minimal test data:** Only include data needed for that specific test (use empty array when testing title, use mockTasks when testing task rendering)
+- **Test isolation:** `beforeEach(() => vi.clearAllMocks())` ensures each test starts fresh with no leftover function call history
+- **Screen vs Container:** `screen` for accessible queries (text, roles), `container` for DOM queries (CSS classes)
+
+**Debugging Skills:**
+
+- Read error messages carefully - "Unable to fire click event" meant element not found
+- Trace through component structure to understand what's rendered
+- Fixed test by changing `.closest("div[draggable]")` to `.closest("div")` because onClick is on outer div, not the draggable button
+
+**Key Insight:**
+Testing requires deep understanding of entire app structure. It's mentally exhausting but gets easier with practice. Need to track:
+
+- Component hierarchy and props flow
+- Which child components are rendered
+- What libraries each component uses
+- Where event handlers are attached (onClick on div vs button)
+
+**Blockers/Questions:**
+
+- Initially confused why test failed - learned to check actual DOM structure, not assumptions ✅
+- Understanding Zustand selector pattern took multiple explanations - clarified ✅
+- Realized testing is harder than expected because requires holding entire app architecture in head
+
+**Tomorrow's focus:**
+
+- Rest and reflect on learning
+- Continue Week 1 according to guide (Board component + boardStore tests, or coverage check)
+
+---
+
+### Sunday, Jan 11, 2026
+
+**Hours worked:** ~2 hours
+**What I did:**
+
+- ✅ Shifted to user-driven testing approach (vs following pre-written guide)
+- ✅ Added 3 tests for TaskModal delete functionality:
+  - Test #7: "calls window.confirm when Delete Task is clicked"
+  - Test #8: "calls onDelete and onClose when user confirms deletion"
+  - Test #9: "doesn't call onDelete and onClose when user cancels deletion"
+- ✅ **21 total tests passing (6 TaskCard + 9 TaskModal + 6 Column)**
+- ✅ Achieved 83.82% test coverage (up from 79.41%)
+- ✅ TaskModal now at 100% coverage (up from 88%)
+
+**What I learned:**
+
+**User-Driven Testing:**
+
+- Start from rendered UI and describe what to test from user perspective
+- Focus on user behavior rather than code coverage gaps
+- Pattern: "I want to test [user action/expectation]" → design test → implement
+
+**Window.confirm Mocking:**
+
+- `vi.spyOn(window, "confirm")` to intercept browser confirm dialog
+- `mockReturnValue(true)` simulates user clicking OK
+- `mockReturnValue(false)` simulates user clicking Cancel
+- window.confirm returns boolean: true=OK, false=Cancel
+
+**Negative Assertions:**
+
+- `.not.toHaveBeenCalled()` tests functions were NOT called
+- Important for testing cancel/abort scenarios
+- Verifies component respects user's cancellation choice
+
+**Component Responsibility:**
+
+- TaskModal's job is to call callbacks (onDelete, onClose), not actually delete tasks
+- Actual deletion happens in parent component (Column) via boardStore
+- Tests verify component behavior, not side effects in other parts of app
+
+**Blockers/Questions:**
+
+- Brief confusion about window.confirm return values - clarified ✅
+- Copy-paste error in Test #3 comment ("were called" vs "were NOT called") - fixed ✅
+
+**Notes:**
+Week 1 essentially complete! Exceeded coverage goal and successfully practiced user-driven test creation.
+
+**Strategic Decision:**
+After review, identified that EcommerceApp has visual polish issues (image sizing, form presentation, inconsistent aesthetics) that could hurt portfolio first impressions. Decision made to prioritize fixing these issues before continuing with advanced testing (Playwright E2E). Testing fundamentals are solid enough for interview discussions.
+
+**Next focus:**
+
+- Polish EcommerceApp visual issues (images, forms, aesthetics)
+- Return to testing later once all portfolio projects look professional
+
+---
+
+## Week 1 Reflection
+
+**Total hours:** ~12 hours (Jan 7, 8, 10, 11)
+**Key achievements:**
+
+- ✅ Set up testing environment (Vitest + React Testing Library)
+- ✅ Wrote 21 passing tests across 3 components
+- ✅ Achieved 83.82% test coverage (exceeded 60% goal)
+- ✅ Learned testing fundamentals: AAA pattern, mocking, assertions, form testing
+- ✅ Practiced user-driven test creation approach
+
+**Challenges faced:**
+
+- Understanding transitive dependencies in mocking
+- Learning React component lifecycle for testing
+- Zustand state management mocking patterns
+
+**Strategic pivot:**
+
+- Pausing advanced testing (Week 2 E2E) to polish EcommerceApp visual issues
+- Will return to testing after portfolio projects are production-ready
+
+**Adjustments needed:**
+
+- Prioritize visual polish over advanced testing
+- Focus on portfolio first impressions
+
+---
+
+## Week 1B: EcommerceApp Visual Polish (Jan 12-18, 2026)
+
+### Monday, Jan 12, 2026 ✅
+
+**Hours worked:** ~4 hours
+**What I did:**
+
+- ✅ Audited entire EcommerceApp to identify visual issues
+- ✅ Created comprehensive 7-day action plan (ECOMMERCE_POLISH_PLAN.md)
+- ✅ Fixed Vercel deployment configuration (root directory for monorepo)
+- ✅ Implemented Sweetwater.com-style product grid (vertical cards, big red prices)
+- ✅ Fixed image aspect ratios (square with white padding for all products)
+- ✅ Improved ProductForm layout (max-w-2xl constraint, better image preview)
+- ✅ Resolved Tailwind v4 configuration issue (grid classes not rendering)
+
+**Issues identified:**
+
+1. **Image sizing problems** - aspect ratio distortion in ProductList, huge/tiny images in ProductDetail
+2. **ProductForm layout** - takes full width, tiny preview, poor visual hierarchy
+3. **Inconsistent design system** - mixing green/blue/indigo colors, varying typography
+4. **Header mismatch** - different from portfolio site style
+5. **Form polish needed** - basic styling, could use better UX
+
+**Day 1 completed tasks:**
+
+- ✅ Task 1.1: Fix image aspect ratios (4:3 containers, square images with padding)
+- ✅ Task 1.2: Improve ProductForm layout (centered, max-width, better preview)
+- ✅ Task 1.3: Better image upload UX (larger preview, square aspect)
+- ✅ Bonus: Redesigned to Sweetwater-style grid (1/2/3/4 columns responsive)
+
+**What I learned:**
+
+- Tailwind CSS v4 uses `@import "tailwindcss"` instead of `@tailwind` directives
+- Tailwind v4 doesn't need tailwind.config.js (CSS-based configuration)
+- Vercel monorepo deployments require setting root directory in project settings
+- Design references (like Sweetwater.com) provide clear direction for visual improvements
+
+**Blockers/Questions:**
+
+- ✅ Solved: Grid classes not rendering (Tailwind v4 config issue)
+- ✅ Solved: Vercel deployment (wrong repo/root directory)
+
+---
+
+- **On track for Week 2?** Yes / No / Partially
+
+  ***
+
+## Week 2: E2E Tests & Accessibility (Jan 13-19, 2026)
+
+### Monday, Jan 13, 2026
+
+**Hours worked:**
+**What I did:**
+
+- **What I learned:**
+
+- **Blockers/Questions:**
+
+- **Tomorrow's focus:**
+
+- ***
+
+[Continue this pattern for each week...]
+
+---
+
+## Monthly Review Template
+
+### Month 1 Review (January 2026)
+
+**Total hours worked:**
+**Major achievements:**
+
+1.
+2.
+3.
+
+**Biggest challenges:**
+
+1.
+2.
+
+**What I learned about myself:**
+
+- **Adjustments to roadmap:**
+
+- **Confidence level (1-10):**
+  **On track for Month 2?** Yes / No
+
+  **Next month's focus:**
+
+1.
+2.
+3.
+
+---
+
+## Tips for Using This Log
+
+1. **Update daily** (even if just 5 minutes)
+2. **Be honest** - no one is judging
+3. **Track actual hours** - helps adjust estimates
+4. **Note blockers immediately** - don't let them fester
+5. **Celebrate small wins** - check off tasks feels good!
+6. **Review weekly** - stay accountable
+
+**Template for quick daily entry:**
+
+```
+**Hours:** X
+**Did:** Y
+**Learned:** Z
+**Blocker:** None / [issue]
+**Tomorrow:** Next task
+```
