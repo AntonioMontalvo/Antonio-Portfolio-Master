@@ -308,7 +308,7 @@ After review, identified that EcommerceApp has visual polish issues (image sizin
 
 ### Monday, Jan 12, 2026 ✅
 
-**Hours worked:** ~4 hours
+**Hours worked:** ~6 hours
 **What I did:**
 
 - ✅ Audited entire EcommerceApp to identify visual issues
@@ -318,6 +318,10 @@ After review, identified that EcommerceApp has visual polish issues (image sizin
 - ✅ Fixed image aspect ratios (square with white padding for all products)
 - ✅ Improved ProductForm layout (max-w-2xl constraint, better image preview)
 - ✅ Resolved Tailwind v4 configuration issue (grid classes not rendering)
+- ✅ Implemented complete design system with CSS variables
+- ✅ Enhanced header with user dropdown, mobile hamburger menu, sticky positioning
+- ✅ Modernized React components (removed React.FC, unused imports)
+- ✅ Applied consistent green brand color across all components
 
 **Issues identified:**
 
@@ -327,12 +331,24 @@ After review, identified that EcommerceApp has visual polish issues (image sizin
 4. **Header mismatch** - different from portfolio site style
 5. **Form polish needed** - basic styling, could use better UX
 
-**Day 1 completed tasks:**
+**Completed today:**
 
-- ✅ Task 1.1: Fix image aspect ratios (4:3 containers, square images with padding)
+**Day 1 Tasks:**
+- ✅ Task 1.1: Fix image aspect ratios (square images with white padding)
 - ✅ Task 1.2: Improve ProductForm layout (centered, max-width, better preview)
 - ✅ Task 1.3: Better image upload UX (larger preview, square aspect)
 - ✅ Bonus: Redesigned to Sweetwater-style grid (1/2/3/4 columns responsive)
+
+**Day 2 Tasks:**
+- ✅ Task 2.1: Define color palette (green primary, semantic colors via CSS variables)
+- ✅ Task 2.2: Typography standardization (heading-1 through heading-4 classes)
+- ✅ Applied design system across ProductList, LoginForm, RegisterForm, ProductForm, Header
+
+**Day 3 Tasks:**
+- ✅ Task 3.1: Unified header design (sticky, user dropdown, mobile menu)
+- ✅ Cart badge visibility (red error color)
+- ✅ Mobile hamburger menu with responsive breakpoints
+- ✅ Simplified navigation (removed non-existent Profile/Orders pages)
 
 **What I learned:**
 
@@ -340,15 +356,26 @@ After review, identified that EcommerceApp has visual polish issues (image sizin
 - Tailwind v4 doesn't need tailwind.config.js (CSS-based configuration)
 - Vercel monorepo deployments require setting root directory in project settings
 - Design references (like Sweetwater.com) provide clear direction for visual improvements
+- CSS variables with `@theme` provide powerful design system in Tailwind v4
+- Modern React (v17+) doesn't require importing React for JSX
+- Component simplification: `const Header = ()` > `const Header: React.FC = ()`
+- Sticky positioning (`sticky top-0 z-50`) keeps navigation accessible
 
 **Blockers/Questions:**
 
 - ✅ Solved: Grid classes not rendering (Tailwind v4 config issue)
 - ✅ Solved: Vercel deployment (wrong repo/root directory)
+- ✅ Solved: Design inconsistency (implemented CSS variable system)
+
+**Tomorrow's focus:**
+
+- Day 4: Form improvements (loading states, password visibility, validation feedback)
+- Day 5: Product detail and cart screen enhancements
+- Consider mobile responsive testing
 
 ---
 
-- **On track for Week 2?** Yes / No / Partially
+**On track for Week 1B?** Yes - completed 3 days of work in 1 day!
 
   ***
 
