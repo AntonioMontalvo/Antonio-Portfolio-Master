@@ -73,7 +73,7 @@ const ProductList: React.FC = () => {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-8 text-gray-900">Product Catalog</h1>
-      {/* Sweetwater-style grid: 2 cols on mobile, 3 on tablet, 4 on desktop */}
+      {/* Grid: mobile=1col, tablet=2col, desktop=3col, xl=4col */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {products.map((product) => (
           // Vertical card - Sweetwater style
