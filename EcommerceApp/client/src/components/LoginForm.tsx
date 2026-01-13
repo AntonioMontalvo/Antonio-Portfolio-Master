@@ -48,7 +48,7 @@ const LoginForm: React.FC = () => {
   return (
     <div className="max-w-md mx-auto my-10 p-8 bg-white shadow-lg rounded-lg border-t-4 border-blue-500">
       <h2 className="text-2xl font-bold mb-4">Sign In (JWT Test)</h2>
-      {error && <p className="text-red-500 mb-4">{error}</p>}
+      {error && <p className="mb-4" style={{color: 'var(--color-error)'}}>{error}</p>}
       <form onSubmit={submitHandler} className="space-y-4">
         <input
           type="email"
@@ -79,7 +79,8 @@ const LoginForm: React.FC = () => {
           Don't have an account?{" "}
           <button
             onClick={() => navigate("/register")}
-            className="text-blue-600 hover:text-blue-800 font-medium"
+            className="font-medium"
+            style={{color: 'var(--color-primary)'}}
           >
             Register here
           </button>

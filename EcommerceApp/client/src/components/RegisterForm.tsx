@@ -64,7 +64,7 @@ const RegisterForm: React.FC = () => {
       </h2>
 
       {error && (
-        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+        <div className="mb-4 p-3 rounded" style={{backgroundColor: 'var(--color-error-bg)', borderColor: 'var(--color-error)', color: 'var(--color-error-text)', border: '1px solid'}}>
           {error}
         </div>
       )}
@@ -156,7 +156,8 @@ const RegisterForm: React.FC = () => {
           Already have an account?{" "}
           <button
             onClick={() => navigate("/login")}
-            className="text-indigo-600 hover:text-indigo-800 font-medium"
+            className="font-medium"
+            style={{color: 'var(--color-primary)'}}
           >
             Login here
           </button>

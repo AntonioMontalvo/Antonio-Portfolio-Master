@@ -173,10 +173,10 @@ const ProductForm: React.FC = () => {
           )}
           {imageUrl && (
             <div className="mt-4 space-y-2">
-              <p className="text-sm text-green-600 font-medium">
+              <p className="text-sm font-medium" style={{color: 'var(--color-success)'}}>
                 ✓ Image Ready
               </p>
-              <div className="relative w-full max-w-xs aspect-square overflow-hidden rounded-lg border-2 border-green-200 bg-gray-50">
+              <div className="relative w-full max-w-xs aspect-square overflow-hidden rounded-lg border-2 bg-gray-50" style={{borderColor: 'var(--color-success-bg)'}}>
                 <img
                   src={imageUrl}
                   alt="Preview"
@@ -189,7 +189,10 @@ const ProductForm: React.FC = () => {
 
         <button
           type="submit"
-          className="w-full py-3 px-4 rounded-lg shadow-md text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 transition duration-200 ease-in-out transform hover:scale-[1.005]"
+          className="w-full py-3 px-4 rounded-lg shadow-md text-sm font-semibold text-white transition duration-200 ease-in-out transform hover:scale-[1.005]"
+          style={{backgroundColor: 'var(--color-primary)'}}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--color-primary-hover)'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--color-primary)'}
         >
           Create Product
         </button>
@@ -197,11 +200,11 @@ const ProductForm: React.FC = () => {
 
       {message && (
         <p
-          className={`mt-4 p-3 text-sm rounded ${
-            message.includes("Error")
-              ? "bg-red-100 text-red-700"
-              : "bg-green-100 text-green-700"
-          }`}
+          className="mt-4 p-3 text-sm rounded"
+          style={{
+            backgroundColor: message.includes("Error") ? 'var(--color-error-bg)' : 'var(--color-success-bg)',
+            color: message.includes("Error") ? 'var(--color-error-text)' : 'var(--color-success-text)'
+          }}
         >
           {message}
         </p>

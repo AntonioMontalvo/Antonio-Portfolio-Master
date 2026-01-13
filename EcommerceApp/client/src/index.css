@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+/* Design System - Tailwind v4 Custom Theme */
+@theme {
+  /* Brand Colors - Matching Portfolio */
+  --color-primary: #10b981; /* green-500 */
+  --color-primary-hover: #059669; /* green-600 */
+  --color-primary-light: #d1fae5; /* green-100 */
+  
+  /* Semantic Colors */
+  --color-success: #10b981; /* green-500 */
+  --color-success-bg: #d1fae5; /* green-100 */
+  --color-success-text: #065f46; /* green-800 */
+  
+  --color-error: #ef4444; /* red-500 */
+  --color-error-bg: #fee2e2; /* red-100 */
+  --color-error-text: #991b1b; /* red-800 */
+  
+  --color-warning: #f59e0b; /* amber-500 */
+  --color-warning-bg: #fef3c7; /* amber-100 */
+  --color-warning-text: #92400e; /* amber-800 */
+  
+  --color-info: #3b82f6; /* blue-500 */
+  --color-info-bg: #dbeafe; /* blue-100 */
+  --color-info-text: #1e40af; /* blue-800 */
+}
+
+/* Typography System */
+.heading-1 {
+  @apply text-4xl font-bold;
+}
+
+.heading-2 {
+  @apply text-3xl font-bold;
+}
+
+.heading-3 {
+  @apply text-2xl font-semibold;
+}
+
+.heading-4 {
+  @apply text-xl font-semibold;
+}

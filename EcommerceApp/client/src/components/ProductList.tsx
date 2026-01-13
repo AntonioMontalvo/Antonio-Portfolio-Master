@@ -65,14 +65,14 @@ const ProductList: React.FC = () => {
 
   if (error) {
     return (
-      <div className="text-center py-8 text-red-600 font-bold">{error}</div>
+      <div className="text-center py-8 font-bold" style={{color: 'var(--color-error)'}}>{error}</div>
     );
   }
 
   // 5. Success Rendering (Display the list)
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-8 text-gray-900">Product Catalog</h1>
+      <h1 className="heading-2 mb-8 text-gray-900">Product Catalog</h1>
       {/* Grid: mobile=1col, tablet=2col, desktop=3col, xl=4col */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {products.map((product) => (
@@ -108,15 +108,14 @@ const ProductList: React.FC = () => {
                 {product.description}
               </p>
 
-              {/* BIG RED PRICE - Sweetwater style */}
+              {/* BIG PRICE - Sweetwater style */}
               <div className="mb-3">
-                <p className="text-3xl font-bold text-red-600">
+                <p className="text-3xl font-bold" style={{color: 'var(--color-error)'}}>
                   ${product.price.toFixed(2)}
                 </p>
                 <p
-                  className={`text-sm font-medium mt-1 ${
-                    product.countInStock > 0 ? "text-green-600" : "text-red-600"
-                  }`}
+                  className="text-sm font-medium mt-1"
+                  style={{color: product.countInStock > 0 ? 'var(--color-success)' : 'var(--color-error)'}}
                 >
                   {product.countInStock > 0 ? "In Stock" : "Sold Out"}
                 </p>
@@ -126,7 +125,10 @@ const ProductList: React.FC = () => {
               <div className="flex flex-col gap-2 mt-auto">
                 <button
                   onClick={() => navigate(`/product/${product._id}`)}
-                  className="w-full py-2.5 px-4 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-800 transition"
+                  className="w-full py-2.5 px-4 text-white text-sm font-medium rounded-lg transition"
+                  style={{backgroundColor: 'var(--color-primary)'}}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--color-primary-hover)'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--color-primary)'}
                 >
                   View Details
                 </button>
@@ -134,7 +136,10 @@ const ProductList: React.FC = () => {
                 {userInfo && userInfo.isAdmin && (
                   <button
                     onClick={() => handleDelete(product._id)}
-                    className="w-full py-2 px-4 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition"
+                    className="w-full py-2 px-4 text-white text-sm font-medium rounded-lg transition"
+                    style={{backgroundColor: 'var(--color-error)'}}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#dc2626'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--color-error)'}
                   >
                     Delete
                   </button>

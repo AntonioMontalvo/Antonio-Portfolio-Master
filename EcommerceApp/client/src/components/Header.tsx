@@ -25,10 +25,7 @@ const Header: React.FC = () => {
       <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
         <Link
           to="/"
-          className="text-2xl font-extrabold text-indigo-600 hover:text-indigo-800 tracking-wide"
-        >
-          E-Commerce
-        </Link>
+          className="text-2xl font-extrabold tracking-wide transition-colors\"\n          style={{color: 'var(--color-primary)'}}\n          onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary-hover)'}\n          onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-primary)'}\n        >\n          E-Commerce\n        </Link>
         <div>
           {userInfo ? (
             <>
@@ -47,13 +44,17 @@ const Header: React.FC = () => {
               </Link>
               <Link
                 to="/login"
-                className="px-4 text-gray-700 hover:text-indigo-600 font-medium"
+                className="px-4 text-gray-700 font-medium"
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = ''}
               >
                 Sign In
               </Link>
               <Link
                 to="/cart"
-                className="px-4 text-gray-700 hover:text-indigo-600 font-medium relative"
+                className="px-4 text-gray-700 font-medium relative"
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-primary)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = ''}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +71,7 @@ const Header: React.FC = () => {
                   />
                 </svg>
                 {cartCount > 0 && (
-                  <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
+                  <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 rounded-full" style={{backgroundColor: 'var(--color-error)'}}>
                     {cartCount}
                   </span>
                 )}
