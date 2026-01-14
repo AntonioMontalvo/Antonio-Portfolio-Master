@@ -28,7 +28,7 @@ const CartScreen: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto my-10 p-4">
-      <h1 className="text-4xl font-extrabold text-gray-900 mb-8 border-b pb-4">
+      <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900 mb-8 border-b pb-4">
         Shopping Cart
       </h1>
 
@@ -56,7 +56,7 @@ const CartScreen: React.FC = () => {
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-20 h-20 object-cover rounded-md mr-4"
+                  className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-md mr-4"
                 />
 
                 <div className="flex-grow">

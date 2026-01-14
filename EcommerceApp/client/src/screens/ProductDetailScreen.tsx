@@ -134,10 +134,10 @@ const ProductDetailScreen: React.FC = () => {
 
         {/* Details Section */}
         <div className="md:w-1/2 mt-6 md:mt-0">
-          <h1 className="text-4xl font-extrabold text-gray-900 mb-3">
+          <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900 mb-3">
             {product.name}
           </h1>
-          <p className="text-3xl font-bold text-green-700 mb-6">
+          <p className="text-2xl md:text-3xl font-bold text-green-700 mb-6">
             ${product.price.toFixed(2)}
           </p>
 
