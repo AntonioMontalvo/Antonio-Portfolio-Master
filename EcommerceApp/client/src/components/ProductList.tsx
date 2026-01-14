@@ -1,6 +1,6 @@
 // src/components/ProductList.tsx
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuthStore } from "../stores/authStore";
 
@@ -14,7 +14,7 @@ export interface Product {
   countInStock: number;
 }
 
-const ProductList: React.FC = () => {
+const ProductList = () => {
   // 2. State Hooks for Data and Loading Status
   const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);
