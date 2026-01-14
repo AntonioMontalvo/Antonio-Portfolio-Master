@@ -37,23 +37,33 @@ export const TaskCard = React.memo(({ task, onClick }: TaskCardProps) => {
       style={style}
       className={`
         bg-white rounded-lg shadow-sm border border-gray-200 p-4
-        hover:shadow-md transition-shadow cursor-pointer
+        hover:shadow-md transition-shadow
         ${isDragging ? "z-50" : ""}
       `}
-      onClick={onClick}
     >
       <div className="flex items-start gap-2">
-        {/* Drag handle */}
+        {/* Drag handle - larger touch target for mobile */}
         <button
-          className="mt-1 text-gray-400 hover:text-gray-600 cursor-grab active:cursor-grabbing"
+          className="mt-1 text-gray-400 hover:text-gray-600 cursor-grab active:cursor-grabbing touch-none p-2 -m-2"
           {...attributes}
           {...listeners}
+          aria-label="Drag task"
         >
-          <GripVertical size={16} />
+          <GripVertical size={20} />
         </button>
 
-        {/* Task content */}
-        <div className="flex-1 min-w-0">
+        {/* Task content - clickable area */}
+        <div
+          className="flex-1 min-w-0 cursor-pointer"
+          onClick={onClick}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              onClick();
+            }
+          }}
+        >
           <h3 className="text-sm font-semibold text-gray-900 truncate">
             {task.title}
           </h3>

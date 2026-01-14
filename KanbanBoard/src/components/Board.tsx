@@ -45,8 +45,8 @@ export function Board() {
     }),
     useSensor(TouchSensor, {
       activationConstraint: {
-        delay: 200, // 200ms delay for touch devices
-        tolerance: 8,
+        delay: 100, // Reduced from 200ms for better responsiveness
+        tolerance: 5, // Reduced tolerance for easier activation
       },
     })
   );
