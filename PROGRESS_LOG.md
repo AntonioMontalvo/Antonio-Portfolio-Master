@@ -334,17 +334,20 @@ After review, identified that EcommerceApp has visual polish issues (image sizin
 **Completed today:**
 
 **Day 1 Tasks:**
+
 - ✅ Task 1.1: Fix image aspect ratios (square images with white padding)
 - ✅ Task 1.2: Improve ProductForm layout (centered, max-width, better preview)
 - ✅ Task 1.3: Better image upload UX (larger preview, square aspect)
 - ✅ Bonus: Redesigned to Sweetwater-style grid (1/2/3/4 columns responsive)
 
 **Day 2 Tasks:**
+
 - ✅ Task 2.1: Define color palette (green primary, semantic colors via CSS variables)
 - ✅ Task 2.2: Typography standardization (heading-1 through heading-4 classes)
 - ✅ Applied design system across ProductList, LoginForm, RegisterForm, ProductForm, Header
 
 **Day 3 Tasks:**
+
 - ✅ Task 3.1: Unified header design (sticky, user dropdown, mobile menu)
 - ✅ Cart badge visibility (red error color)
 - ✅ Mobile hamburger menu with responsive breakpoints
@@ -377,7 +380,51 @@ After review, identified that EcommerceApp has visual polish issues (image sizin
 
 **On track for Week 1B?** Yes - completed 3 days of work in 1 day!
 
-  ***
+---
+
+### Tuesday, Jan 13, 2026 ✅
+
+**Hours worked:** ~3 hours
+**What I did:**
+
+- ✅ Enhanced Login and Register forms with modern UX patterns
+- ✅ Added password visibility toggles to all password fields
+- ✅ Implemented loading states with spinner animations
+- ✅ Updated checkout flow (Shipping, Payment screens)
+- ✅ Created checkout progress indicator (visual step tracker)
+- ✅ Applied design system colors consistently across all forms
+- ✅ Improved form layouts (grid for city/postal fields)
+- ✅ Added placeholders and better labels to all inputs
+
+**Day 4 completed tasks:**
+
+- ✅ Task 4.1: Enhanced Login/Register forms (password toggle, loading, design system)
+- ✅ Task 4.2: Checkout flow polish (progress indicator, consistent styling, better UX)
+
+**What I learned:**
+
+- Password visibility toggles greatly improve UX (users can verify input)
+- Loading states with spinners provide important feedback during async operations
+- Progress indicators in multi-step forms reduce user anxiety and confusion
+- Radio button styling can be enhanced with border highlighting on selection
+- Grid layouts (2-column) save vertical space for related fields (city/postal)
+- Consistent placeholder text guides users on expected input format
+
+**Blockers/Questions:**
+
+- None - smooth development session
+
+**Tomorrow's focus:**
+
+- Day 5: Product Detail and Cart screen enhancements
+- Consider adding lazy loading for product images
+- Mobile responsive testing
+
+---
+
+**On track for Week 1B?** Yes - completed 4 days of work in 2 days!
+
+---
 
 ## Week 2: E2E Tests & Accessibility (Jan 13-19, 2026)
 
