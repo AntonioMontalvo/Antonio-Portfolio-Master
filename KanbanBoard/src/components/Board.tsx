@@ -73,7 +73,16 @@ export function Board() {
     if (!over) return;
 
     const taskId = active.id as string;
-    const newColumnId = over.id as ColumnId;
+    const overId = over.id as string;
+
+    // Check if dropped over a valid column (not another task)
+    const validColumnIds = columns.map((col) => col.id);
+    if (!validColumnIds.includes(overId as ColumnId)) {
+      // Dropped on invalid target (like another task or empty space)
+      return;
+    }
+
+    const newColumnId = overId as ColumnId;
 
     // Move the task to the new column
     moveTask(taskId, newColumnId);
