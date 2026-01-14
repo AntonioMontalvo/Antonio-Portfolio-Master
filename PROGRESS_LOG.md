@@ -4,6 +4,51 @@
 
 ---
 
+## Week 1B: EcommerceApp Polish (Jan 12-18, 2026)
+
+### Tuesday, Jan 13, 2026 (Continued)
+
+**Hours worked:** +0.5 hours (Day 5)
+**Total today:** 3.5 hours
+**What I did:**
+
+- ✅ Day 5 Task 5.1: ProductDetailScreen Enhancement
+  - Updated to green design system (replaced all indigo colors)
+  - Added breadcrumb navigation (Home › Products › [Product Name])
+  - Improved quantity selector (wider, centered text, green focus ring)
+  - Enhanced Add to Cart button (green primary with hover scale effect)
+  - Added loading spinner animation
+- ✅ Day 5 Task 5.2: CartScreen Review & Fixes
+  - Updated to green design system throughout
+  - Made Order Summary sticky on scroll (sticky top-4)
+  - Enhanced empty cart state with green colors
+  - Improved quantity selector to match ProductDetailScreen
+  - Added hover scale effect to remove button
+  - Updated Proceed to Checkout button with green primary
+- ✅ Tested on deployed site - all changes verified
+- ✅ Completed 5 days of planned work in 2 calendar days
+
+**What I learned:**
+
+- Breadcrumb navigation improves perceived polish
+- Sticky positioning (`sticky top-4`) for persistent UI elements
+- Consistency across screens matters for professional feel
+- Strategic skipping of low-value features (image gallery, related products)
+
+**Status:**
+
+- Days 1-5 complete (ahead of schedule)
+- Design system fully applied across all screens
+- Ready for Day 6 (mobile responsive testing)
+
+**Tomorrow's focus:**
+
+- Day 6: Mobile and responsive testing (375px, 768px, 1024px)
+- Fix any layout breaks on mobile
+- Improve touch targets
+
+---
+
 ## Week 1: Kanban Board Testing (Jan 6-12, 2026)
 
 ### Monday, Jan 6, 2026

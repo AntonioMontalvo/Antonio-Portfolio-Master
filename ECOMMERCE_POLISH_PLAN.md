@@ -178,24 +178,29 @@
 
 ### Day 5 (Friday, Jan 16): Product Detail & Cart
 
-#### Task 5.1: ProductDetailScreen Enhancement
+#### Task 5.1: ProductDetailScreen Enhancement ✅
 
 **File:** ProductDetailScreen.tsx
 
-- [ ] Better image gallery (multiple images if available)
-- [ ] Quantity selector styling
-- [ ] Add to cart button prominence
-- [ ] Related products section (bonus)
-- [ ] Breadcrumbs navigation
+- ✅ Better image gallery (multiple images if available) - SKIPPED (requires backend)
+- ✅ Quantity selector styling - Wider, centered, green focus ring
+- ✅ Add to cart button prominence - Green primary with hover scale
+- ✅ Related products section (bonus) - SKIPPED (low priority)
+- ✅ Breadcrumbs navigation - Added Home › Products › [Product Name]
+- ✅ Design system colors - Replaced all indigo with green primary
+- ✅ Loading state - Added spinner animation
 
-#### Task 5.2: Cart Screen Review
+#### Task 5.2: Cart Screen Review ✅
 
 **File:** CartScreen.tsx
 
-- [ ] Not audited yet - review and fix
-- [ ] Ensure image sizing consistent
-- [ ] Polish empty cart state
-- [ ] Make cart summary sticky on scroll
+- ✅ Not audited yet - review and fix - COMPLETED
+- ✅ Ensure image sizing consistent - Verified
+- ✅ Polish empty cart state - Updated to green design system
+- ✅ Make cart summary sticky on scroll - Added sticky top-4
+- ✅ Quantity selector styling - Matched ProductDetailScreen
+- ✅ Remove button hover effect - Added scale animation
+- ✅ Checkout button - Green primary with hover scale
 
 ---
 
