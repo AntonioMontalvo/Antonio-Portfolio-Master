@@ -33,13 +33,13 @@ const CartScreen: React.FC = () => {
       </h1>
 
       {cartItems.length === 0 ? (
-        <div className="p-8 bg-indigo-50 border border-indigo-200 rounded-lg text-center">
-          <p className="text-xl text-indigo-700 font-medium">
+        <div className="p-8 bg-green-50 border border-green-200 rounded-lg text-center">
+          <p className="text-xl text-green-700 font-medium">
             Your cart is empty.
           </p>
           <button
             onClick={() => navigate("/")}
-            className="mt-4 px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
+            className="mt-4 px-6 py-2 bg-[--color-primary] text-white rounded-lg hover:bg-[--color-primary-hover] transition transform hover:scale-105"
           >
             Go Shopping
           </button>
@@ -74,7 +74,7 @@ const CartScreen: React.FC = () => {
                   onChange={(e) =>
                     handleQtyChange(item, Number(e.target.value))
                   }
-                  className="p-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 w-16 mx-4"
+                  className="p-2 border border-gray-300 rounded-lg focus:ring-[--color-primary] focus:border-[--color-primary] w-20 text-center font-medium mx-4"
                 >
                   {[...Array(item.countInStock).keys()].map((x) => (
                     <option key={x + 1} value={x + 1}>
@@ -86,7 +86,7 @@ const CartScreen: React.FC = () => {
                 {/* Remove Button */}
                 <button
                   onClick={() => removeFromCart(item._id)}
-                  className="p-2 text-red-600 hover:text-red-800 transition"
+                  className="p-2 text-red-600 hover:text-red-800 transition transform hover:scale-110"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +108,7 @@ const CartScreen: React.FC = () => {
           </div>
 
           {/* Order Summary (Col 9-12) */}
-          <div className="md:col-span-4 bg-gray-50 p-6 rounded-lg shadow-xl border border-gray-200 h-fit">
+          <div className="md:col-span-4 bg-gray-50 p-6 rounded-lg shadow-xl border border-gray-200 h-fit sticky top-4">
             <h2 className="text-2xl font-bold mb-4 border-b pb-3 text-gray-800">
               Order Summary
             </h2>
@@ -143,7 +143,7 @@ const CartScreen: React.FC = () => {
 
             <button
               onClick={handleCheckout}
-              className="w-full mt-6 py-3 px-4 rounded-lg shadow-md text-white text-lg font-semibold bg-indigo-600 hover:bg-indigo-700 transition"
+              className="w-full mt-6 py-3 px-4 rounded-lg shadow-md text-white text-lg font-semibold bg-[--color-primary] hover:bg-[--color-primary-hover] transition transform hover:scale-105"
               disabled={cartItems.length === 0}
             >
               Proceed to Checkout

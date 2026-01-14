@@ -63,7 +63,10 @@ const ProductDetailScreen: React.FC = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-40">
-        <p className="text-xl text-indigo-600">Loading product...</p>
+        <div className="flex items-center space-x-3">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[--color-primary]"></div>
+          <p className="text-xl text-[--text-primary]">Loading product...</p>
+        </div>
       </div>
     );
   }
@@ -75,7 +78,7 @@ const ProductDetailScreen: React.FC = () => {
         <p>{error}</p>
         <button
           onClick={() => navigate("/")}
-          className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition"
+          className="mt-4 px-4 py-2 bg-[--color-primary] text-white rounded hover:bg-[--color-primary-hover] transition transform hover:scale-105"
         >
           Go Back
         </button>
@@ -91,9 +94,28 @@ const ProductDetailScreen: React.FC = () => {
   // Final Product Display JSX
   return (
     <div className="max-w-4xl mx-auto my-10 p-6 bg-white shadow-xl rounded-lg">
+      {/* Breadcrumb Navigation */}
+      <nav className="text-sm mb-4 text-[--text-muted]">
+        <button
+          onClick={() => navigate("/")}
+          className="text-[--color-primary] hover:text-[--color-primary-hover] font-medium transition"
+        >
+          Home
+        </button>
+        <span className="mx-2">›</span>
+        <button
+          onClick={() => navigate("/")}
+          className="text-[--color-primary] hover:text-[--color-primary-hover] font-medium transition"
+        >
+          Products
+        </button>
+        <span className="mx-2">›</span>
+        <span className="text-[--text-primary]">{product.name}</span>
+      </nav>
+
       <button
         onClick={() => navigate("/")}
-        className="text-indigo-600 hover:text-indigo-800 mb-6 font-medium"
+        className="text-[--color-primary] hover:text-[--color-primary-hover] mb-6 font-medium transition"
       >
         ← Back to Products
       </button>
@@ -137,12 +159,12 @@ const ProductDetailScreen: React.FC = () => {
             </div>
           </div>
           {/* Quantity Selector */}
-          <div className="flex items-center space-x-4 mb-6">
-            <span className="font-semibold text-gray-700">Qty:</span>
+          <div className="flex items-center space-x-4 mb-6 mt-6">
+            <span className="font-semibold text-[--text-primary]">Qty:</span>
             <select
               value={qty}
               onChange={(e) => setQty(Number(e.target.value))}
-              className="p-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+              className="p-2 border border-gray-300 rounded-lg focus:ring-[--color-primary] focus:border-[--color-primary] w-20 text-center font-medium"
             >
               {[...Array(product.countInStock).keys()].map((x) => (
                 <option key={x + 1} value={x + 1}>
@@ -154,9 +176,9 @@ const ProductDetailScreen: React.FC = () => {
           <button
             onClick={handleAddToCart}
             disabled={product.countInStock === 0}
-            className={`w-full mt-8 py-3 px-4 rounded-lg shadow-md text-white text-lg font-semibold transition ${
+            className={`w-full py-3 px-4 rounded-lg shadow-md text-white text-lg font-semibold transition transform ${
               product.countInStock > 0
-                ? "bg-indigo-600 hover:bg-indigo-700"
+                ? "bg-[--color-primary] hover:bg-[--color-primary-hover] hover:scale-105"
                 : "bg-gray-400 cursor-not-allowed"
             }`}
           >
