@@ -6,6 +6,47 @@
 
 ## Week 1B: EcommerceApp Polish (Jan 12-18, 2026)
 
+### Tuesday, Jan 13, 2026 (Continued - Day 6)
+
+**Hours worked:** +0.25 hours (Day 6)
+**Total today:** 3.75 hours
+**What I did:**
+
+- ✅ Day 6 Task 6.1: Mobile Testing
+  - Tested all screens at 375px mobile viewport
+  - Made ProductDetailScreen heading responsive (text-2xl on mobile, text-4xl on desktop)
+  - Made ProductDetailScreen price responsive (text-2xl on mobile, text-3xl on desktop)
+  - Verified touch targets meet 44px minimum on all buttons
+  - Tested forms on mobile - all work well with max-w-md constraint
+  - Verified cart badge positioning on mobile menu
+- ✅ Day 6 Task 6.2: Tablet Breakpoints
+  - Made CartScreen heading responsive (text-2xl on mobile, text-4xl on desktop)
+  - Reduced cart item image size on mobile (w-16 h-16, sm:w-20 sm:h-20)
+  - Verified grid layouts at 768px and 1024px breakpoints
+  - Product grid properly uses 1→2→3→4 columns across breakpoints
+- ✅ Completed 6 days of planned work in 2 calendar days
+
+**What I learned:**
+
+- Mobile-first design with Tailwind responsive utilities (text-2xl md:text-4xl pattern)
+- Importance of testing actual mobile viewport (375px) not just resizing browser
+- Touch targets should be minimum 44px for accessibility
+- Most layouts were already responsive thanks to Tailwind grid system
+
+**Status:**
+
+- Days 1-6 complete (only Day 7 remaining)
+- All screens tested and working on mobile, tablet, desktop
+- Ready for final polish and review
+
+**Tomorrow's focus:**
+
+- Day 7: Final polish (micro-interactions, loading states, final audit)
+- Take screenshots for portfolio
+- EcommerceApp will be complete!
+
+---
+
 ### Tuesday, Jan 13, 2026 (Continued)
 
 **Hours worked:** +0.5 hours (Day 5)
