@@ -97,7 +97,8 @@ describe("TaskCard Component", () => {
     render(<TaskCard task={mockTask} onClick={() => {}} />);
 
     // ASSERT: Check if drag handle button exists
-    const dragButton = screen.getByRole("button");
+    // Use aria-label to target the specific button (there are now 2 role="button" elements)
+    const dragButton = screen.getByRole("button", { name: "Drag task" });
     expect(dragButton).toBeInTheDocument();
   });
 
@@ -124,9 +125,10 @@ describe("TaskCard Component", () => {
     render(<TaskCard task={mockTask} onClick={() => {}} />);
 
     // ASSERT: Check that the card has 0.5 opacity
+    // Find the outer container div (has bg-white class and opacity style)
     const card = screen
       .getByText("Dragging task")
-      .closest('div[class*="cursor-pointer"]');
+      .closest('div[class*="bg-white"]');
     expect(card).toHaveStyle({ opacity: "0.5" });
   });
 
@@ -145,9 +147,10 @@ describe("TaskCard Component", () => {
     render(<TaskCard task={mockTask} onClick={() => {}} />);
 
     // ASSERT: Check that the card has 1 opacity (fully visible)
+    // Find the outer container div (has bg-white class and opacity style)
     const card = screen
       .getByText("Not dragging task")
-      .closest('div[class*="cursor-pointer"]');
+      .closest('div[class*="bg-white"]');
     expect(card).toHaveStyle({ opacity: "1" });
   });
 });

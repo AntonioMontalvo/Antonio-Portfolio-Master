@@ -292,6 +292,67 @@
 
 ---
 
+### Wednesday, Jan 14, 2026 - Day 3 Testing
+
+**Hours worked:** ~3.5 hours
+**What I did:**
+
+- ✅ Fixed 3 failing tests in TaskCard.test.tsx (caused by yesterday's bug fixes)
+  - Fixed 2 opacity tests (changed selector from cursor-pointer to bg-white)
+  - Fixed drag handle button test (added aria-label selector)
+- ✅ Created Board.test.tsx with comprehensive mocking strategy
+- ✅ Wrote 3 tests for Board component:
+  - Test #1: "renders all three columns" (basic rendering)
+  - Test #2: "does not move task when dropped on invalid target" (regression test for bug fix)
+  - Test #3: "drag handle has touch-none class for mobile dragging" (regression test for bug fix)
+- ✅ **24 total tests passing** (6 TaskCard + 9 TaskModal + 6 Column + 3 Board)
+- ✅ Both of yesterday's bug fixes now have regression tests!
+
+**What I learned:**
+
+**Advanced Testing Patterns:**
+
+- **Prop Capture Pattern:** Captured `onDragEnd` callback from DndContext mock to test "private" handleDragEnd function
+  - Pattern: `let capturedOnDragEnd: any = null;` then capture in mock, call in test
+  - Brilliant technique for testing internal component logic without making it public
+- **Transitive Mocking:** Board uses Column, Column uses useDroppable, so Board tests must mock useDroppable even though Board doesn't use it directly
+- **CSS Class Testing:** Used `toHaveClass("touch-none")` to verify critical styling that affects functionality
+- **Regression Testing:** Writing tests for bugs you fix to prevent them from coming back
+
+**Testing Brittle Tests:**
+
+- Tests broke when code structure changed (onClick moved from outer to inner div)
+- Fixed by changing selectors to target correct elements
+- Learned: Use accessible queries (aria-label) for more robust tests
+
+**Mocking Strategy:**
+
+- Mock external libraries (@dnd-kit/core, @dnd-kit/sortable) completely
+- Mock Zustand store to track function calls (mockMoveTask)
+- Provide minimum necessary mocks for component tree to render
+
+**Key Insights:**
+
+- beforeEach clears mock call history, not state data
+- aria-label serves dual purpose: accessibility AND testing
+- Testing "private" functions: capture callbacks passed to child components
+- CSS classes ARE worth testing when they affect critical functionality
+- Regression tests are essential for maintaining code quality over time
+
+**Blockers/Questions:**
+
+- Filename case issue: Board.Test.tsx vs Board.test.tsx - Vitest requires lowercase "test" ✅
+- Missing useDroppable in mock - added after error message ✅
+- Understanding how to test handleDragEnd (private function) - solved with prop capture ✅
+
+**Tomorrow's focus:**
+
+- Continue Week 1 testing plan (Day 4-5)
+- Add more Board component tests or integration tests
+- Work toward 60%+ coverage goal
+
+---
+
 ### Thursday, Jan 9, 2026
 
 **Hours worked:**
@@ -556,11 +617,10 @@ After review, identified that EcommerceApp has visual polish issues (image sizin
 
 - None - smooth development session
 
-**Tomorrow's focus:**
+**Status:**
 
-- Day 5: Product Detail and Cart screen enhancements
-- Consider adding lazy loading for product images
-- Mobile responsive testing
+- Completed Days 1-4 of EcommerceApp polish (Jan 12-13)
+- Days 5-7 completed same day (see entries above at top of log)
 
 ---
 
@@ -568,7 +628,104 @@ After review, identified that EcommerceApp has visual polish issues (image sizin
 
 ---
 
-## Week 2: E2E Tests & Accessibility (Jan 13-19, 2026)
+## Week 2: Testing Practice Continuation (Jan 13-19, 2026)
+
+### Wednesday, Jan 15, 2026 ✅
+
+**Hours worked:** ~1 hour (short afternoon session)
+**What I did:**
+
+- ✅ Added 2 new Board component tests (Test #4 and Test #5)
+- ✅ Test #4: "moves task when dropped on valid column" - tests successful drop on valid column target
+- ✅ Test #5: "does not move task when dropped outside any column" - tests edge case with `over: null`
+- ✅ All 27 tests passing (up from 24) in KanbanBoard project
+- ✅ Fixed outdated PROGRESS_LOG entry that referenced completed EcommerceApp work
+
+**What I learned:**
+
+- **Edge case testing:** How `over: null` represents dropping outside the board (no target under cursor)
+- **Defensive programming:** Early return (`if (!over) return;`) prevents errors when no drop target exists
+- **Test pairing strategy:** Testing both positive case (valid drop) and negative cases (invalid target + null)
+- **Mock data connections:** Understanding how test events reference mock data (task-1 in tests connects to mock tasks array)
+- **AAA pattern mastery:** Successfully applied Arrange-Act-Assert pattern independently
+
+**Key concepts reinforced:**
+
+- Valid drop test: `over: { id: "inProgress" }` simulates dropping on valid column
+- Null check test: `over: null` simulates dropping outside board area
+- Captured callback pattern: Using `capturedOnDragEnd` to test private handleDragEnd function
+- Negative assertions: `expect(mockMoveTask).not.toHaveBeenCalled()` verifies function wasn't called
+
+**Blockers/Questions:**
+
+- None - smooth short session with great learning moments
+
+**Tomorrow's focus:**
+
+- Continue KanbanBoard testing OR
+- Move to Next.js migration (Week 3) OR
+- Start signature project planning
+- Flexible based on energy/interest
+
+---
+
+**On track for Week 2?** Yes - testing practice progressing well with deep understanding!
+
+---
+
+### Thursday, Jan 16, 2026 ✅
+
+**Hours worked:** ~1.5 hours (so far - Day 1 of migration)
+**What I did:**
+
+- ✅ Renamed KanbanBoard → KanbanBoard-Vite (preserving reference implementation)
+- ✅ Created new Next.js project (kanban-next) with TypeScript, Tailwind CSS, ESLint
+- ✅ Set up testing environment (Vitest + React Testing Library in Next.js)
+- ✅ Created vitest.config.ts and test setup files
+- ✅ Verified testing works (1 passing test)
+- ✅ Migrated shared code to Next.js:
+  - types/index.ts (no changes needed)
+  - utils/storage.ts (updated imports to use @/ alias)
+  - stores/boardStore.ts (added 'use client' directive, updated imports)
+- ✅ Installed Zustand for state management
+
+**Day 1 Migration Steps Completed:**
+
+- ✅ Step 1: Created Next.js project
+- ✅ Step 2: Set up testing environment
+- ✅ Step 3: Migrated shared code (types, utils, stores)
+
+**What I learned:**
+
+- **Next.js naming:** Project names must be lowercase (kanban-next not KanbanBoard-Next)
+- **'use client' directive:** Marks code as browser-only, prevents server-side execution errors
+- **File structure differences:** Next.js uses `app/` folder instead of `src/`, no src directory by default
+- **Import aliases:** Next.js uses `@/` for imports from root (e.g., `@/types`, `@/stores`)
+- **Testing in Next.js:** Vitest works identically to Vite setup, same configuration pattern
+- **Defensive programming:** Adding 'use client' to stores with localStorage prevents SSR issues
+
+**Migration strategy:**
+
+- Keeping both Vite and Next.js versions for portfolio diversity
+- Two talking points: "Built with Vite" and "Migrated to Next.js"
+- Tests will transfer with minimal changes (mostly import path updates)
+
+**Blockers/Questions:**
+
+- Clarified: 'use client' in boardStore.ts is defensive (localStorage access at initialization)
+- Resolved: React Compiler not needed (experimental, adds unnecessary complexity)
+
+**Next session focus:**
+
+- Day 2: Migrate components one-by-one (TaskCard, TaskModal, Column, Board)
+- Copy corresponding test files
+- Update test imports and verify all 27 tests still pass
+
+---
+
+**On track for Week 2?** Yes - successfully started Next.js migration!
+
+---
 
 ### Monday, Jan 13, 2026
 
