@@ -4,6 +4,71 @@
 
 ---
 
+## Week 2: Next.js Migration & Testing (Jan 13-19, 2026)
+
+### Friday, Jan 17, 2026
+
+**Hours worked:** 6 hours
+**Total Week 2:** 6 hours
+
+**What I did:**
+
+- ✅ Migrated KanbanBoard from Vite to Next.js 16.1.3
+  - Set up Next.js project with TypeScript and Tailwind CSS
+  - Migrated all components (Board, Column, TaskCard, TaskModal)
+  - Configured @dnd-kit for drag-and-drop functionality
+  - Set up Zustand store for state management
+  - Migrated utility functions and types
+- ✅ Migrated all 27 Vitest tests to work with Next.js
+  - Fixed localStorage SSR issues with conditional checks
+  - Updated test configuration for Next.js environment
+  - All tests passing (27/27) ✅
+- ✅ Fixed TaskModal overlay and styling issues
+  - Resolved white text on white background issue
+  - Fixed backdrop opacity and transition problems
+  - Implemented proper modal structure with fixed positioning
+  - Simplified state management for reliable modal behavior
+  - Backdrop now properly covers viewport with translucent overlay
+  - Modal card displays correctly with white background
+
+**What I learned:**
+
+- Next.js SSR considerations (localStorage only available client-side)
+- Fixed vs absolute positioning for modal overlays
+- Simplified state management is often better than complex transitions
+- Next.js "use client" directive for client-side components
+- Testing in Next.js environment requires different configuration
+- Importance of iterative debugging and knowing when to simplify
+
+**Challenges faced:**
+
+- Modal backdrop opacity transitions were unreliable with complex state
+- Struggled with stacking context issues (absolute vs fixed positioning)
+- Multiple attempts at fade transitions before finding simple solution
+- Build errors from duplicate/stray code during iterative fixes
+
+**Solutions found:**
+
+- Removed complex opacity state management
+- Used simple `isOpen` check instead of separate `visible` state
+- Fixed positioning for backdrop to cover entire viewport
+- Simplified component structure for reliability over fancy transitions
+
+**Status:**
+
+- ✅ Next.js migration complete
+- ✅ All tests passing
+- ✅ Modal fully functional with correct styling
+- Ready to continue with Week 2 goals
+
+**Next focus:**
+
+- Continue Week 2: Testing practice and algorithm study
+- Explore Next.js features (App Router, Server Components)
+- Build more complex applications with Next.js
+
+---
+
 ## Week 1B: EcommerceApp Polish (Jan 12-18, 2026)
 
 ### Tuesday, Jan 13, 2026 (Final - Day 7) 🎉
