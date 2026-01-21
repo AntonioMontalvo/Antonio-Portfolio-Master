@@ -5,22 +5,25 @@
 /**
  * Zustand store for managing Kanban board state
  * Handles tasks, columns, and all CRUD operations
+ * Now uses API endpoints instead of localStorage
  */
 
 import { create } from "zustand";
 import { Task, Column, ColumnId } from "@/types";
-import { loadTasks, saveTasks } from "@/utils/storage";
 
 interface BoardStore {
   // State
   tasks: Task[];
   columns: Column[];
+  isLoading: boolean;
+  error: string | null;
 
   // Actions
-  addTask: (title: string, description: string, columnId: ColumnId) => void;
-  updateTask: (id: string, title: string, description: string) => void;
-  deleteTask: (id: string) => void;
-  moveTask: (taskId: string, newColumnId: ColumnId) => void;
+  fetchTasks: () => Promise<void>;
+  addTask: (title: string, description: string, columnId: ColumnId) => Promise<void>;
+  updateTask: (id: string, title: string, description: string) => Promise<void>;
+  deleteTask: (id: string) => Promise<void>;
+  moveTask: (taskId: string, newColumnId: ColumnId) => Promise<void>;
 
   // Utilities
   getTasksByColumn: (columnId: ColumnId) => Task[];
@@ -34,90 +37,149 @@ const defaultColumns: Column[] = [
   { id: "done", title: "Done" },
 ];
 
-// Sample initial tasks
-const sampleTasks: Task[] = [
-  {
-    id: "1",
-    title: "Welcome to Kanban Board!",
-    description: "Drag this card to move it between columns",
-    column: "todo",
-    createdAt: Date.now(),
-  },
-  {
-    id: "2",
-    title: "Click a card to edit",
-    description: "You can edit or delete any task",
-    column: "todo",
-    createdAt: Date.now(),
-  },
-  {
-    id: "3",
-    title: "Add new tasks",
-    description: 'Click the "+ Add Task" button in any column',
-    column: "inProgress",
-    createdAt: Date.now(),
-  },
-];
-
 export const useBoardStore = create<BoardStore>((set, get) => ({
   // Initial state
-  tasks: loadTasks() || sampleTasks,
+  tasks: [],
   columns: defaultColumns,
+  isLoading: false,
+  error: null,
 
-  // Initialize tasks from localStorage or use samples
-  initializeTasks: () => {
-    const storedTasks = loadTasks();
-    if (storedTasks) {
-      set({ tasks: storedTasks });
+  // Initialize tasks from API
+  initializeTasks: async () => {
+    await get().fetchTasks();
+  },
+
+  // Fetch all tasks from API
+  fetchTasks: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await fetch('/api/tasks');
+      if (!response.ok) {
+        throw new Error('Failed to fetch tasks');
+      }
+      const data = await response.json();
+      set({ tasks: data.tasks, isLoading: false });
+    } catch (error) {
+      console.error('Error fetching tasks:', error);
+      set({ error: 'Failed to load tasks', isLoading: false });
     }
   },
 
   // Create a new task
-  addTask: (title, description, columnId) => {
-    const newTask: Task = {
-      id: `task-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      title,
-      description,
-      column: columnId,
-      createdAt: Date.now(),
-    };
+  addTask: async (title, description, columnId) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await fetch('/api/tasks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title,
+          description,
+          column: columnId,
+          createdAt: Date.now(),
+        }),
+      });
 
-    set((state) => {
-      const newTasks = [...state.tasks, newTask];
-      saveTasks(newTasks);
-      return { tasks: newTasks };
-    });
+      if (!response.ok) {
+        throw new Error('Failed to create task');
+      }
+
+      const data = await response.json();
+      set((state) => ({
+        tasks: [...state.tasks, data.task],
+        isLoading: false,
+      }));
+    } catch (error) {
+      console.error('Error adding task:', error);
+      set({ error: 'Failed to add task', isLoading: false });
+    }
   },
 
   // Update an existing task
-  updateTask: (id, title, description) => {
-    set((state) => {
-      const newTasks = state.tasks.map((task) =>
-        task.id === id ? { ...task, title, description } : task
-      );
-      saveTasks(newTasks);
-      return { tasks: newTasks };
-    });
+  updateTask: async (id, title, description) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await fetch(`/api/tasks/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title,
+          description,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update task');
+      }
+
+      const data = await response.json();
+      set((state) => ({
+        tasks: state.tasks.map((task) =>
+          task.id === id ? data.task : task
+        ),
+        isLoading: false,
+      }));
+    } catch (error) {
+      console.error('Error updating task:', error);
+      set({ error: 'Failed to update task', isLoading: false });
+    }
   },
 
   // Delete a task
-  deleteTask: (id) => {
-    set((state) => {
-      const newTasks = state.tasks.filter((task) => task.id !== id);
-      saveTasks(newTasks);
-      return { tasks: newTasks };
-    });
+  deleteTask: async (id) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await fetch(`/api/tasks/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete task');
+      }
+
+      set((state) => ({
+        tasks: state.tasks.filter((task) => task.id !== id),
+        isLoading: false,
+      }));
+    } catch (error) {
+      console.error('Error deleting task:', error);
+      set({ error: 'Failed to delete task', isLoading: false });
+    }
   },
 
   // Move a task to a different column (drag-and-drop)
-  moveTask: (taskId, newColumnId) => {
-    set((state) => {
-      const newTasks = state.tasks.map((task) =>
+  moveTask: async (taskId, newColumnId) => {
+    // Optimistically update UI
+    const originalTasks = get().tasks;
+    set((state) => ({
+      tasks: state.tasks.map((task) =>
         task.id === taskId ? { ...task, column: newColumnId } : task
-      );
-      saveTasks(newTasks);
-      return { tasks: newTasks };
-    });
+      ),
+    }));
+
+    try {
+      const response = await fetch(`/api/tasks/${taskId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          column: newColumnId,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to move task');
+      }
+    } catch (error) {
+      console.error('Error moving task:', error);
+      // Rollback on error
+      set({ tasks: originalTasks, error: 'Failed to move task' });
+    }
   },
 
   // Get all tasks for a specific column

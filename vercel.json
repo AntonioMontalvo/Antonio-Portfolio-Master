@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd kanban-next && npm install && npm run build",
+  "outputDirectory": "kanban-next/.next",
+  "installCommand": "cd kanban-next && npm install"
+}
