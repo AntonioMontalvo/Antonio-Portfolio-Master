@@ -62,15 +62,14 @@ export const projectsData: IProject[] = [
   },
   {
     id: 6,
-    title: "Project 6: Interactive Kanban Board",
+    title: "Project 6: Full-Stack Kanban Board (Next.js)",
     techStack:
-      "React, TypeScript, Zustand, @dnd-kit, Tailwind CSS, LocalStorage",
+      "Next.js 16, TypeScript, Zustand, @dnd-kit, Tailwind CSS, RESTful API Routes, Vitest",
     narrative:
-      "A fully interactive drag-and-drop task management board demonstrating advanced React patterns and third-party library integration. **Features include real-time state management with Zustand, smooth drag-and-drop with @dnd-kit, full CRUD operations, and localStorage persistence.** Showcases component architecture, custom hooks, and type-safe development with TypeScript.",
+      "A full-stack task management application built with Next.js 16, featuring drag-and-drop functionality and RESTful API routes. **Demonstrates Next.js App Router, server-side API endpoints, async state management, and comprehensive testing with 27 passing tests.** Migrated from Vite to showcase full-stack capabilities with proper separation of client and server logic. Highlights modern Next.js architecture and production-ready deployment.",
     status: "Complete",
-    liveLink: "https://antonio-kanban-board.vercel.app/",
-    codeLink:
-      "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/KanbanBoard",
+    liveLink: "https://kanban-next-flame.vercel.app/",
+    codeLink: "https://github.com/AntonioMontalvo/kanban-next",
   },
   {
     id: 1,

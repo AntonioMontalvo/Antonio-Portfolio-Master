@@ -71,8 +71,8 @@
 
 ### Tuesday, Jan 20, 2026
 
-**Hours worked:** TBD (in progress)
-**Total Week 2-3:** 6 hours + TBD
+**Hours worked:** 4 hours
+**Total Week 2-3:** 6 hours + 4 hours = 10 hours
 
 **What I did:**
 
@@ -86,6 +86,26 @@
   - Decided to add PostgreSQL + NextAuth.js to showcase different tech stack
   - Created comprehensive 5-day enhancement guide
   - Updated learning roadmap with revised plan
+- ✅ **Implemented Day 1 Part 2: API Routes** (NEXTJS_ENHANCEMENT_GUIDE.md)
+  - Created RESTful API endpoints in Next.js
+    - `GET /api/tasks` - Get all tasks
+    - `POST /api/tasks` - Create new task
+    - `GET /api/tasks/[id]` - Get single task
+    - `PUT /api/tasks/[id]` - Update task
+    - `DELETE /api/tasks/[id]` - Delete task
+  - Fixed Next.js 16 async params compatibility (await params)
+  - Converted boardStore from localStorage to API calls
+    - Made all CRUD operations async
+    - Added loading and error states
+    - Implemented optimistic UI updates for drag-and-drop
+  - All 27 tests still passing ✅
+  - Tested in browser - API calls working correctly
+- ✅ **Deployed to Vercel** (Day 1 Part 1 complete!)
+  - Created standalone GitHub repository: `AntonioMontalvo/kanban-next`
+  - Learned about Vercel GitHub app permissions
+  - Deployed successfully: https://kanban-next-flame.vercel.app/
+  - Verified API routes working in production
+  - Updated README with live demo and documentation
 
 **What I learned:**
 
@@ -93,6 +113,12 @@
 - Current client-only Next.js app doesn't leverage SSR benefits
 - Strategic value: showing versatility across different stacks (MERN vs Next.js full-stack)
 - Portfolio contrast: MongoDB/JWT vs PostgreSQL/NextAuth demonstrates breadth
+- **Next.js 16 requires params to be awaited** - `{ params: Promise<{ id: string }> }`
+- Converting sync store actions to async requires careful state management
+- Optimistic updates improve UX for drag-and-drop operations
+- **Vercel GitHub integration**: Need to explicitly grant repo access via GitHub app
+- Monorepo vs separate repos: Separate repos cleaner for portfolio projects
+- Git submodules vs independent repos: Independent repos easier to manage
 
 **Strategic decisions:**
 
