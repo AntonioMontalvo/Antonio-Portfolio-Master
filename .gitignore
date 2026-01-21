@@ -7,6 +7,9 @@ Learning_Notes/
 # Algorithm practice (keep private)
 Algos/
 
+# kanban-next is now its own separate repository
+kanban-next/
+
 # macOS
 .DS_Store
 
