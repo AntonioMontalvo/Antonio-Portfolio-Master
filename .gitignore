@@ -1,8 +1,7 @@
 # Personal learning and progress tracking files
-LEARNING_ROADMAP.md
-PROGRESS_LOG.md
-WEEK_1_GUIDE.md
-RESOURCES.md
+*.md
+!README.md
+!*/README.md
 Learning_Notes/
 
 # Algorithm practice (keep private)

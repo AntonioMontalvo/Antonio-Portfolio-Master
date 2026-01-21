@@ -156,6 +156,120 @@
 
 ---
 
+### Wednesday, Jan 21, 2026
+
+**Hours worked:** 5 hours
+**Total Week 2-3:** 10 hours + 5 hours = 15 hours
+
+**What I did:**
+
+- ✅ **Day 2 Complete: PostgreSQL Database Setup** (NEXTJS_ENHANCEMENT_GUIDE.md)
+  - Part 1: Set up Vercel Postgres (~1 hour)
+    - Created PostgreSQL database via Vercel dashboard (Neon-powered)
+    - Connected database to kanban-next project
+    - Installed @vercel/postgres package
+    - Configured environment variables in .env.local
+    - Created test endpoint to verify connection
+  - Part 2: Create Database Schema (~1.5 hours)
+    - Designed tasks table with proper columns
+    - Learned "column" is SQL reserved keyword → renamed to "status"
+    - Created migration endpoint `/api/setup-db`
+    - Successfully created tasks table with sample data
+    - Verified schema in Vercel Postgres dashboard
+  - Part 3: Update API Routes with SQL (~2 hours)
+    - Migrated GET `/api/tasks` to PostgreSQL queries
+    - Migrated POST `/api/tasks` with INSERT...RETURNING
+    - Migrated GET `/api/tasks/[id]` with WHERE clause
+    - Migrated PUT `/api/tasks/[id]` with dynamic UPDATE
+    - Migrated DELETE `/api/tasks/[id]` with RETURNING
+    - Implemented field mapping (database "status" ↔ frontend "column")
+    - Added proper error handling for all operations
+  - Part 4: Testing & Debugging (~30 min)
+    - Tested GET all tasks - ✅ Working
+    - Tested POST new task - ✅ Working
+    - Tested GET single task - ✅ Working
+    - Tested PUT update task - ✅ Working
+    - Tested DELETE task - ✅ Working
+    - Tested 404 error handling - ✅ Working
+    - All API endpoints successfully migrated to PostgreSQL!
+- ✅ **Created SQL_FUNDAMENTALS.md reference guide**
+  - Comprehensive SQL reference (13 sections)
+  - All CRUD operations explained with examples
+  - PostgreSQL-specific patterns from kanban-next
+  - Reserved keywords and best practices
+  - Real examples from actual project code
+- ✅ **Created REACT_TESTING_REFERENCE.md guide**
+  - Complete React testing reference (15 sections)
+  - Vitest + React Testing Library setup
+  - Testing patterns for all component types
+  - Mocking strategies and debugging techniques
+  - Real examples from kanban-next tests
+
+**What I learned:**
+
+- **SQL Fundamentals:**
+  - CRUD operations: SELECT, INSERT, UPDATE, DELETE
+  - PostgreSQL data types: SERIAL, VARCHAR, TEXT, TIMESTAMP
+  - Reserved keywords ("column", "table", "order", etc.)
+  - Parameterized queries prevent SQL injection
+  - RETURNING clause in PostgreSQL (INSERT/UPDATE/DELETE)
+- **Vercel Postgres:**
+  - Neon-powered serverless PostgreSQL
+  - Template literal syntax: `sql\`SELECT \* FROM tasks\``
+  - Alternative $1, $2 parameter syntax with sql.query()
+  - Environment variables loaded from .env.local
+- **Database Design:**
+  - Primary keys with SERIAL auto-increment
+  - NOT NULL constraints for required fields
+  - DEFAULT values for timestamps
+  - Proper column naming conventions (snake_case)
+- **API Development:**
+  - Dynamic UPDATE queries based on provided fields
+  - Field mapping between database and frontend schemas
+  - Error handling for 404s and database failures
+  - Testing with curl and json.tool
+
+**Challenges faced:**
+
+- SQL "column" reserved keyword broke CREATE TABLE statement
+- Understanding parameterized query syntax ($1 vs template literals)
+- Building dynamic UPDATE query with variable field count
+- Dev server kept restarting during testing
+
+**Solutions found:**
+
+- Renamed "column" field to "status" in database schema
+- Used Vercel's template literal syntax for most queries
+- Implemented dynamic query builder with paramIndex counter
+- Used background process for dev server, separate terminal for curl
+
+**Documentation created:**
+
+- SQL_FUNDAMENTALS.md (850+ lines)
+  - Complete SQL reference with real examples
+  - PostgreSQL-specific patterns
+  - Common errors and solutions
+- REACT_TESTING_REFERENCE.md (900+ lines)
+  - Comprehensive testing guide
+  - Setup instructions and best practices
+  - Component testing patterns
+
+**Status:**
+
+- ✅ Day 1 Complete: Vercel deployment + API routes
+- ✅ Day 2 Complete: PostgreSQL database migration
+- 🔄 Ready for Day 3: Server Components Dashboard
+- All 27 tests still passing ✅
+- kanban-next now a full-stack Next.js + PostgreSQL app!
+
+**Next focus:**
+
+- Day 3: Create server component dashboard with analytics
+- Day 4: Add NextAuth.js authentication
+- Day 5: Multi-user features and final testing
+
+---
+
 ## Week 1B: EcommerceApp Polish (Jan 12-18, 2026)
 
 ### Tuesday, Jan 13, 2026 (Final - Day 7) 🎉
