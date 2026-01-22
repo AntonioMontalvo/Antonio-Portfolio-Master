@@ -248,6 +248,126 @@
 - SQL_FUNDAMENTALS.md (850+ lines)
   - Complete SQL reference with real examples
   - PostgreSQL-specific patterns
+  - Reserved keywords and best practices
+  - CRUD operations with parameterized queries
+- REACT_TESTING_REFERENCE.md (900+ lines)
+  - Vitest + React Testing Library setup
+  - Testing patterns for all component types
+  - Mocking strategies and debugging techniques
+  - Real examples from kanban-next tests
+
+**Status:**
+
+- ✅ Day 2 complete: PostgreSQL fully integrated
+- ✅ All API routes using SQL queries
+- ✅ Data persisting correctly in database
+- ✅ All 27 tests still passing
+- 📚 Created comprehensive reference guides
+- ⏭️ Ready for Day 3: Server Components Dashboard
+
+**Next focus:**
+
+- Day 3: Create dashboard with server components
+- Add data visualizations with Recharts
+- Demonstrate Next.js SSR capabilities
+
+---
+
+### Thursday, Jan 22, 2026
+
+**Hours worked:** 3 hours
+**Total Week 2-3:** 15 hours + 3 hours = 18 hours
+
+**What I did:**
+
+- ✅ **Day 3 Complete: Server Components Dashboard** (NEXTJS_ENHANCEMENT_GUIDE.md)
+  - Part 1: Create Dashboard Page (~1 hour)
+    - Created `/app/dashboard/page.tsx` as async server component
+    - Implemented direct database queries with `sql` template
+    - Calculated task statistics (total, by status, completion rate)
+    - Built UI with stats cards, progress bar, recent tasks list
+    - Added navigation with Next.js Link component
+    - Fixed routing confusion (page.tsx in different folders creates different routes)
+    - Learned server components fetch once at render (not reactive like client components)
+  - Part 2: Add Data Visualization (~1.5 hours)
+    - Installed Recharts library for React-based charts
+    - Created `DashboardCharts.tsx` client component with "use client"
+    - Implemented Bar Chart for tasks by status distribution
+    - Implemented Pie Chart for completion rate visualization
+    - Implemented Line Chart for task creation timeline
+    - Learned pattern: Server component fetches data → passes to client component for interactivity
+  - Part 3: Navigation & Loading States (~30 min)
+    - Added "View Dashboard" button to main board header
+    - Added "Back to Board" button to dashboard header
+    - Created `loading.tsx` special file for skeleton UI
+    - Implemented pulse animations for loading states
+    - All navigation uses Next.js Link for fast client-side routing
+- ✅ **Created RECHARTS_REFERENCE.md guide** (700+ lines)
+  - Complete Recharts quick reference
+  - All chart types: Bar, Pie, Line, Area
+  - Component documentation: ResponsiveContainer, XAxis, YAxis, Tooltip, Legend
+  - Real examples from kanban-next dashboard
+  - Common patterns and troubleshooting
+  - Server/client component integration patterns
+
+**What I learned:**
+
+- **Next.js Server Components:**
+  - Async functions can fetch data directly in component
+  - Run on server, send pre-rendered HTML to browser
+  - Great for SEO and initial load performance
+  - Don't update reactively - need page refresh for new data
+  - Perfect for dashboards with statistics
+- **Server vs Client Components:**
+  - Server: Direct DB access, no "use client", runs once
+  - Client: Interactive, reactive updates, requires browser APIs
+  - Pattern: Server fetches → Client renders interactive UI
+- **Recharts Library:**
+  - Must use "use client" directive
+  - Requires ResponsiveContainer with explicit height
+  - Data format: array of objects with consistent keys
+  - allowDecimals={false} for integer data
+  - Color consistency through COLORS object
+- **Next.js Special Files:**
+  - `page.tsx` creates routes (folder path determines URL)
+  - `loading.tsx` shows during page load (automatic Suspense)
+  - `route.ts` creates API endpoints
+  - File-based routing is powerful and intuitive
+- **Data Visualization Best Practices:**
+  - Transform data in client component, not server
+  - Group data by date using Map for timeline charts
+  - Use color-coding consistent with app design
+  - Conditional rendering when no data available
+
+**Challenges faced:**
+
+- Confusion about creating page.tsx when it "already exists"
+- Dev server directory issues (running from wrong folder)
+- Understanding when to use server vs client components
+- Recharts requires client-side rendering
+
+**Solutions found:**
+
+- Learned Next.js routing: folder structure determines route
+- page.tsx in `/app` → "/" route
+- page.tsx in `/app/dashboard` → "/dashboard" route
+- Server component can import and render client components
+- Client components handle browser-dependent libraries
+
+**Strategic value:**
+
+- Dashboard demonstrates Next.js server-side rendering
+- Recharts adds professional data visualization
+- Clear architecture: server for data, client for interactivity
+- Shows understanding of SSR vs CSR trade-offs
+
+**Documentation created:**
+
+- RECHARTS_REFERENCE.md (700+ lines)
+  - Complete quick reference guide
+  - All chart types with examples
+  - Common patterns and troubleshooting
+  - Server/client integration patterns
   - Common errors and solutions
 - REACT_TESTING_REFERENCE.md (900+ lines)
   - Comprehensive testing guide
