@@ -378,15 +378,296 @@
 
 - ✅ Day 1 Complete: Vercel deployment + API routes
 - ✅ Day 2 Complete: PostgreSQL database migration
-- 🔄 Ready for Day 3: Server Components Dashboard
+- ✅ Day 3 Complete: Server Components Dashboard
 - All 27 tests still passing ✅
 - kanban-next now a full-stack Next.js + PostgreSQL app!
 
 **Next focus:**
 
-- Day 3: Create server component dashboard with analytics
 - Day 4: Add NextAuth.js authentication
 - Day 5: Multi-user features and final testing
+
+---
+
+### Friday, Jan 23, 2026
+
+**Hours worked:** 5 hours
+**Total Week 2-3:** 18 hours + 5 hours = 23 hours
+
+**What I did:**
+
+- ✅ **Day 4 Complete: NextAuth.js Authentication** (NEXTJS_ENHANCEMENT_GUIDE.md)
+  - Part 1: Install and Configure NextAuth.js (~1.5 hours)
+    - Installed `next-auth@^5.0.0-beta.30` package
+    - Created `auth.config.ts` with Google OAuth provider configuration
+    - Created `auth.ts` to export NextAuth functions (auth, signIn, signOut, handlers)
+    - Set up Google OAuth app in Google Cloud Console
+    - Configured OAuth consent screen and credentials
+    - Added environment variables (GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, AUTH_SECRET)
+    - Created users table in database with migration endpoint
+  - Part 2: Create Login Page (~1 hour)
+    - Created `/app/login/page.tsx` with beautiful gradient design
+    - Added "Sign in with Google" button with Google logo SVG
+    - Implemented server action for OAuth flow
+    - Added informational card explaining demo authentication
+    - Styled with Tailwind CSS (gradient background, rounded cards, shadows)
+  - Part 3: Protect Routes (~1 hour)
+    - Updated `/app/page.tsx` to check authentication with `auth()`
+    - Added redirect to `/login` if user not authenticated
+    - Updated `/app/dashboard/page.tsx` with auth protection
+    - Created `UserMenu` component with avatar dropdown
+    - Added user profile image with Next.js Image component
+    - Implemented sign-out functionality via `/api/auth/signout`
+  - Part 4: Database Integration (~1.5 hours)
+    - Created users table schema (id, email, name, image, created_at)
+    - Implemented signIn callback to save users to database
+    - Added ON CONFLICT clause for existing users (upsert pattern)
+    - Configured session callback to include database user ID
+    - Configured JWT callback to store user ID in token
+    - Created `/api/users` endpoint to view all users
+    - Tested complete OAuth flow from Google → database → session
+
+**What I learned:**
+
+- **NextAuth.js v5 (Auth.js):**
+  - Beta version with new API (different from v4)
+  - Uses `auth()` function instead of `getServerSession()`
+  - Callbacks: signIn (save to DB), session (add data), jwt (store in token)
+  - Server actions in forms with "use server" directive
+- **Google OAuth Setup:**
+  - Need to create OAuth 2.0 Client ID in Google Cloud Console
+  - Configure authorized redirect URIs for localhost and production
+  - OAuth consent screen requires app name and support email
+  - Client ID and Secret are sensitive credentials
+- **Authentication Flow:**
+  - User clicks "Sign in with Google"
+  - NextAuth redirects to Google login
+  - User authorizes app
+  - Google redirects to `/api/auth/callback/google`
+  - signIn callback saves user to database
+  - Session created with user data
+  - User redirected to home page
+- **Session Management:**
+  - Session stored in JWT token (not database)
+  - Can add custom data to session via callbacks
+  - `auth()` checks session on server components
+  - Redirect pattern for protected routes
+- **Next.js Image Component:**
+  - Requires configuration for external domains
+  - `unoptimized` flag for dynamic external images
+  - Automatic responsive sizing and optimization
+
+**Challenges faced:**
+
+- NextAuth v5 beta documentation incomplete (used v4 patterns initially)
+- Understanding callback execution order (signIn → jwt → session)
+- Configuring Google OAuth redirect URIs for both local and production
+- Getting user ID from database into session object
+- Next.js Image domain configuration for Google profile images
+
+**Solutions found:**
+
+- Read NextAuth v5 migration guide and source code examples
+- Drew diagram of callback flow to understand data passing
+- Added both localhost:3000 and vercel.app URLs to Google OAuth
+- Used RETURNING clause in INSERT to get user ID immediately
+- Added `unoptimized` prop to Image component for external URLs
+
+**Status:**
+
+- ✅ Day 4 Complete: NextAuth.js authentication working
+- ✅ Google OAuth configured and tested
+- ✅ Users saved to database with upsert pattern
+- ✅ Protected routes redirect to login
+- ✅ User menu with profile picture and sign-out
+- ⏭️ Ready for Day 5: Multi-user features
+
+**Next focus:**
+
+- Day 5: Add multi-user task filtering and ownership
+- Update all API routes to filter by user_id
+- Test with multiple user accounts
+- Final documentation and deployment
+
+---
+
+### Tuesday, Jan 27, 2026
+
+**Hours worked:** 3 hours
+**Total Week 2-3:** 23 hours + 3 hours = 26 hours
+
+**What I did:**
+
+- ✅ **Day 5 Complete: Multi-User Features** (NEXTJS_ENHANCEMENT_GUIDE.md)
+  - Part 1: Add user_id Column to Tasks (~30 min)
+    - Created migration endpoint to add `user_id INTEGER` column to tasks table
+    - Set up foreign key constraint (optional for demo)
+    - Verified column added successfully in Vercel dashboard
+  - Part 2: Update API Routes for Multi-User (~1.5 hours)
+    - Updated GET `/api/tasks` to filter by `session.user.id`
+    - Updated POST `/api/tasks` to save `user_id` from session
+    - Updated PUT `/api/tasks/[id]` to verify task ownership
+    - Updated DELETE `/api/tasks/[id]` to verify task ownership
+    - Added 401 Unauthorized responses when not authenticated
+    - Added 403 Forbidden responses when accessing other user's tasks
+    - Tested all endpoints with authentication checks
+  - Part 3: Update Dashboard for User-Specific Stats (~1 hour)
+    - Modified dashboard SQL query to filter by `user_id`
+    - Verified stats only show current user's tasks
+    - Tested dashboard with different user accounts
+    - Confirmed complete data isolation between users
+    - Added UserMenu to dashboard header
+  - Part 4: Testing & Verification (~1 hour)
+    - Tested complete user journey: Sign in → Create → Edit → Delete → Dashboard → Sign out
+    - Verified data isolation with second Google account
+    - Confirmed user A cannot see user B's tasks
+    - Tested authentication redirects work correctly
+    - Verified all 27 tests still passing (no auth mocking needed for unit tests)
+    - Confirmed production deployment working with authentication
+
+**What I learned:**
+
+- **Multi-Tenancy Patterns:**
+  - Filter all queries by user_id for data isolation
+  - Verify ownership before UPDATE/DELETE operations
+  - Use session.user.id from authenticated session
+  - Return 401 for missing auth, 403 for wrong owner
+- **Database Schema Design:**
+  - Foreign keys enforce referential integrity
+  - ON DELETE CASCADE cleans up orphaned records
+  - INTEGER type for foreign key references
+- **Security Best Practices:**
+  - Always check authentication in API routes
+  - Verify resource ownership before mutations
+  - Don't trust client-side filtering alone
+  - Use server-side session data for user identity
+- **Testing Multi-User Features:**
+  - Need multiple accounts to verify isolation
+  - Test edge cases (accessing other user's task IDs)
+  - Verify SQL queries include WHERE user_id clause
+  - Check both positive cases (own data) and negative (other's data)
+
+**Challenges faced:**
+
+- Remembering to add auth checks to ALL API routes
+- Understanding when to return 401 vs 403 vs 404
+- Testing with multiple Google accounts (switching browsers/incognito)
+- Updating existing tasks in database to have user_id values
+
+**Solutions found:**
+
+- Created checklist of all API routes needing auth
+- HTTP status codes: 401 (not logged in), 403 (not your resource), 404 (doesn't exist)
+- Used Chrome normal + incognito mode for two accounts simultaneously
+- Updated existing tasks with default user_id = 1 via migration
+
+**Status:**
+
+- ✅ Day 1 Complete: Vercel deployment + API routes
+- ✅ Day 2 Complete: PostgreSQL database migration
+- ✅ Day 3 Complete: Server Components Dashboard
+- ✅ Day 4 Complete: NextAuth.js authentication
+- ✅ Day 5 Complete: Multi-user features
+- 🎉 **kanban-next ENHANCEMENT COMPLETE!**
+- All 27 tests still passing ✅
+
+**Portfolio Achievement:**
+
+- ✅ Full-stack Next.js application deployed to Vercel
+- ✅ PostgreSQL database with multi-user data isolation
+- ✅ NextAuth.js OAuth authentication with Google
+- ✅ Server components demonstrating SSR capabilities
+- ✅ RESTful API routes with proper auth and ownership checks
+- ✅ Data visualization with Recharts
+- ✅ Complete contrast to EcommerceApp (MERN + JWT)
+
+**Next focus:**
+
+- Update LEARNING_ROADMAP.md with Week 2-3 completion
+- Week 3: Portfolio migration to Next.js
+- Document learnings for interviews (SQL vs NoSQL, JWT vs OAuth)
+
+---
+
+### Wednesday, Jan 28, 2026
+
+**Hours worked:** 2 hours (morning session)
+**Total Week 2-3:** 26 hours + 2 hours = 28 hours
+
+**What I did:**
+
+- ✅ Verified environment variables in Vercel for production deployment
+  - Confirmed GOOGLE_CLIENT_ID configured correctly
+  - Confirmed GOOGLE_CLIENT_SECRET configured correctly
+  - Confirmed AUTH_SECRET generated and set
+  - Verified redirect URIs match production domain
+- ✅ Redeployed kanban-next to Vercel with latest NextAuth changes
+  - Pushed all commits to GitHub repository
+  - Triggered automatic Vercel deployment
+  - Verified build completed successfully
+  - Confirmed all environment variables loaded in production
+- ✅ Tested authentication flow in production environment
+  - Tested "Sign in with Google" button on production URL
+  - Verified OAuth redirect to Google works
+  - Confirmed user authorization and consent screen
+  - Verified redirect back to kanban app after auth
+  - Tested task creation, editing, deletion as authenticated user
+  - Tested dashboard showing user-specific statistics
+  - Verified UserMenu displays profile picture and sign-out
+  - Tested sign-out flow and redirect to login
+  - Confirmed multi-user data isolation in production
+- ✅ Updated PROGRESS_LOG.md with complete Day 4-5 documentation
+  - Documented NextAuth.js implementation (Day 4)
+  - Documented multi-user features (Day 5)
+  - Documented deployment and testing (Day 6/today)
+
+**What I learned:**
+
+- **Production Deployment with Auth:**
+  - Environment variables must be set in Vercel dashboard (not just .env.local)
+  - Each deployment environment (Preview, Production) can have different variables
+  - OAuth redirect URIs must include production domain (not just localhost)
+  - Google OAuth requires explicit redirect URI whitelisting
+- **Vercel Environment Variables:**
+  - Can be set per environment (Development, Preview, Production)
+  - Automatically injected into build process
+  - Sensitive values hidden in dashboard (shown once)
+  - Can test variables with build logs
+- **Production Testing Checklist:**
+  - Test complete user flows, not just happy path
+  - Verify error states (failed auth, network issues)
+  - Test on different browsers (Chrome, Safari, Firefox)
+  - Test on mobile devices (responsive + touch)
+  - Verify HTTPS enforced for OAuth security
+
+**Status:**
+
+- 🎉 **kanban-next FULLY DEPLOYED AND TESTED IN PRODUCTION!**
+- ✅ Complete 5-day enhancement plan (Days 1-5)
+- ✅ NextAuth.js OAuth authentication working in production
+- ✅ Multi-user task management with data isolation
+- ✅ PostgreSQL database with proper user relationships
+- ✅ Server-side rendering with Next.js
+- ✅ Professional dashboard with data visualizations
+- ✅ All tests passing (27/27) ✅
+- 📊 **Total time:** 28 hours over 9 days (Jan 20-28)
+
+**Key Achievements:**
+
+- Built full-stack Next.js application from scratch
+- Implemented modern OAuth authentication (vs traditional JWT)
+- Designed PostgreSQL schema with proper relationships
+- Created RESTful API with authentication and authorization
+- Demonstrated server-side rendering vs client-side rendering
+- Deployed production-ready app to Vercel with CI/CD
+- Showcased different tech stack from EcommerceApp
+
+**Next focus:**
+
+- Take screenshots for portfolio
+- Update README.md with final features and screenshots
+- Write blog post comparing MERN vs Next.js approaches
+- Start Week 3: Portfolio site migration to Next.js
 
 ---
 
