@@ -1,8 +1,13 @@
-# Personal learning and progress tracking files
+# Documentation files
+# Exclude all .md files by default
 *.md
+# Except these public technical documentation files
 !README.md
 !*/README.md
-Learning_Notes/
+!SQL_FUNDAMENTALS.md
+!REACT_TESTING_REFERENCE.md
+!RESOURCES.md
+# Recharts reference is in Learning_Notes which is excluded below
 
 # Algorithm practice (keep private)
 Algos/
