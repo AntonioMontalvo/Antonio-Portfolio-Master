@@ -5,15 +5,15 @@ import { IProject } from "../types";
 // The final data model for all seven portfolio projects
 export const projectsData: IProject[] = [
   {
-    id: 7,
-    title: "Project 7: C++ Robotics Core (PID/OOP)",
-    techStack: "C++, Object-Oriented Programming (OOP), Control Theory",
+    id: 6,
+    title: "Project 6: Full-Stack Kanban Board (Next.js)",
+    techStack:
+      "Next.js 16, TypeScript, PostgreSQL, NextAuth, Zustand, @dnd-kit, Tailwind CSS, Vitest",
     narrative:
-      "A repository dedicated to showcasing foundational C++ architecture from competitive robotics. Features a custom **PID Controller** implementation and system-level **OOP encapsulation**. This demonstrates deep technical understanding of efficiency and scalable architecture.",
+      "Full-stack task management application with drag-and-drop functionality, NextAuth OAuth, and PostgreSQL. Built from zero Next.js experience to deployed in a few weeks. Features 27 passing tests, server-side API routes, and proper separation of client/server logic.",
     status: "Complete",
-    liveLink: null,
-    codeLink:
-      "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/CppRoboticsCore",
+    liveLink: "https://kanban-next-flame.vercel.app/",
+    codeLink: "https://github.com/AntonioMontalvo/kanban-next",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ export const projectsData: IProject[] = [
     techStack:
       "React, Node.js, Express, MongoDB, TypeScript, Tailwind CSS, Zustand, JWT Auth",
     narrative:
-      "A complex, full-stack e-commerce platform demonstrating secure authentication, admin controls (RBAC), multi-step checkout, and robust server-side order management. **Showcases OOP principles translated into clean, scalable Node.js architecture.**",
+      "Full-stack e-commerce platform with secure JWT authentication, admin controls, multi-step checkout, and MongoDB. Demonstrates translating systems thinking into Node.js architecture—clean separation of concerns, proper error handling, and scalable structure.",
     status: "Complete",
     liveLink: "https://antonio-ecommerce-app.vercel.app",
     codeLink:
@@ -30,20 +30,42 @@ export const projectsData: IProject[] = [
   {
     id: 3,
     title: "Project 3: Robotics Data Visualization Dashboard",
-    techStack: "Full-Stack Python (Flask), Pandas, React, Chart.js, CORS",
+    techStack: "Python, Flask, Pandas, React, Chart.js, CORS",
     narrative:
-      "A dual-stack application where the **Python/Flask back-end** processes complex sensor data (using Pandas) and serves it to a React front-end for visualization. **Highlights proficiency in Python data handling and API development.**",
+      "Python Flask backend processes sensor data with Pandas, serves it to a React frontend for visualization. Handles CORS, REST APIs, and data transformation. Shows proficiency across both Python data handling and JavaScript UI development.",
     status: "Complete",
     liveLink: "https://antonio-dataviz-app.vercel.app",
     codeLink:
       "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/DataVizApp",
   },
   {
-    id: 4,
-    title: "Project 4: C++ Performance Utility (Benchmark)",
-    techStack: "C++ (Standard Library), Console Application, Timing",
+    id: 1,
+    title: "Project 1: The Portfolio Site",
+    techStack: "React, React Router, Tailwind CSS, TypeScript",
     narrative:
-      "A targeted utility designed to run resource-intensive calculations (Recursive Fibonacci at N=45). Used specifically to establish a clear **performance benchmark** against the identical implementation in Node.js (Project 5). This frames discussions around technical trade-offs and latency.",
+      "The site you're currently viewing. Built with React Router for navigation, Tailwind CSS for styling, and TypeScript for type safety. Mobile-responsive design with clean component architecture.",
+    status: "Complete",
+    liveLink: null,
+    codeLink:
+      "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/portfoliosite",
+  },
+  {
+    id: 7,
+    title: "Project 7: C++ Robotics Core",
+    techStack: "C++, Object-Oriented Programming, Control Theory",
+    narrative:
+      "Custom PID controller implementation and robot class models from VEX Robotics work. Demonstrates C++ architecture—encapsulation, control theory, and efficiency-focused design patterns.",
+    status: "Complete",
+    liveLink: null,
+    codeLink:
+      "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/CppRoboticsCore",
+  },
+  {
+    id: 4,
+    title: "Project 4: C++ Performance Benchmark",
+    techStack: "C++, Standard Library, Console Application",
+    narrative:
+      "Runs recursive Fibonacci calculation (N=45) to benchmark C++ performance. Used as comparison baseline against the identical Node.js implementation (Project 5) to understand performance trade-offs between compiled and interpreted languages.",
     status: "Complete",
     liveLink: null,
     codeLink:
@@ -51,35 +73,13 @@ export const projectsData: IProject[] = [
   },
   {
     id: 5,
-    title: "Project 5: Asynchronous Flexibility Demo",
-    techStack: "Node.js, TypeScript, REST API Consumption",
+    title: "Project 5: Node.js Async Flexibility Demo",
+    techStack: "Node.js, TypeScript, REST API",
     narrative:
-      "A demonstration using Node.js to quickly manage concurrent asynchronous operations (e.g., fetching data from multiple external APIs simultaneously). **Used to discuss rapid prototyping and the non-blocking nature of JavaScript vs. C++.**",
+      "Demonstrates Node.js handling concurrent asynchronous operations—fetching from multiple APIs simultaneously. Shows the non-blocking nature of JavaScript and rapid prototyping capabilities compared to traditional compiled languages.",
     status: "Complete",
     liveLink: null,
     codeLink:
       "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/NodeJsFlexibilityDemo",
-  },
-  {
-    id: 6,
-    title: "Project 6: Full-Stack Kanban Board (Next.js)",
-    techStack:
-      "Next.js 16, TypeScript, Zustand, @dnd-kit, Tailwind CSS, RESTful API Routes, Vitest",
-    narrative:
-      "A full-stack task management application built with Next.js 16, featuring drag-and-drop functionality and RESTful API routes. **Demonstrates Next.js App Router, server-side API endpoints, async state management, and comprehensive testing with 27 passing tests.** Migrated from Vite to showcase full-stack capabilities with proper separation of client and server logic. Highlights modern Next.js architecture and production-ready deployment.",
-    status: "Complete",
-    liveLink: "https://kanban-next-flame.vercel.app/",
-    codeLink: "https://github.com/AntonioMontalvo/kanban-next",
-  },
-  {
-    id: 1,
-    title: "Project 1: The Portfolio Site (The Shell)",
-    techStack: "React, React Router, Tailwind CSS, TypeScript",
-    narrative:
-      "The professional front-end that ties the entire story together. **Designed for optimal readability and mobile responsiveness, demonstrating best practices in modern front-end structure.**",
-    status: "Complete",
-    liveLink: null,
-    codeLink:
-      "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/portfoliosite",
   },
 ];
