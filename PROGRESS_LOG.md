@@ -824,6 +824,124 @@
 
 ---
 
+### Thursday, Jan 30, 2026
+
+**Hours worked:** 6 hours (morning session 9:00-10:00 AM, afternoon session 2:20-3:20 PM)
+**Total Week 4:** 37 hours + 6 hours = 43 hours
+
+**What I did:**
+
+- ✅ **E-commerce MERN App documentation** (6 screenshots)
+  - Captured homepage with product grid (1.3MB)
+  - Captured product detail page (689KB)
+  - Captured shopping cart (376KB)
+  - Captured authentication flow (123KB)
+  - Captured admin dashboard (1.5MB)
+  - Captured checkout flow (385KB)
+  - Created comprehensive README with technical decisions section
+  - Documented MongoDB vs PostgreSQL, JWT vs OAuth, Zustand vs Redux choices
+  - Documented known cart persistence bug (fix planned)
+- ✅ **Data Viz Dashboard documentation** (1 screenshot)
+  - Captured complete dashboard view (228KB)
+  - Created README explaining Python/Flask backend choice
+  - Documented why Python + Pandas for sensor data processing
+  - Explained Chart.js vs Recharts decision
+- ✅ **Portfolio Site meta-documentation** (3 screenshots)
+  - Captured homepage with stats showcase (824KB)
+  - Captured About page with AI workflow (1.6MB)
+  - Captured Projects page with 7 projects grid (1.0MB)
+  - Added Screenshots section to README
+  - Fixed live URL to antonio-portfolio-master.vercel.app
+- ✅ **C++ Robotics Core documentation** (3 screenshots)
+  - Captured PID controller class definition (227KB)
+  - Captured Robot class abstraction (288KB)
+  - Captured PID implementation details (288KB)
+  - Created comprehensive README with control theory explanations
+  - **Added narrative bridge:** Linked to C++ Performance Demo with specific benchmark ("~100x faster")
+- ✅ **C++ Performance Demo documentation** (2 screenshots)
+  - Captured source code (181KB)
+  - Captured terminal output showing 311ms execution (21KB)
+  - Created README with benchmark results (C++ 311ms vs Node.js 30,000ms)
+  - **Voice refinement:** User requested rewrite from formal to practical voice
+  - Rewrote with direct statements, condensed prose, "Trade-offs" section
+  - **Strengthened narrative bridge:** Links to Robotics Core explaining why real-time control needs compiled languages
+- ✅ **Node.js Async Demo documentation** (2 screenshots + TypeScript fix)
+  - **Fixed TypeScript error:** Removed `import { performance } from "perf_hooks"` (performance is Node.js global)
+  - Captured source code (250KB)
+  - Captured terminal output showing ~30,000ms execution (27KB)
+  - Created README emphasizing trade-offs, not bashing JavaScript
+  - **Added multiple narrative bridges:** Links to C++ Performance, C++ Robotics, E-commerce MERN
+  - Explained real-world context: E-commerce uses Node.js for async I/O, Robotics uses C++ for real-time loops
+- ✅ **All 7 projects now documented:**
+  - Total 23 screenshots across 7 projects
+  - Consistent practical voice applied to all READMEs
+  - Strategic cross-references creating portfolio narrative coherence
+  - All commits pushed to GitHub successfully
+
+**What I learned:**
+
+- **Narrative bridges elevate portfolio presentation:**
+  - Cross-referencing projects shows intentional design vs random collection
+  - C++ Robotics ↔ C++ Performance: Performance justifies why real-time systems need compiled languages
+  - C++ Performance ↔ Node.js Async: Trade-off analysis with specific benchmarks (100x difference)
+  - Node.js ↔ E-commerce: Real-world example of appropriate tool selection
+- **Voice consistency critical for authenticity:**
+  - Formal technical writing ("establishes a baseline", "demonstrates") doesn't match user's practical voice
+  - Direct statements beat explanatory prose
+  - "Trade-offs" more analytical than "When to Choose" (less prescriptive)
+  - Self-aware without insecurity (same as Jan 29 lesson)
+- **Real-world examples strengthen technical decisions:**
+  - Explaining _why_ choices were made in context (not just features)
+  - E-commerce MongoDB choice: Flexible product schemas, rapid prototyping
+  - Data Viz Python choice: Pandas for sensor data manipulation
+  - Node.js appropriate for I/O-bound tasks (databases, APIs), C++ for CPU-bound tasks (control loops)
+- **Documenting known issues shows professionalism:**
+  - Cart persistence bug transparently documented in README
+  - Shows awareness of limitations, not hiding problems
+  - Planning fix demonstrates follow-through
+
+**Challenges faced:**
+
+- cpp-robotics-02-robot-class.png had leading space in filename, preventing file move
+- TypeScript error: "Cannot find module 'perf_hooks' or its corresponding type declarations"
+- C++ Performance Demo README too formal on first draft
+- Git push interrupted by Ctrl+C during Node.js demo commit
+- E-commerce cart bug: data persists across logged-out sessions
+
+**Solutions found:**
+
+- Corrected filename space, successful move on retry
+- Removed perf_hooks import entirely - `performance` available as Node.js global
+- Rewrote README in practical voice with user's approval
+- Completed git push after break
+- Documented cart bug in README Known Issues section (fix deferred)
+
+**Status:**
+
+- ✅ All 7 projects have screenshots (23 total)
+- ✅ All 7 projects have comprehensive READMEs
+- ✅ Narrative bridges created between related projects
+- ✅ Consistent practical voice applied throughout
+- ✅ All commits pushed to GitHub
+- ⏳ E-commerce cart persistence bug documented (fix pending)
+
+**Portfolio Achievement:**
+
+- Established efficient workflow: Desktop staging → move to project folders → commit with README
+- Created portfolio narrative coherence through strategic cross-references
+- Applied voice refinements for authenticity across all documentation
+- Documented 23 screenshots covering live web apps and code-only projects
+- Transparent about known issues while demonstrating professionalism
+
+**Next focus:**
+
+- 🐛 Fix E-commerce cart persistence bug (cart should clear on logout or be user-specific)
+- 💼 Update LinkedIn profile (About section + AI-augmented development)
+- 📝 Update resume with new skills (Next.js, PostgreSQL, NextAuth, Recharts)
+- 🎯 Optional: Review LEARNING_ROADMAP.md for Week 4 completion status
+
+---
+
 ## 📝 Portfolio Website Updates (Future Task)
 
 ### AI-Augmented Development Section
