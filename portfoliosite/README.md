@@ -14,23 +14,27 @@ Navigation is intentionally simple: hero section introducing my background, proj
 
 ## 🛠️ Tech Stack
 
-**Vite** was chosen for its instant dev server startup and hot module replacement—significantly faster than Create React App's Webpack-based build. For a portfolio site where I'm frequently updating project content, this speed matters during development.
+**Vite** was chosen for its instant dev server startup, significantly faster than Create React App's Webpack-based build.
 
 **React 19** gave me access to the latest hooks and concurrent rendering features. TypeScript catches type errors at compile time rather than runtime, which prevents bugs from reaching production.
 
-**Tailwind CSS 4** handles responsive design without writing custom media queries for every component. The utility-first approach keeps styles colocated with components, making it easier to update designs quickly.
+**Tailwind CSS 4** handles responsive design without writing custom media queries for every component. The utility-first approach makes it easier to update designs quickly.
 
-Deployed on **Vercel** because it integrates directly with the GitHub repository—every push to main triggers an automatic deployment. No manual build steps or server configuration needed.
+Deployed on **Vercel** because it integrates directly with the GitHub repository. Every push to main triggers an automatic deployment. No manual build steps or server configuration needed.
 
-## � Development Approach
+## 💡 Development Approach: AI-Augmented Development
 
-I build projects using an AI-augmented workflow—GitHub Copilot as a pair programming partner for rapid prototyping, debugging, and exploring unfamiliar APIs. This approach let me learn Next.js 16, PostgreSQL, and OAuth integration in weeks rather than months.
+For this portfolio, I needed to learn several technologies quickly—Next.js 16, PostgreSQL, OAuth, and server components—while building production-ready applications. I use AI tools (GitHub Copilot, Claude) as pair programming partners to accelerate implementation while applying my judgment to architecture and design decisions.
 
-The architecture decisions, technology choices, and problem-solving remain human judgment. AI accelerates implementation, suggests patterns, and catches syntax errors. I validate every suggestion against best practices, maintain code quality through comprehensive testing (27 tests in kanban-next), and leverage TypeScript's type system to catch integration issues early.
+The division is straightforward: AI handles boilerplate generation, suggests syntax, and helps explore unfamiliar APIs. I handle the thinking—choosing PostgreSQL over MongoDB for structured task data, designing the multi-user isolation pattern, deciding when OAuth makes more sense than JWT. AI generated my CRUD endpoints; I designed the security middleware and authentication flow.
 
-This workflow represents modern software development in 2026—developers who effectively leverage AI tools deliver faster while maintaining quality. The skill isn't writing boilerplate; it's knowing what to build, how to architect it, and when AI suggestions need correction.
+This workflow let me build seven production-quality projects spanning React, Next.js, PostgreSQL, Python Flask, and C++ in months rather than years. The kanban-next project shows the velocity: zero Next.js experience to a deployed full-stack application with OAuth, server components, and 27 passing tests in under two weeks.
 
-## �📦 Getting Started
+Every AI suggestion gets validated. I maintain test coverage, enforce TypeScript's strict mode, and review architectural decisions against best practices. The skill isn't accepting suggestions blindly—it's knowing what needs human oversight and when AI is wrong. When AI suggested storing user IDs client-side, I caught the security issue and moved authentication to server-side session checks.
+
+This portfolio proves I can deliver production applications quickly without sacrificing security, maintainability, or code quality.
+
+## 📦 Getting Started
 
 ### Prerequisites
 
