@@ -709,6 +709,121 @@
 
 ---
 
+### Wednesday, Jan 29, 2026
+
+**Hours worked:** 6 hours
+**Total Week 4:** 31 hours + 6 hours = 37 hours
+
+**What I did:**
+
+- ✅ **Added screenshots to kanban-next README** (6 screenshots)
+  - Captured authentication flow (Google OAuth login)
+  - Captured main kanban board interface with drag-and-drop
+  - Captured task modal (create/edit functionality)
+  - Captured dashboard with analytics (bar, pie, line charts)
+  - Captured user menu and profile display
+  - Added professional descriptions for each screenshot
+  - Committed and pushed to GitHub
+- ✅ **Updated portfoliosite README** - Expanded AI-augmented section
+  - Rewrote from 3 paragraphs to structured sections
+  - Applied user's authentic practical voice
+  - Fixed punctuation (added em dashes, grammar corrections)
+  - Made section more concrete with examples
+- ✅ **Comprehensive portfolio site alignment** - Homepage & About page
+  - Discovered major narrative gap: README said "modern AI developer", live site said "Strategic Re-entry" and "career break"
+  - **Completely rewrote HomePage.tsx:**
+    - Added stats showcase (7 projects, 4 stacks, 27 tests)
+    - Added featured projects section with tech tags
+    - Added "How I Work" section introducing AI approach
+    - Removed all career break references
+    - Final hero: "Building production applications with React, Next.js, PostgreSQL, and Python. Systems programming background in C++ and Java."
+  - **Completely rewrote AboutPage.tsx:**
+    - Removed all "Strategic Re-entry" and career gap narrative
+    - Created 5 sections: Development Workflow, Quality Through Validation, Choosing the Right Tool, Systems Programming Background, Call to Action
+    - Added AI handles vs I handle grid layout
+    - Integrated VEX Robotics background (past tense) and upcoming judge role
+    - User refined personally for authentic tone: "tries to convey", "few weeks", "was a learning experience"
+- ✅ **Projects page overhaul:**
+  - Simplified heading to just "Projects" (removed subtitle with old narrative)
+  - Reordered projects: Next.js Kanban and E-commerce featured first
+  - Rewrote all 7 project narratives in practical voice
+  - Removed defensive "foundational C++/OOP" positioning
+  - Applied same authentic voice throughout
+- ✅ **Committed all changes to GitHub:**
+  - Commit 1: HomePage and AboutPage updates (243 insertions, 78 deletions)
+  - Commit 2: Projects page and projectsData updates
+  - Automatic deployment to Vercel triggered
+
+**What I learned:**
+
+- **Authentic voice vs AI professional tone:**
+  - "tries to convey" shows healthy self-awareness (charming, not insecure)
+  - "few weeks" more humble than "under two weeks"
+  - "was a learning experience" better than "zero experience to deployed"
+  - Removing "My" prefixes (sounds childish)
+  - Past tense for historical work, present for current capabilities
+- **Strategic career positioning:**
+  - Career gaps are interview topics, not portfolio narratives
+  - Recent volunteer expertise (VEX Robotics) shows current relevance
+  - Systems programming background provides credibility without timeline questions
+  - Skip bootcamp mentions (sounds junior), skip employer names (privacy)
+- **Narrative consistency matters:**
+  - README, Homepage, About, and Projects must tell same story
+  - Defensive positioning about career breaks weakens presentation
+  - Lead with current capabilities and recent work
+  - Technical decision-making shows expertise more than history
+- **User editing pass catches nuances:**
+  - AI gets structure and content right, but misses subtle voice
+  - Self-aware without insecurity requires precise word choice
+  - Less precision can be more authentic ("few" vs "under two")
+  - Practical beats polished for technical authenticity
+
+**Challenges faced:**
+
+- Live site had completely different narrative from README
+- Initial AboutPage too formal and defensive about career break
+- Robotics framing inaccurate (current vs past tense)
+- Dev server caching old content despite file updates
+- Balancing humility with confidence in voice
+
+**Solutions found:**
+
+- Complete rewrite of HomePage and AboutPage vs incremental edits
+- User provided full background to inform strategic decisions
+- Accuracy corrections for robotics timeline (past tense, removed "currently")
+- Hard server restart on different port (3001) cleared cache
+- User's personal editing pass perfected authentic voice
+
+**Status:**
+
+- ✅ kanban-next README with screenshots complete
+- ✅ portfoliosite README with expanded AI section complete
+- ✅ HomePage completely rewritten and deployed
+- ✅ AboutPage completely rewritten and deployed
+- ✅ Projects page reordered and rewritten
+- ✅ All changes committed and deployed to Vercel
+- ✅ Narrative consistency achieved across all pages
+- ⏳ 6 remaining projects need screenshots tomorrow
+
+**Portfolio Achievement:**
+
+- Established authentic, practical voice across entire site
+- Removed all defensive career break positioning
+- Positioned AI-augmented development as modern practice
+- Featured strongest projects (Next.js Kanban, E-commerce) first
+- Integrated systems programming background naturally
+- Site now matches quality and voice of kanban-next README
+
+**Next focus:**
+
+- 📸 Take screenshots of remaining 6 portfolio projects tomorrow
+- 📸 Add screenshots to corresponding project READMEs
+- 🌐 Verify live portfolio site looks professional
+- 💼 Update LinkedIn profile (About section + Skills)
+- 📝 Optional: Write comparison blog post (MERN vs Next.js)
+
+---
+
 ## 📝 Portfolio Website Updates (Future Task)
 
 ### AI-Augmented Development Section
