@@ -2,107 +2,168 @@
 
 const AboutPage = () => {
   return (
-    <div className="py-10">
-      <h1 className="text-4xl font-extrabold text-indigo-700 mb-2">
-        My Story: The Strategic Re-entry
+    <div className="max-w-4xl mx-auto py-10">
+      <h1 className="text-4xl font-extrabold text-indigo-700 mb-4">
+        Development Approach
       </h1>
-      <p className="text-xl text-gray-600 mb-12">
-        Leveraging Foundational C++ Expertise to Deliver Scalable Full-Stack
-        Solutions.
-      </p>
 
-      {/* --- 1. Foundational Strength (The C++/Robotics Core) --- */}
+      {/* --- AI-Augmented Development --- */}
       <section className="mb-12 p-8 bg-white rounded-xl shadow-lg border-l-4 border-indigo-500">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">
-          From C++ and Robotics to Clean Architecture
+          Development Workflow
         </h2>
         <p className="mb-4 text-lg text-gray-700">
-          My technical journey began with competitive robotics, which required
-          rigorous C++ development focused on **performance, memory management,
-          and Object-Oriented Programming (OOP)**. This background instilled a
-          deep understanding of software efficiency and clean architecture that
-          I now apply to the full-stack environment.
+          For this portfolio, I needed to learn several technologies—Next.js 16,
+          PostgreSQL, OAuth, and server components—while building
+          production-ready applications. I use AI tools (GitHub Copilot, Claude)
+          as pair programming partners to accelerate implementation while
+          applying my judgment to architecture and design decisions.
         </p>
+        <div className="grid md:grid-cols-2 gap-6 my-6">
+          <div className="bg-indigo-50 p-5 rounded-lg">
+            <h3 className="font-bold text-indigo-900 mb-3">AI Handles</h3>
+            <ul className="space-y-2 text-gray-700">
+              <li>• Boilerplate generation</li>
+              <li>• Syntax suggestions</li>
+              <li>• API exploration</li>
+              <li>• Debugging assistance</li>
+            </ul>
+          </div>
+          <div className="bg-green-50 p-5 rounded-lg">
+            <h3 className="font-bold text-green-900 mb-3">I Handle</h3>
+            <ul className="space-y-2 text-gray-700">
+              <li>• Architecture decisions</li>
+              <li>• Technology selection</li>
+              <li>• Security patterns</li>
+              <li>• Code review & testing</li>
+            </ul>
+          </div>
+        </div>
         <p className="text-lg text-gray-700 italic">
-          **Key Example:** The VEX Robotics project required implementing a
-          **Digital PID Controller** (Proportional-Integral-Derivative) to
-          stabilize movement. This involved managing high-frequency sensor
-          inputs, implementing output saturation, and precise
-          time-slicing—skills directly transferable to building resilient,
-          well-controlled systems in any language.
+          <strong>Example:</strong> The kanban-next project was a learning
+          experience in Next.js to a deployed full-stack application with OAuth,
+          PostgreSQL, server components, and 27 passing tests in just a few
+          weeks.
         </p>
       </section>
 
-      {/* --- 2. The Career Break and Targeted Reskilling --- */}
-      <section className="mb-12 p-8">
+      {/* --- Validation & Quality --- */}
+      <section className="mb-12 p-8 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">
-          The Pivot: Choosing the Right Tools for Modern Development
+          Quality Through Validation
         </h2>
         <p className="mb-4 text-lg text-gray-700">
-          Following a career break, I didn't just learn new languages; I focused
-          on understanding the core philosophies of modern web development
-          frameworks. My goal was a strategic re-entry, using my existing
-          foundation to quickly master scalable technologies.
+          Every AI suggestion gets reviewed. I maintain comprehensive test
+          coverage (27 tests in kanban-next, testing library in e-commerce),
+          enforce TypeScript's strict mode, and verify architectural decisions
+          against best practices.
         </p>
-        <ul className="list-disc list-inside space-y-2 pl-4 text-lg text-gray-700">
-          <li>
-            **MERN Stack Mastery:** Built the E-commerce app (Project 2) using
-            Node.js, Express, and MongoDB, prioritizing scalability, security
-            (JWT), and maintaining strict **separation of concerns** in the
-            architecture.
-          </li>
-          <li>
-            **Python for Data:** Developed the Data Visualization App (Project
-            3) using **Python/Flask and Pandas** specifically to showcase rapid
-            development in scripting, data processing, and API creation.
-          </li>
-          <li>
-            **Front-End Proficiency:** Achieved fluency in React, TypeScript,
-            and modern state management (Zustand), focusing on component
-            reusability and accessibility using Tailwind CSS.
-          </li>
-        </ul>
+        <p className="text-lg text-gray-700">
+          The skill isn't accepting suggestions blindly—it's knowing what needs
+          human oversight and when AI is wrong. When AI suggested storing user
+          IDs client-side, I caught the security issue and moved authentication
+          to server-side session checks.
+        </p>
       </section>
 
-      {/* --- 3. Technical Philosophy (The C++ vs. Node.js Comparison) --- */}
+      {/* --- Technical Philosophy --- */}
       <section className="p-8 bg-white rounded-xl shadow-lg border-r-4 border-indigo-500">
         <h2 className="text-3xl font-bold text-gray-900 mb-4">
-          My Philosophy: Choosing the Right Tool
+          Choosing the Right Tool for the Job
         </h2>
-        <p className="mb-4 text-lg text-gray-700">
-          My background allows me to objectively assess when performance is
-          paramount and when development speed and ecosystem matter more.
+        <p className="mb-6 text-lg text-gray-700">
+          My portfolio tries to convey versatility across different technical
+          approaches. Each project uses the technology best suited to its
+          requirements.
         </p>
-        <div className="flex space-x-6 text-gray-700">
-          <div className="w-1/2">
-            <h3 className="text-xl font-semibold mb-2 text-red-700">
-              The C++ Benchmark
+        <div className="space-y-6">
+          <div className="border-l-4 border-blue-400 pl-4">
+            <h3 className="text-xl font-semibold mb-2 text-gray-900">
+              PostgreSQL vs MongoDB
             </h3>
-            <p>
-              The **C++ Performance Utility (Project 4)** demonstrates my
-              ability to write raw, multisecond processing tasks in native code,
-              proving I understand the nuances of efficiency, memory, and native
-              compilation.
+            <p className="text-gray-700">
+              Kanban board uses PostgreSQL for structured task data with foreign
+              key relationships. E-commerce uses MongoDB for flexible product
+              schemas with dynamic attributes. Different problems, different
+              solutions.
             </p>
           </div>
-          <div className="w-1/2">
-            <h3 className="text-xl font-semibold mb-2 text-green-700">
-              The Node.js Flexibility
+          <div className="border-l-4 border-green-400 pl-4">
+            <h3 className="text-xl font-semibold mb-2 text-gray-900">
+              OAuth vs JWT
             </h3>
-            <p>
-              The **Node.js Flexibility Demo (Project 5)** implements the exact
-              same task but highlights the trade-offs: speed vs. ease of
-              integration, asynchronous handling, and the vast Node.js
-              ecosystem.
+            <p className="text-gray-700">
+              Next.js kanban implements Google OAuth for better UX and delegated
+              security. MERN e-commerce uses JWT for learning authentication
+              flows and token management. Both appropriate for their contexts.
+            </p>
+          </div>
+          <div className="border-l-4 border-purple-400 pl-4">
+            <h3 className="text-xl font-semibold mb-2 text-gray-900">
+              Server vs Client Rendering
+            </h3>
+            <p className="text-gray-700">
+              Next.js version demonstrates server-side rendering for SEO and
+              initial load performance. Vite version shows client-side
+              architecture for comparison. Understanding the tradeoffs matters
+              more than picking sides.
             </p>
           </div>
         </div>
-        <p className="mt-4 text-lg font-medium text-gray-700">
-          I am a Mid-Level Full-Stack Developer ready to integrate my
-          foundational engineering discipline with modern, scalable web
-          solutions.
-        </p>
       </section>
+
+      {/* --- Technical Background --- */}
+      <section className="mb-12 p-8 bg-white rounded-xl shadow-lg border-l-4 border-purple-500">
+        <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          Systems Programming Background
+        </h2>
+        <p className="mb-4 text-lg text-gray-700">
+          Beyond web development, I have experience in systems programming
+          including work with VEX Robotics teams implementing C++ solutions for
+          autonomous robot control—PID controllers, sensor reading, and
+          real-time decision systems.
+        </p>
+        <p className="mb-4 text-lg text-gray-700">
+          This background in low-level programming informs better architectural
+          decisions in high-level languages. Understanding memory management,
+          and hardware constraints provides perspective when optimizing
+          JavaScript performance or designing database schemas.
+        </p>
+        <div className="bg-purple-50 p-5 rounded-lg">
+          <p className="text-gray-700">
+            <strong>Additional:</strong> Competition judge for VEX Robotics in
+            early February, evaluating robot design, code quality, and team
+            engineering notebooks.
+          </p>
+        </div>
+      </section>
+
+      {/* --- Call to Action --- */}
+      <div className="mt-12 p-8 bg-indigo-600 text-white rounded-xl text-center">
+        <h2 className="text-2xl font-bold mb-4">Let's Build Something</h2>
+        <p className="text-lg mb-6">
+          I'm actively seeking full-stack development opportunities where I can
+          contribute immediately while continuing to learn.
+        </p>
+        <div className="flex justify-center gap-4">
+          <a
+            href="https://github.com/AntonioMontalvo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 bg-white text-indigo-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            View GitHub
+          </a>
+          <a
+            href="https://linkedin.com/in/antonio-montalvo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 bg-indigo-700 text-white font-semibold rounded-lg hover:bg-indigo-800 transition-colors"
+          >
+            Connect on LinkedIn
+          </a>
+        </div>
+      </div>
     </div>
   );
 };
