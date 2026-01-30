@@ -4,7 +4,24 @@ A portfolio site showcasing seven projects I built to demonstrate current full-s
 
 ## 🚀 Live Demo
 
-**[View Live Portfolio](https://antonio-portfolio-master-bt2g.vercel.app/)**
+**[View Live Portfolio](https://antonio-portfolio-master.vercel.app/)**
+
+## Screenshots
+
+### Homepage
+
+![Homepage](public/screenshots/portfolio-01-homepage.png)
+Landing page with stats showcase (7 projects, 4 stacks, 27 tests) and featured projects.
+
+### About Page
+
+![About Page](public/screenshots/portfolio-02-about.png)
+Development approach detailing AI-augmented workflow and technical decision-making process.
+
+### Projects Page
+
+![Projects Page](public/screenshots/portfolio-03-projects.png)
+Complete project showcase with descriptions spanning React, Next.js, Python, and systems programming.
 
 ## What This Site Covers
 
