@@ -138,11 +138,7 @@ Both frontend and backend deployed to Vercel:
 - Backend uses Vercel serverless functions
 - MongoDB hosted on Atlas
 
-## 📝 Known Issues
-
-- **Cart Persistence Bug:** Shopping cart data persists across logged-out sessions. Cart should clear on logout or be user-specific. Fix planned.
-
-## 👤 Author
+##  Author
 
 **Antonio Montalvo**
 
