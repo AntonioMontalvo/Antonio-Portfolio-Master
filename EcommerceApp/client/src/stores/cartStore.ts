@@ -17,13 +17,14 @@ interface CartState {
   removeFromCart: (id: string) => void;
   saveShippingAddress: (address: IShippingAddress) => void;
   savePaymentMethod: (method: IPaymentMethod) => void;
+  clearCart: () => void;
 }
 
 // Helper function to calculate prices (standard e-commerce practice)
 const updateCartPrices = (items: ICartItem[]) => {
   const itemsPrice = items.reduce(
     (acc, item) => acc + item.price * item.qty,
-    0
+    0,
   );
   const shippingPrice = itemsPrice > 100 ? 0 : 10; // Free shipping over $100
   const taxRate = 0.15; // 15% tax
@@ -56,7 +57,7 @@ export const useCartStore = create<CartState>((set) => ({
       if (existItem) {
         // If item exists, update its quantity
         newCartItems = state.cartItems.map((x) =>
-          x._id === existItem._id ? { ...existItem, qty: qty } : x
+          x._id === existItem._id ? { ...existItem, qty: qty } : x,
         );
       } else {
         // If item is new, add it to the cart
