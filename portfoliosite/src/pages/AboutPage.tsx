@@ -40,10 +40,11 @@ const AboutPage = () => {
           </div>
         </div>
         <p className="text-lg text-gray-700 italic">
-          <strong>Example:</strong> The kanban-next project was a learning
-          experience in Next.js to a deployed full-stack application with OAuth,
-          PostgreSQL, server components, and 27 passing tests in just a few
-          weeks.
+          <strong>Example:</strong> InvoiceFlow started as a learning project
+          and grew into a production invoicing SaaS with Stripe payments,
+          webhook-driven automation, and 162 tests at 92% coverage. The
+          kanban-next project followed the same pattern—zero Next.js experience
+          to a deployed full-stack app with OAuth and PostgreSQL in weeks.
         </p>
       </section>
 
@@ -54,9 +55,9 @@ const AboutPage = () => {
         </h2>
         <p className="mb-4 text-lg text-gray-700">
           Every AI suggestion gets reviewed. I maintain comprehensive test
-          coverage (27 tests in kanban-next, testing library in e-commerce),
-          enforce TypeScript's strict mode, and verify architectural decisions
-          against best practices.
+          coverage (162 tests at 92% coverage in InvoiceFlow, 27 in
+          kanban-next), enforce TypeScript's strict mode, and verify
+          architectural decisions against best practices.
         </p>
         <p className="text-lg text-gray-700">
           The skill isn't accepting suggestions blindly—it's knowing what needs

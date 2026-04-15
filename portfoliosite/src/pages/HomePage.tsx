@@ -10,23 +10,25 @@ const HomePage: React.FC = () => (
       </h1>
       <p className="text-2xl text-gray-700 mb-4">Full-Stack Developer</p>
       <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-        Building production applications with React, Next.js, PostgreSQL, and
-        Python. Systems programming background in C++ and Java.
+        Building production applications with React, Next.js, Node.js, Python,
+        and C++. From payment processing with Stripe to real-time webhooks,
+        database design with Prisma and PostgreSQL, and multi-channel
+        communication with SendGrid and Twilio.
       </p>
     </div>
 
     {/* Quick Stats */}
     <div className="grid md:grid-cols-3 gap-6 mb-16">
       <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-indigo-500">
-        <div className="text-3xl font-bold text-indigo-600 mb-2">7</div>
+        <div className="text-3xl font-bold text-indigo-600 mb-2">8</div>
         <div className="text-gray-700">Production Projects</div>
       </div>
       <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
-        <div className="text-3xl font-bold text-green-600 mb-2">4</div>
+        <div className="text-3xl font-bold text-green-600 mb-2">5</div>
         <div className="text-gray-700">Tech Stacks</div>
       </div>
       <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-purple-500">
-        <div className="text-3xl font-bold text-purple-600 mb-2">27</div>
+        <div className="text-3xl font-bold text-purple-600 mb-2">189</div>
         <div className="text-gray-700">Passing Tests</div>
       </div>
     </div>
@@ -37,12 +39,33 @@ const HomePage: React.FC = () => (
       <div className="space-y-4">
         <div className="bg-white p-5 rounded-lg shadow-sm">
           <h3 className="font-bold text-lg text-indigo-700 mb-2">
+            AM InvoiceFlow — Freelance Invoicing SaaS
+          </h3>
+          <p className="text-gray-600 mb-2">
+            Production invoicing platform with Stripe payments, webhook-driven
+            status updates, PDF generation, email and SMS delivery, milestone
+            billing, and a client portal. 162 tests at 92% coverage.
+          </p>
+          <div className="flex gap-2 flex-wrap">
+            <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">
+              Next.js 16
+            </span>
+            <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
+              Prisma / PostgreSQL
+            </span>
+            <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">
+              Stripe Connect
+            </span>
+          </div>
+        </div>
+        <div className="bg-white p-5 rounded-lg shadow-sm">
+          <h3 className="font-bold text-lg text-indigo-700 mb-2">
             Next.js Kanban Board
           </h3>
           <p className="text-gray-600 mb-2">
-            Full-stack application with PostgreSQL, Google OAuth, and
-            server-side rendering. Deployed serverless on Vercel with multi-user
-            data isolation.
+            Full-stack task management with drag-and-drop, Google OAuth,
+            PostgreSQL, and server-side rendering. 27 passing tests with
+            multi-user data isolation.
           </p>
           <div className="flex gap-2 flex-wrap">
             <span className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">
@@ -53,26 +76,6 @@ const HomePage: React.FC = () => (
             </span>
             <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">
               OAuth
-            </span>
-          </div>
-        </div>
-        <div className="bg-white p-5 rounded-lg shadow-sm">
-          <h3 className="font-bold text-lg text-indigo-700 mb-2">
-            MERN E-commerce
-          </h3>
-          <p className="text-gray-600 mb-2">
-            Complete shopping experience with MongoDB, Express API, JWT
-            authentication, and Stripe payment integration.
-          </p>
-          <div className="flex gap-2 flex-wrap">
-            <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">
-              MongoDB
-            </span>
-            <span className="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm">
-              Express
-            </span>
-            <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
-              React
             </span>
           </div>
         </div>
@@ -97,7 +100,7 @@ const HomePage: React.FC = () => (
         handle security patterns, technology selection, and code review.
       </p>
       <p className="text-gray-700 leading-relaxed">
-        This workflow let me build seven production-quality projects spanning
+        This workflow let me build eight production-quality projects spanning
         multiple tech stacks in months rather than years, while maintaining
         comprehensive test coverage and TypeScript strict mode throughout.
       </p>
