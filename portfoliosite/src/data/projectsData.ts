@@ -2,8 +2,19 @@
 
 import { IProject } from "../types";
 
-// The final data model for all seven portfolio projects
+// The final data model for all eight portfolio projects
 export const projectsData: IProject[] = [
+  {
+    id: 8,
+    title: "Project 8: AM InvoiceFlow — Freelance Invoicing SaaS",
+    techStack:
+      "Next.js 16, TypeScript, Prisma 7, PostgreSQL, Stripe Connect, SendGrid, Twilio, React-PDF, Tailwind CSS 4, Vitest",
+    narrative:
+      "Production-ready invoicing platform for freelancers. Full invoice lifecycle with Stripe Checkout payments, webhook-driven status updates, PDF generation, email and SMS delivery, project milestone billing, and a public client portal. Includes demo mode for safe exploration and 162 tests at 92% coverage.",
+    status: "Complete",
+    liveLink: "https://my-invoice-flow.vercel.app/",
+    codeLink: "https://github.com/AntonioMontalvo/AM-InvoiceFlow",
+  },
   {
     id: 6,
     title: "Project 6: Full-Stack Kanban Board (Next.js)",
@@ -81,16 +92,5 @@ export const projectsData: IProject[] = [
     liveLink: null,
     codeLink:
       "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master/tree/main/NodeJsFlexibilityDemo",
-  },
-  {
-    id: 8,
-    title: "Project 8: AM InvoiceFlow — Freelance Invoicing SaaS",
-    techStack:
-      "Next.js 16, TypeScript, Prisma 7, PostgreSQL, Stripe Connect, SendGrid, Twilio, React-PDF, Tailwind CSS 4, Vitest",
-    narrative:
-      "Production-ready invoicing platform for freelancers. Full invoice lifecycle with Stripe Checkout payments, webhook-driven status updates, PDF generation, email and SMS delivery, project milestone billing, and a public client portal. Includes demo mode for safe exploration and 162 tests at 92% coverage.",
-    status: "Complete",
-    liveLink: "https://my-invoice-flow.vercel.app/",
-    codeLink: "https://github.com/AntonioMontalvo/AM-InvoiceFlow",
   },
 ];
