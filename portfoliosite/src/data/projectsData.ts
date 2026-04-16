@@ -13,7 +13,8 @@ export const projectsData: IProject[] = [
       "Production-ready invoicing platform for freelancers. Full invoice lifecycle with Stripe Checkout payments, webhook-driven status updates, PDF generation, email and SMS delivery, project milestone billing, and a public client portal. Includes demo mode for safe exploration and 162 tests at 92% coverage.",
     status: "Complete",
     liveLink: "https://my-invoice-flow.vercel.app/",
-    codeLink: "https://github.com/AntonioMontalvo/AM-InvoiceFlow",
+    codeLink: "https://github.com/AntonioMontalvo/PortfolioSite#-flagship-project--am-invoiceflow",
+    flagship: true,
   },
   {
     id: 6,

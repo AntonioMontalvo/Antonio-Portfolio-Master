@@ -8,4 +8,5 @@ export interface IProject {
   status: "Complete" | "In Progress" | "Planned" | "95% Complete";
   liveLink: string | null;
   codeLink: string | null;
+  flagship?: boolean;
 }

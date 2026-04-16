@@ -29,7 +29,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100">
       <div className="flex justify-between items-start mb-3">
         <h3 className="text-2xl font-bold text-gray-900">{project.title}</h3>
-        <StatusBadge status={project.status} />
+        <div className="flex items-center gap-2">
+          {project.flagship && (
+            <span className="px-3 py-1 text-xs font-semibold rounded-full bg-amber-100 text-amber-800 border border-amber-300">
+              ★ Flagship
+            </span>
+          )}
+          <StatusBadge status={project.status} />
+        </div>
       </div>
 
       <p className="text-sm font-medium text-indigo-600 mb-4">
@@ -56,7 +63,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             rel="noopener noreferrer"
             className="inline-flex items-center text-sm font-semibold text-indigo-600 hover:text-indigo-800 border border-indigo-600 hover:border-indigo-800 px-4 py-2 rounded-lg transition"
           >
-            View Code
+            {project.flagship ? "Architecture Deep-Dive" : "View Code"}
           </a>
         )}
         {!project.liveLink && !project.codeLink && (
