@@ -13,15 +13,12 @@ interface CartState {
   shippingAddress: IShippingAddress | null;
   paymentMethod: IPaymentMethod | null;
 
-  ownerId: string | null;
-
   // Actions to modify the cart state
   addToCart: (item: ICartItem, qty: number) => void;
   removeFromCart: (id: string) => void;
   saveShippingAddress: (address: IShippingAddress) => void;
   savePaymentMethod: (method: IPaymentMethod) => void;
   clearCart: () => void;
-  claimCart: (userId: string) => void;
 }
 
 // Helper function to calculate prices (standard e-commerce practice)
@@ -53,7 +50,6 @@ export const useCartStore = create<CartState>()(
       totalPrice: 0,
       shippingAddress: null,
       paymentMethod: null,
-      ownerId: null,
 
       addToCart: (item, qty) =>
         set((state) => {
@@ -62,37 +58,26 @@ export const useCartStore = create<CartState>()(
           let newCartItems: ICartItem[];
 
           if (existItem) {
-            // If item exists, update its quantity
             newCartItems = state.cartItems.map((x) =>
               x._id === existItem._id ? { ...existItem, qty: qty } : x,
             );
           } else {
-            // If item is new, add it to the cart
             newCartItems = [...state.cartItems, { ...item, qty }];
           }
 
-          const prices = updateCartPrices(newCartItems);
-
-          return {
-            cartItems: newCartItems,
-            ...prices,
-          };
+          return { cartItems: newCartItems, ...updateCartPrices(newCartItems) };
         }),
 
       removeFromCart: (id) =>
         set((state) => {
           const newCartItems = state.cartItems.filter((x) => x._id !== id);
-          const prices = updateCartPrices(newCartItems);
-
-          return {
-            cartItems: newCartItems,
-            ...prices,
-          };
+          return { cartItems: newCartItems, ...updateCartPrices(newCartItems) };
         }),
 
       saveShippingAddress: (address) => set({ shippingAddress: address }),
 
       savePaymentMethod: (method) => set({ paymentMethod: method }),
+
       clearCart: () =>
         set({
           cartItems: [],
@@ -100,24 +85,6 @@ export const useCartStore = create<CartState>()(
           shippingPrice: 0,
           taxPrice: 0,
           totalPrice: 0,
-        }),
-
-      claimCart: (userId) =>
-        set((state) => {
-          // Use != null to guard against both null AND undefined (old localStorage entries)
-          if (state.ownerId != null && state.ownerId !== userId) {
-            return {
-              ownerId: userId,
-              cartItems: [],
-              itemsPrice: 0,
-              shippingPrice: 0,
-              taxPrice: 0,
-              totalPrice: 0,
-              shippingAddress: null,
-              paymentMethod: null,
-            };
-          }
-          return { ownerId: userId };
         }),
     }),
     { name: "ecommerce-cart" },
