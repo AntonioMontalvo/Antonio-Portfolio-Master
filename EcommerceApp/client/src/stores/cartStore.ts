@@ -12,6 +12,7 @@ interface CartState {
   totalPrice: number;
   shippingAddress: IShippingAddress | null;
   paymentMethod: IPaymentMethod | null;
+  ownerId: string | null;
 
   // Actions to modify the cart state
   addToCart: (item: ICartItem, qty: number) => void;
@@ -19,6 +20,7 @@ interface CartState {
   saveShippingAddress: (address: IShippingAddress) => void;
   savePaymentMethod: (method: IPaymentMethod) => void;
   clearCart: () => void;
+  claimCart: (userId: string) => void;
 }
 
 // Helper function to calculate prices (standard e-commerce practice)
@@ -50,6 +52,7 @@ export const useCartStore = create<CartState>()(
       totalPrice: 0,
       shippingAddress: null,
       paymentMethod: null,
+      ownerId: null,
 
       addToCart: (item, qty) =>
         set((state) => {
@@ -85,6 +88,24 @@ export const useCartStore = create<CartState>()(
           shippingPrice: 0,
           taxPrice: 0,
           totalPrice: 0,
+        }),
+
+      // If a different user logs in, wipe the cart so users don't share carts
+      claimCart: (userId) =>
+        set((state) => {
+          if (state.ownerId != null && state.ownerId !== userId) {
+            return {
+              ownerId: userId,
+              cartItems: [],
+              itemsPrice: 0,
+              shippingPrice: 0,
+              taxPrice: 0,
+              totalPrice: 0,
+              shippingAddress: null,
+              paymentMethod: null,
+            };
+          }
+          return { ownerId: userId };
         }),
     }),
     { name: "ecommerce-cart" },
