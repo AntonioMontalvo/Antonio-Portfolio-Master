@@ -1,6 +1,7 @@
 // client/src/stores/cartStore.ts
 
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import type { ICartItem, IShippingAddress, IPaymentMethod } from "../types.ts";
 
 interface CartState {
@@ -39,7 +40,9 @@ const updateCartPrices = (items: ICartItem[]) => {
   };
 };
 
-export const useCartStore = create<CartState>((set) => ({
+export const useCartStore = create<CartState>()(
+  persist(
+    (set) => ({
   cartItems: [],
   itemsPrice: 0,
   shippingPrice: 0,
@@ -94,4 +97,7 @@ export const useCartStore = create<CartState>((set) => ({
       taxPrice: 0,
       totalPrice: 0,
     }),
-}));
+}),
+    { name: "ecommerce-cart" }
+  )
+);
