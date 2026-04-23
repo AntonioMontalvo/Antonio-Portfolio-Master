@@ -13,12 +13,15 @@ interface CartState {
   shippingAddress: IShippingAddress | null;
   paymentMethod: IPaymentMethod | null;
 
+  ownerId: string | null;
+
   // Actions to modify the cart state
   addToCart: (item: ICartItem, qty: number) => void;
   removeFromCart: (id: string) => void;
   saveShippingAddress: (address: IShippingAddress) => void;
   savePaymentMethod: (method: IPaymentMethod) => void;
   clearCart: () => void;
+  claimCart: (userId: string) => void;
 }
 
 // Helper function to calculate prices (standard e-commerce practice)
@@ -43,61 +46,80 @@ const updateCartPrices = (items: ICartItem[]) => {
 export const useCartStore = create<CartState>()(
   persist(
     (set) => ({
-  cartItems: [],
-  itemsPrice: 0,
-  shippingPrice: 0,
-  taxPrice: 0,
-  totalPrice: 0,
-  shippingAddress: null,
-  paymentMethod: null,
-
-  addToCart: (item, qty) =>
-    set((state) => {
-      const existItem = state.cartItems.find((x) => x._id === item._id);
-
-      let newCartItems: ICartItem[];
-
-      if (existItem) {
-        // If item exists, update its quantity
-        newCartItems = state.cartItems.map((x) =>
-          x._id === existItem._id ? { ...existItem, qty: qty } : x,
-        );
-      } else {
-        // If item is new, add it to the cart
-        newCartItems = [...state.cartItems, { ...item, qty }];
-      }
-
-      const prices = updateCartPrices(newCartItems);
-
-      return {
-        cartItems: newCartItems,
-        ...prices,
-      };
-    }),
-
-  removeFromCart: (id) =>
-    set((state) => {
-      const newCartItems = state.cartItems.filter((x) => x._id !== id);
-      const prices = updateCartPrices(newCartItems);
-
-      return {
-        cartItems: newCartItems,
-        ...prices,
-      };
-    }),
-
-  saveShippingAddress: (address) => set({ shippingAddress: address }),
-
-  savePaymentMethod: (method) => set({ paymentMethod: method }),
-  clearCart: () =>
-    set({
       cartItems: [],
       itemsPrice: 0,
       shippingPrice: 0,
       taxPrice: 0,
       totalPrice: 0,
+      shippingAddress: null,
+      paymentMethod: null,
+      ownerId: null,
+
+      addToCart: (item, qty) =>
+        set((state) => {
+          const existItem = state.cartItems.find((x) => x._id === item._id);
+
+          let newCartItems: ICartItem[];
+
+          if (existItem) {
+            // If item exists, update its quantity
+            newCartItems = state.cartItems.map((x) =>
+              x._id === existItem._id ? { ...existItem, qty: qty } : x,
+            );
+          } else {
+            // If item is new, add it to the cart
+            newCartItems = [...state.cartItems, { ...item, qty }];
+          }
+
+          const prices = updateCartPrices(newCartItems);
+
+          return {
+            cartItems: newCartItems,
+            ...prices,
+          };
+        }),
+
+      removeFromCart: (id) =>
+        set((state) => {
+          const newCartItems = state.cartItems.filter((x) => x._id !== id);
+          const prices = updateCartPrices(newCartItems);
+
+          return {
+            cartItems: newCartItems,
+            ...prices,
+          };
+        }),
+
+      saveShippingAddress: (address) => set({ shippingAddress: address }),
+
+      savePaymentMethod: (method) => set({ paymentMethod: method }),
+      clearCart: () =>
+        set({
+          cartItems: [],
+          itemsPrice: 0,
+          shippingPrice: 0,
+          taxPrice: 0,
+          totalPrice: 0,
+        }),
+
+      claimCart: (userId) =>
+        set((state) => {
+          // If the cart belongs to a different user, clear it
+          if (state.ownerId !== null && state.ownerId !== userId) {
+            return {
+              ownerId: userId,
+              cartItems: [],
+              itemsPrice: 0,
+              shippingPrice: 0,
+              taxPrice: 0,
+              totalPrice: 0,
+              shippingAddress: null,
+              paymentMethod: null,
+            };
+          }
+          return { ownerId: userId };
+        }),
     }),
-}),
-    { name: "ecommerce-cart" }
-  )
+    { name: "ecommerce-cart" },
+  ),
 );

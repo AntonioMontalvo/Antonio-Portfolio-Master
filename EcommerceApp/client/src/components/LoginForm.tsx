@@ -3,6 +3,7 @@
 import { useState } from "react";
 import axios, { isAxiosError } from "axios";
 import { useAuthStore } from "../stores/authStore";
+import { useCartStore } from "../stores/cartStore";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
@@ -13,6 +14,7 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false);
 
   const setUserInfo = useAuthStore((state) => state.setUserInfo);
+  const claimCart = useCartStore((state) => state.claimCart);
   const navigate = useNavigate();
 
   const submitHandler = async (e: React.FormEvent) => {
@@ -28,6 +30,7 @@ const LoginForm = () => {
       );
 
       setUserInfo(data);
+      claimCart(data._id);
       navigate("/");
     } catch (err: unknown) {
       if (isAxiosError(err)) {
