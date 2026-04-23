@@ -39,7 +39,7 @@ const CartScreen: React.FC = () => {
           </p>
           <button
             onClick={() => navigate("/")}
-            className="mt-4 px-6 py-2 bg-[--color-primary] text-white rounded-lg hover:bg-[--color-primary-hover] transition transform hover:scale-105"
+            className="mt-4 px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition transform hover:scale-105"
           >
             Go Shopping
           </button>
@@ -74,7 +74,7 @@ const CartScreen: React.FC = () => {
                   onChange={(e) =>
                     handleQtyChange(item, Number(e.target.value))
                   }
-                  className="p-2 border border-gray-300 rounded-lg focus:ring-[--color-primary] focus:border-[--color-primary] w-20 text-center font-medium mx-4"
+                  className="p-2 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary w-20 text-center font-medium mx-4"
                 >
                   {[...Array(item.countInStock).keys()].map((x) => (
                     <option key={x + 1} value={x + 1}>
@@ -143,7 +143,7 @@ const CartScreen: React.FC = () => {
 
             <button
               onClick={handleCheckout}
-              className="w-full mt-6 py-3 px-4 rounded-lg shadow-md text-white text-lg font-semibold bg-[--color-primary] hover:bg-[--color-primary-hover] transition transform hover:scale-105"
+              className="w-full mt-6 py-3 px-4 rounded-lg shadow-md text-white text-lg font-semibold bg-primary hover:bg-primary-hover transition transform hover:scale-105"
               disabled={cartItems.length === 0}
             >
               Proceed to Checkout

@@ -63,7 +63,7 @@ const ProductList = () => {
     return (
       <div className="flex justify-center items-center py-20">
         <div className="flex items-center space-x-3">
-          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-[--color-primary]"></div>
+          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary"></div>
           <p className="text-xl text-[--text-primary]">Loading products...</p>
         </div>
       </div>
