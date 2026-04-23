@@ -55,7 +55,6 @@ const LoginForm = () => {
       )}
       
       <form onSubmit={submitHandler} className="space-y-5">
-      <form onSubmit={submitHandler} className="space-y-5">
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
             Email Address
