@@ -1,7 +1,7 @@
 // client/src/stores/cartStore.ts
 
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
 import type { ICartItem, IShippingAddress, IPaymentMethod } from "../types.ts";
 
 interface CartState {
@@ -104,8 +104,8 @@ export const useCartStore = create<CartState>()(
 
       claimCart: (userId) =>
         set((state) => {
-          // If the cart belongs to a different user, clear it
-          if (state.ownerId !== null && state.ownerId !== userId) {
+          // Use != null to guard against both null AND undefined (old localStorage entries)
+          if (state.ownerId != null && state.ownerId !== userId) {
             return {
               ownerId: userId,
               cartItems: [],
@@ -120,6 +120,19 @@ export const useCartStore = create<CartState>()(
           return { ownerId: userId };
         }),
     }),
-    { name: "ecommerce-cart" },
+    {
+      name: "ecommerce-cart",
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({
+        cartItems: state.cartItems,
+        itemsPrice: state.itemsPrice,
+        shippingPrice: state.shippingPrice,
+        taxPrice: state.taxPrice,
+        totalPrice: state.totalPrice,
+        shippingAddress: state.shippingAddress,
+        paymentMethod: state.paymentMethod,
+        ownerId: state.ownerId,
+      }),
+    },
   ),
 );
