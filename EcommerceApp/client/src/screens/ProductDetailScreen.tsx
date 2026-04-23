@@ -43,7 +43,7 @@ const ProductDetailScreen: React.FC = () => {
       }
       try {
         const { data } = await axios.get(
-          `https://ecommerce-backend-cap6.onrender.com/api/products/${productId}`
+          `https://ecommerce-backend-oddl.onrender.com/api/products/${productId}`
         );
         setProduct(data);
         setLoading(false);

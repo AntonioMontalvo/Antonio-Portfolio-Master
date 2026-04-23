@@ -26,7 +26,7 @@ const ProductList = () => {
     const fetchProducts = async () => {
       try {
         const { data } = await axios.get<Product[]>(
-          "https://ecommerce-backend-cap6.onrender.com/api/products"
+          "https://ecommerce-backend-oddl.onrender.com/api/products"
         );
         setProducts(data);
         setLoading(false);
@@ -46,7 +46,7 @@ const ProductList = () => {
       try {
         // DELETE request to the server API
         await axios.delete(
-          `https://ecommerce-backend-cap6.onrender.com/api/products/${id}`
+          `https://ecommerce-backend-oddl.onrender.com/api/products/${id}`
         );
 
         // Remove the product from the local state

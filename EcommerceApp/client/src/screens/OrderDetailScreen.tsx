@@ -52,7 +52,7 @@ const OrderDetailScreen: React.FC = () => {
     const fetchOrder = async () => {
       try {
         const { data } = await axios.get(
-          `https://ecommerce-backend-cap6.onrender.com/api/orders/${id}`,
+          `https://ecommerce-backend-oddl.onrender.com/api/orders/${id}`,
           { withCredentials: true }
         );
         setOrder(data);

@@ -22,7 +22,7 @@ const LoginForm = () => {
 
     try {
       const { data } = await axios.post(
-        "https://ecommerce-backend-cap6.onrender.com/api/users/login",
+        "https://ecommerce-backend-oddl.onrender.com/api/users/login",
         { email, password },
         { withCredentials: true },
       );

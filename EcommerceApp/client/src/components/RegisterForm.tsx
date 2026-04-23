@@ -38,7 +38,7 @@ const RegisterForm = () => {
     try {
       // Register request
       const { data } = await axios.post(
-        "https://ecommerce-backend-cap6.onrender.com/api/users",
+        "https://ecommerce-backend-oddl.onrender.com/api/users",
         { name, email, password },
         { withCredentials: true }
       );
