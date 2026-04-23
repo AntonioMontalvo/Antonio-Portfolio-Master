@@ -1,5 +1,6 @@
 {
-  "buildCommand": "cd kanban-next && npm install && npm run build",
-  "outputDirectory": "kanban-next/.next",
-  "installCommand": "cd kanban-next && npm install"
+  "buildCommand": "cd EcommerceApp/client && npm install && npm run build",
+  "outputDirectory": "EcommerceApp/client/dist",
+  "installCommand": "cd EcommerceApp/client && npm install",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
