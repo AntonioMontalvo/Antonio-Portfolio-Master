@@ -1,7 +1,7 @@
 // client/src/stores/cartStore.ts
 
 import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 import type { ICartItem, IShippingAddress, IPaymentMethod } from "../types.ts";
 
 interface CartState {
@@ -120,19 +120,6 @@ export const useCartStore = create<CartState>()(
           return { ownerId: userId };
         }),
     }),
-    {
-      name: "ecommerce-cart",
-      storage: createJSONStorage(() => localStorage),
-      partialize: (state) => ({
-        cartItems: state.cartItems,
-        itemsPrice: state.itemsPrice,
-        shippingPrice: state.shippingPrice,
-        taxPrice: state.taxPrice,
-        totalPrice: state.totalPrice,
-        shippingAddress: state.shippingAddress,
-        paymentMethod: state.paymentMethod,
-        ownerId: state.ownerId,
-      }),
-    },
+    { name: "ecommerce-cart" },
   ),
 );
