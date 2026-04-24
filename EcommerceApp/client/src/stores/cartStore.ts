@@ -88,24 +88,26 @@ export const useCartStore = create<CartState>()((set, get) => ({
   },
 
   addToCart: (item, qty) => {
+    let newCartItems: ICartItem[];
     set((state) => {
       const existItem = state.cartItems.find((x) => x._id === item._id);
-      const newCartItems = existItem
+      newCartItems = existItem
         ? state.cartItems.map((x) =>
             x._id === existItem._id ? { ...existItem, qty } : x,
           )
         : [...state.cartItems, { ...item, qty }];
-      get().syncCart(newCartItems);
       return { cartItems: newCartItems, ...updateCartPrices(newCartItems) };
     });
+    get().syncCart(newCartItems!);
   },
 
   removeFromCart: (id) => {
+    let newCartItems: ICartItem[];
     set((state) => {
-      const newCartItems = state.cartItems.filter((x) => x._id !== id);
-      get().syncCart(newCartItems);
+      newCartItems = state.cartItems.filter((x) => x._id !== id);
       return { cartItems: newCartItems, ...updateCartPrices(newCartItems) };
     });
+    get().syncCart(newCartItems!);
   },
 
   saveShippingAddress: (address) => set({ shippingAddress: address }),
