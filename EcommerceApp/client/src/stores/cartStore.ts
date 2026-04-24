@@ -21,6 +21,7 @@ interface CartState {
   saveShippingAddress: (address: IShippingAddress) => void;
   savePaymentMethod: (method: IPaymentMethod) => void;
   clearCart: () => void;
+  resetCart: () => void;
   fetchCart: () => Promise<void>;
   syncCart: (items: ICartItem[]) => Promise<void>;
 }
@@ -110,6 +111,17 @@ export const useCartStore = create<CartState>()((set, get) => ({
   saveShippingAddress: (address) => set({ shippingAddress: address }),
 
   savePaymentMethod: (method) => set({ paymentMethod: method }),
+
+  // Clear in-memory cart only — DB cart is preserved for next login
+  resetCart: () => {
+    set({
+      cartItems: [],
+      itemsPrice: 0,
+      shippingPrice: 0,
+      taxPrice: 0,
+      totalPrice: 0,
+    });
+  },
 
   clearCart: () => {
     fetch(`${API}/api/cart`, { method: "DELETE", credentials: "include" });

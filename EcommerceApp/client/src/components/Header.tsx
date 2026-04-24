@@ -12,10 +12,11 @@ const Header = () => {
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
 
-  const { cartItems } = useCartStore();
+  const { cartItems, resetCart } = useCartStore();
   const cartCount = cartItems.reduce((acc, item) => acc + item.qty, 0);
 
   const handleLogout = () => {
+    resetCart();
     logout();
     navigate("/login");
     setIsUserMenuOpen(false);
