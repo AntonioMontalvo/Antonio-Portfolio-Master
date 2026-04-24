@@ -5,6 +5,8 @@
 import { create } from "zustand";
 import type { ICartItem, IShippingAddress, IPaymentMethod } from "../types.ts";
 
+const API = "https://ecommerce-backend-oddl.onrender.com";
+
 interface CartState {
   cartItems: ICartItem[];
   itemsPrice: number;
@@ -19,6 +21,8 @@ interface CartState {
   saveShippingAddress: (address: IShippingAddress) => void;
   savePaymentMethod: (method: IPaymentMethod) => void;
   clearCart: () => void;
+  fetchCart: () => Promise<void>;
+  syncCart: (items: ICartItem[]) => Promise<void>;
 }
 
 const updateCartPrices = (items: ICartItem[]) => {
@@ -38,7 +42,7 @@ const updateCartPrices = (items: ICartItem[]) => {
   };
 };
 
-export const useCartStore = create<CartState>()((set) => ({
+export const useCartStore = create<CartState>()((set, get) => ({
   cartItems: [],
   itemsPrice: 0,
   shippingPrice: 0,
@@ -47,7 +51,42 @@ export const useCartStore = create<CartState>()((set) => ({
   shippingAddress: null,
   paymentMethod: null,
 
-  addToCart: (item, qty) =>
+  // Fetch the user's cart from the DB and load it into the store
+  fetchCart: async () => {
+    const res = await fetch(`${API}/api/cart`, { credentials: "include" });
+    if (!res.ok) return;
+    const data = await res.json();
+    const items: ICartItem[] = (data.items ?? []).map(
+      (item: Record<string, unknown>) => ({
+        _id: item.product,
+        name: item.name,
+        image: item.image,
+        price: item.price,
+        qty: item.qty,
+        countInStock: item.countInStock ?? 99,
+      }),
+    );
+    set({ cartItems: items, ...updateCartPrices(items) });
+  },
+
+  // Save the current cart items to the DB (fire-and-forget)
+  syncCart: async (items) => {
+    const payload = items.map((item) => ({
+      product: item._id,
+      name: item.name,
+      image: item.image,
+      price: item.price,
+      qty: item.qty,
+    }));
+    await fetch(`${API}/api/cart`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify({ items: payload }),
+    });
+  },
+
+  addToCart: (item, qty) => {
     set((state) => {
       const existItem = state.cartItems.find((x) => x._id === item._id);
       const newCartItems = existItem
@@ -55,26 +94,31 @@ export const useCartStore = create<CartState>()((set) => ({
             x._id === existItem._id ? { ...existItem, qty } : x,
           )
         : [...state.cartItems, { ...item, qty }];
+      get().syncCart(newCartItems);
       return { cartItems: newCartItems, ...updateCartPrices(newCartItems) };
-    }),
+    });
+  },
 
-  removeFromCart: (id) =>
+  removeFromCart: (id) => {
     set((state) => {
       const newCartItems = state.cartItems.filter((x) => x._id !== id);
+      get().syncCart(newCartItems);
       return { cartItems: newCartItems, ...updateCartPrices(newCartItems) };
-    }),
+    });
+  },
 
   saveShippingAddress: (address) => set({ shippingAddress: address }),
 
   savePaymentMethod: (method) => set({ paymentMethod: method }),
 
-  clearCart: () =>
+  clearCart: () => {
+    fetch(`${API}/api/cart`, { method: "DELETE", credentials: "include" });
     set({
       cartItems: [],
       itemsPrice: 0,
       shippingPrice: 0,
       taxPrice: 0,
       totalPrice: 0,
-    }),
+    });
+  },
 }));
-

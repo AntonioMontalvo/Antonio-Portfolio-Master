@@ -1,5 +1,6 @@
 // EcommerceApp/client/src/App.tsx
 
+import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import ProductForm from "./components/ProductForm";
@@ -8,6 +9,7 @@ import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
 import ProductDetailScreen from "./screens/ProductDetailScreen"; // Ensure this file exists
 import { useAuthStore } from "./stores/authStore";
+import { useCartStore } from "./stores/cartStore";
 import CartScreen from "./screens/CartScreen";
 import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
@@ -16,6 +18,14 @@ import OrderDetailScreen from "./screens/OrderDetailScreen";
 
 function App() {
   const { userInfo } = useAuthStore();
+  const fetchCart = useCartStore((state) => state.fetchCart);
+
+  // On page load/refresh, restore the cart from DB if user is already logged in
+  useEffect(() => {
+    if (userInfo?._id) {
+      fetchCart();
+    }
+  }, [userInfo?._id, fetchCart]);
 
   return (
     <Router>
