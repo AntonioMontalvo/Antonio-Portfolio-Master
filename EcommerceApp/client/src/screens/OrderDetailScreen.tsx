@@ -53,7 +53,7 @@ const OrderDetailScreen: React.FC = () => {
       try {
         const { data } = await axios.get(
           `https://ecommerce-backend-oddl.onrender.com/api/orders/${id}`,
-          { withCredentials: true }
+          { withCredentials: true },
         );
         setOrder(data);
         setLoading(false);
@@ -225,6 +225,14 @@ const OrderDetailScreen: React.FC = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Demo disclaimer */}
+      <div className="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-lg text-center">
+        <p className="text-sm text-amber-700 font-medium">
+          ⚠️ Demo purposes only — order fulfillment and payment processing are
+          not functional in this application.
+        </p>
       </div>
     </div>
   );

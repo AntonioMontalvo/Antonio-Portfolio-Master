@@ -15,7 +15,7 @@ const PaymentScreen = () => {
   }, [shippingAddress, navigate]);
 
   const [selectedMethod, setSelectedMethod] = useState(
-    paymentMethod?.method || "PayPal"
+    paymentMethod?.method || "PayPal",
   );
 
   const submitHandler = (e: React.FormEvent) => {
@@ -88,7 +88,7 @@ const PaymentScreen = () => {
                 checked={selectedMethod === "PayPal"}
                 onChange={(e) =>
                   setSelectedMethod(
-                    e.target.value as "PayPal" | "Stripe" | "CreditCard"
+                    e.target.value as "PayPal" | "Stripe" | "CreditCard",
                   )
                 }
                 className="h-4 w-4 border-gray-300"
@@ -115,7 +115,7 @@ const PaymentScreen = () => {
                 checked={selectedMethod === "Stripe"}
                 onChange={(e) =>
                   setSelectedMethod(
-                    e.target.value as "PayPal" | "Stripe" | "CreditCard"
+                    e.target.value as "PayPal" | "Stripe" | "CreditCard",
                   )
                 }
                 className="h-4 w-4 border-gray-300"
@@ -141,6 +141,14 @@ const PaymentScreen = () => {
             Continue to Review Order
           </button>
         </form>
+      </div>
+
+      {/* Demo disclaimer */}
+      <div className="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-lg text-center">
+        <p className="text-sm text-amber-700 font-medium">
+          ⚠️ Demo purposes only — payment processing is not functional in this
+          application.
+        </p>
       </div>
     </div>
   );
