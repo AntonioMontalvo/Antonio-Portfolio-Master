@@ -3,10 +3,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useCartStore } from "../stores/cartStore";
+import { useAuthStore } from "../stores/authStore";
 import type { ICartItem } from "../types";
 
 const CartScreen: React.FC = () => {
   const navigate = useNavigate();
+  const userInfo = useAuthStore((state) => state.userInfo);
   const {
     cartItems,
     itemsPrice,
@@ -141,13 +143,23 @@ const CartScreen: React.FC = () => {
               </div>
             </div>
 
-            <button
-              onClick={handleCheckout}
-              className="w-full mt-6 py-3 px-4 rounded-lg shadow-md text-white text-lg font-semibold bg-primary hover:bg-primary-hover transition transform hover:scale-105"
-              disabled={cartItems.length === 0}
-            >
-              Proceed to Checkout
-            </button>
+            {userInfo ? (
+              <button
+                onClick={handleCheckout}
+                className="w-full mt-6 py-3 px-4 rounded-lg shadow-md text-white text-lg font-semibold bg-primary hover:bg-primary-hover transition transform hover:scale-105"
+                disabled={cartItems.length === 0}
+              >
+                Proceed to Checkout
+              </button>
+            ) : (
+              <button
+                onClick={() => navigate("/login")}
+                className="w-full mt-6 py-3 px-4 rounded-lg shadow-md text-white text-lg font-semibold bg-primary hover:bg-primary-hover transition transform hover:scale-105"
+                disabled={cartItems.length === 0}
+              >
+                Sign In to Checkout
+              </button>
+            )}
           </div>
         </div>
       )}
