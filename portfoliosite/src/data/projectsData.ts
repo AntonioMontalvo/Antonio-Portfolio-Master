@@ -13,7 +13,8 @@ export const projectsData: IProject[] = [
       "Production-ready invoicing platform for freelancers. Full invoice lifecycle with Stripe Checkout payments, webhook-driven status updates, PDF generation, email and SMS delivery, project milestone billing, and a public client portal. Includes demo mode for safe exploration and 162 tests at 92% coverage.",
     status: "Complete",
     liveLink: "https://my-invoice-flow.vercel.app/",
-    codeLink: "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master#-flagship-project--am-invoiceflow",
+    codeLink:
+      "https://github.com/AntonioMontalvo/Antonio-Portfolio-Master#-flagship-project--am-invoiceflow",
     flagship: true,
   },
   {
@@ -77,7 +78,7 @@ export const projectsData: IProject[] = [
     title: "Project 4: C++ Performance Benchmark",
     techStack: "C++, Standard Library, Console Application",
     narrative:
-      "Runs recursive Fibonacci calculation (N=45) to benchmark C++ performance. Used as comparison baseline against the identical Node.js implementation (Project 5) to understand performance trade-offs between compiled and interpreted languages.",
+      "Runs recursive Fibonacci calculation (N=40) to benchmark C++ performance. Used as comparison baseline against the identical Node.js implementation (Project 5) to understand performance trade-offs between compiled and interpreted languages.",
     status: "Complete",
     liveLink: null,
     codeLink:
